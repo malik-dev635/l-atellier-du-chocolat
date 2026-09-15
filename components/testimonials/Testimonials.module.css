@@ -1,0 +1,113 @@
+/* Le corail des dragées, en plein : l'unique bloc de couleur franche de
+   l'accueil. Le reste de la page reste crème et blanc pour qu'il compte. */
+.section {
+  background: var(--s-corail);
+  color: var(--c-dark-choc);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--c-dark-choc);
+}
+
+.title {
+  color: var(--c-dark-choc);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gutter);
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+}
+
+/* ---- Carte ----
+ * Blanche, coins doux, texte en sans : un avis de boutique, lisible,
+ * chaleureux. Pas d'ombre : le contraste avec le corail suffit.
+ */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(var(--sp-6), 3vw, var(--sp-8));
+  background: var(--c-white);
+  border-radius: var(--radius-soft);
+}
+
+.mark {
+  color: var(--s-corail);
+  line-height: 0;
+}
+
+.rating {
+  display: flex;
+  gap: 3px;
+  margin-top: var(--sp-4);
+  color: var(--c-gold);
+}
+
+.quote {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-ink);
+}
+
+/* Étiquette du produit acheté. */
+.tag {
+  margin-top: var(--sp-5);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--s-corail) 22%, var(--c-white));
+  color: var(--c-dark-choc);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: auto;
+  padding-top: var(--sp-6);
+}
+
+.avatar {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex: none;
+}
+
+.authorText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  color: var(--c-ink);
+}
+
+.location {
+  font-size: var(--fs-caption);
+  color: var(--c-muted);
+}
+
+@media (min-width: 840px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

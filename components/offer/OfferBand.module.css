@@ -1,0 +1,103 @@
+.band {
+  position: relative;
+  padding-block: clamp(var(--sp-9), 8vw, var(--sp-12));
+  background: var(--c-milk);
+  color: var(--c-on-brand-strong);
+  overflow: clip;
+  isolation: isolate;
+}
+
+/* Filigrane botanique — opacité 0.10, débordant du cadre. */
+.watermark {
+  position: absolute;
+  top: -6%;
+  right: -4%;
+  width: clamp(220px, 26vw, 420px);
+  height: auto;
+  color: var(--c-gold-light);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Visuel fondu dans le brun par masque en dégradé : aucun bord dur. */
+/* Débordement vertical volontaire : sans le masque en dégradé, la parallaxe
+   découvrait le brun sous la photo à chaque extrémité de course.
+   Largeur réduite à 46 % pour laisser respirer la colonne de texte. */
+.visual {
+  position: absolute;
+  left: 0;
+  top: -8%;
+  bottom: -8%;
+  width: min(46%, 720px);
+  z-index: 0;
+}
+
+.grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: clamp(var(--sp-7), 4vw, var(--sp-9));
+}
+
+.spacer {
+  display: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  margin-top: var(--sp-4);
+}
+
+.text {
+  margin-top: var(--sp-5);
+}
+
+.points {
+  display: grid;
+  gap: var(--sp-5);
+  margin-top: var(--sp-7);
+}
+
+.point {
+  display: grid;
+  grid-template-columns: var(--icon-md) minmax(0, 1fr);
+  gap: var(--sp-4);
+  align-items: center;
+  font-size: var(--fs-small);
+  color: var(--c-on-brand-body);
+}
+
+.point svg {
+  color: var(--c-on-brand-strong);
+}
+
+.cta {
+  margin-top: var(--sp-8);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .spacer {
+    display: block;
+  }
+}
+
+@media (max-width: 899px) {
+  .visual {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 320px;
+    margin-bottom: var(--sp-7);
+  }
+}

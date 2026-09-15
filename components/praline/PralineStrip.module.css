@@ -1,0 +1,14 @@
+.strip {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-white);
+  pointer-events: none;
+  user-select: none;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}

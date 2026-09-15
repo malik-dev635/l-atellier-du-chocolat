@@ -1,0 +1,100 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gutter);
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+}
+
+.card {
+  transition: transform var(--dur-card-out) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  transition-duration: var(--dur-card-in);
+}
+
+.link {
+  display: block;
+}
+
+.mediaWrap {
+  position: relative;
+  transition: box-shadow var(--dur-state) var(--ease-out);
+}
+
+.card:hover .mediaWrap {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.media {
+  aspect-ratio: 326 / 224;
+}
+
+.media :global(img) {
+  transition: transform 600ms var(--ease-out);
+}
+
+.card:hover .media :global(img) {
+  transform: scale(1.06);
+}
+
+.badge {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  z-index: 2;
+  padding: 6px var(--sp-3);
+  background: var(--c-white);
+  color: var(--c-ink);
+  border-radius: var(--radius);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  font-size: var(--fs-caption);
+  color: var(--c-muted);
+}
+
+.title {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--tracking-heading);
+  text-transform: uppercase;
+  color: var(--c-ink);
+  /* Deux lignes réservées : sans cela les titres courts remontaient le lien
+     « Lire l'article » et la rangée de cartes perdait son alignement. */
+  min-height: calc(2 * var(--lh-h3) * 1em);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.card:hover .title {
+  color: var(--c-gold-a11y);
+}
+
+.more {
+  margin-top: var(--sp-4);
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+}

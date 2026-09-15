@@ -1,0 +1,188 @@
+.hero {
+  position: relative;
+  background: var(--c-cream);
+  overflow: clip;
+}
+
+/*
+ * Le Hero tient dans un écran : hauteur de fenêtre moins le bandeau promo et
+ * l'en-tête, avec un plancher pour les très petites hauteurs. `svh` évite le
+ * saut de la barre d'URL mobile.
+ */
+.stage {
+  position: relative;
+  width: 100%;
+  min-height: max(520px, calc(100svh - var(--chrome-h)));
+  display: grid;
+  place-items: center;
+}
+
+/* ---- Visuels du collage ----
+ * Dimensionnés en HAUTEUR (% de la scène) et non en largeur : c'est la
+ * hauteur d'écran qui est la ressource rare, et l'aspect-ratio dérive la
+ * largeur. Le collage ne peut donc jamais dépasser du pli.
+ */
+
+.media {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  clip-path: inset(100% 0% 0% 0%);
+  will-change: clip-path, transform;
+}
+
+.media > :global(img) {
+  transform: scale(1.15);
+  will-change: transform;
+}
+
+.bars {
+  left: 0;
+  top: 4%;
+  height: 23%;
+  aspect-ratio: 250 / 162;
+  z-index: 1;
+}
+
+.mug {
+  left: 3%;
+  top: 26%;
+  height: 62%;
+  aspect-ratio: 363 / 512;
+  z-index: 2;
+}
+
+.sphere {
+  right: 0;
+  top: 6%;
+  /* 72 % et non 78 % : au-delà, le bord gauche de la photo mordait sur la
+     dernière ligne du titre. */
+  height: 72%;
+  aspect-ratio: 522 / 624;
+  z-index: 1;
+}
+
+/* ---- Bloc central ---- */
+
+/* Largeur calée sur l'espace RÉELLEMENT libre entre le collage de gauche
+   (se termine à ~27 % de la fenêtre) et le visuel de droite (commence à
+   ~65 %) : sans cela le titre passait sous la photo. */
+.center {
+  position: relative;
+  z-index: 3;
+  /* Le plafond suit la police display : 520 px suffisaient à 64 px, à 80 px
+     sur grand écran « 100% IVOIRIEN » repassait à la ligne. */
+  width: min(38%, 700px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(120px, 11vw, 160px);
+  aspect-ratio: 1;
+  margin-bottom: clamp(-36px, -2.4vw, -24px);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.curved {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--c-gold);
+  font-family: var(--font-body);
+  /* Unités du viewBox (100), pas des pixels écran : le texte grandit
+     proportionnellement au badge. */
+  font-size: 6.6px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.leaf {
+  position: relative;
+  width: 42%;
+  height: auto;
+  color: var(--c-gold);
+}
+
+/* Taille bornée à la fois par la largeur ET la hauteur disponibles. */
+/* La taille vient du token --fs-display : la redéclarer ici serait sans effet,
+   .title--display porte la même spécificité et gagne par ordre de chargement. */
+.title {
+  margin-top: var(--sp-5);
+  max-width: 100%;
+}
+
+.amp {
+  font-style: italic;
+  font-weight: var(--fw-heading);
+  padding-inline: 0.04em;
+}
+
+.cta {
+  margin-top: clamp(var(--sp-5), 3vw, var(--sp-7));
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ---- Sous 900px : le collage passe en flux, sous le titre ---- */
+
+@media (max-width: 900px) {
+  .stage {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--sp-9);
+  }
+
+  .center {
+    order: 1;
+    width: min(100% - 2 * var(--sp-5), 560px);
+  }
+
+  .media {
+    position: relative;
+    inset: auto;
+    height: auto;
+  }
+
+  .bars {
+    display: none;
+  }
+
+  .mug {
+    order: 2;
+    width: min(56%, 290px);
+    margin-top: var(--sp-8);
+  }
+
+  .sphere {
+    order: 3;
+    width: min(76%, 400px);
+    margin-top: var(--sp-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .badge,
+  .cta {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  .media > :global(img) {
+    transform: none;
+  }
+}

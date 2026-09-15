@@ -1,0 +1,225 @@
+/* Le fond de la section EST la couleur du chocolat affiché ; il glisse vers
+   la suivante à chaque changement de diapositive. */
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+  background: var(--surface, var(--c-cream));
+  color: var(--on-surface, var(--c-ink));
+  transition: background-color var(--dur-slide) var(--ease-in-out),
+    color var(--dur-slide) var(--ease-in-out);
+  overflow: clip;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+}
+
+.eyebrow {
+  color: var(--on-surface-muted, var(--c-gold-a11y));
+}
+
+.title {
+  color: var(--on-surface, var(--c-ink));
+  max-width: 32ch;
+}
+
+/* ---- Piste ---- */
+
+.slider {
+  margin-top: clamp(var(--sp-7), 4vw, var(--sp-9));
+}
+
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Le doigt fait défiler ; la molette verticale passe au-dessus. */
+  overscroll-behavior-x: contain;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track:focus-visible {
+  outline: 2px solid var(--on-surface, var(--c-gold-a11y));
+  outline-offset: -2px;
+}
+
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.slideInner {
+  display: grid;
+  gap: clamp(var(--sp-6), 4vw, var(--sp-10));
+  align-items: center;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  max-height: 60vh;
+  border-radius: var(--radius-soft);
+  overflow: hidden;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.kind {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--on-surface-muted, var(--c-gold-a11y));
+}
+
+.name {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--tracking-heading);
+  text-transform: uppercase;
+  color: var(--on-surface, var(--c-ink));
+}
+
+.spec {
+  margin-top: var(--sp-3);
+  padding-bottom: var(--sp-4);
+  border-bottom: 2px solid var(--on-surface, var(--c-line));
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-surface-muted, var(--c-body));
+}
+
+.text {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--on-surface, var(--c-body));
+  max-width: 50ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(var(--sp-4), 2vw, var(--sp-6));
+  margin-top: var(--sp-7);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--on-surface, var(--c-ink));
+}
+
+.add {
+  padding: var(--sp-3) var(--sp-5);
+  --btn-fg: var(--on-surface, var(--c-gold-a11y));
+  --btn-border: var(--on-surface, var(--c-gold));
+  --btn-fill: var(--on-surface, var(--c-gold));
+  --btn-fg-hover: var(--surface, var(--c-white));
+}
+
+.more {
+  color: var(--on-surface-muted, var(--c-gold-a11y));
+}
+
+/* ---- Contrôles ---- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  margin-top: clamp(var(--sp-6), 3vw, var(--sp-8));
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--on-surface, var(--c-ink));
+  opacity: 0.3;
+  transition: opacity var(--dur-micro) var(--ease-micro),
+    transform var(--dur-state) var(--ease-out);
+}
+
+.dot[aria-selected="true"] {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.counter {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--on-surface-muted, var(--c-body));
+  min-width: 5ch;
+  text-align: center;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: var(--hairline) solid var(--on-surface, var(--c-gold));
+  border-radius: 50%;
+  color: var(--on-surface, var(--c-ink));
+  transition: background-color var(--dur-micro) var(--ease-micro),
+    color var(--dur-micro) var(--ease-micro),
+    transform var(--dur-micro) var(--ease-micro);
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  background: var(--on-surface, var(--c-gold));
+  color: var(--surface, var(--c-white));
+}
+
+.arrow:active {
+  transform: scale(0.94);
+}
+
+@media (min-width: 900px) {
+  .slideInner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .dot {
+    transition: none;
+  }
+
+  .track {
+    scroll-behavior: auto;
+  }
+}

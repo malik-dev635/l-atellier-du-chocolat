@@ -1,0 +1,289 @@
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+  background: var(--c-white);
+  overflow: clip;
+}
+
+/* Éclats de cacao décoratifs, cantonnés aux angles. */
+.shards {
+  position: absolute;
+  top: 0;
+  width: min(25%, 400px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shards img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.shardsLeft {
+  left: 0;
+}
+
+.shardsRight {
+  right: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.title {
+  max-width: 620px;
+}
+
+/* =========================================================================
+   Aperçu boutique (accueil)
+   ========================================================================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+}
+
+@media (max-width: 479px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  transition: transform var(--dur-card-out) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  transition-duration: var(--dur-card-in);
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  transition: box-shadow var(--dur-state) var(--ease-out);
+}
+
+.card:hover .tile {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.tile :global(img) {
+  transition: transform 600ms var(--ease-out);
+}
+
+.card:hover .tile :global(img) {
+  transform: scale(1.06);
+}
+
+.cardName {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-medium);
+  color: var(--c-ink);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.card:hover .cardName {
+  color: var(--accent, var(--c-gold-a11y));
+}
+
+.cardSpec {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.cardPrice {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--c-ink);
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+}
+
+/* =========================================================================
+   Fiches produit
+   ========================================================================= */
+
+/* Sur /boutique la section n'a pas de padding bas : les fiches enchaînent. */
+.shopSection {
+  padding-bottom: 0;
+}
+
+.rows {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+}
+
+/* Chaque fiche prend le FOND de sa propre photo : le décor du produit se
+   prolonge dans la page. Hauteur contenue pour qu'image et titre tiennent
+   ensemble sur un écran de portable (768 px de haut). */
+.row {
+  padding-block: clamp(var(--sp-7), 4vw, var(--sp-9));
+  background: var(--surface, var(--c-cream));
+  color: var(--on-surface, var(--c-ink));
+}
+
+.rowInner {
+  display: grid;
+  gap: clamp(var(--sp-6), 3.5vw, var(--sp-9));
+  /* Aligné en haut, pas centré : le titre reste au niveau du haut de l'image. */
+  align-items: start;
+}
+
+.rowMedia {
+  width: 100%;
+  max-width: 640px;
+}
+
+.rowBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Marque portée par l'étiquette : la maison en a deux. */
+.range {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--on-surface-muted, var(--c-gold-a11y));
+}
+
+.rowTitle {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tracking-heading);
+  text-transform: uppercase;
+  color: var(--on-surface, var(--c-ink));
+}
+
+/* Mentions relevées sur l'emballage. */
+.spec {
+  margin-top: var(--sp-3);
+  padding-bottom: var(--sp-4);
+  border-bottom: 2px solid var(--on-surface, var(--c-line));
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-surface-muted, var(--c-body));
+}
+
+.rowText {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--on-surface, var(--c-body));
+  max-width: 54ch;
+}
+
+.composition {
+  margin: var(--sp-5) 0 0;
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  color: var(--on-surface-muted, var(--c-muted));
+  max-width: 54ch;
+}
+
+.composition dt {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--on-surface, var(--c-ink));
+}
+
+.composition dd {
+  margin: var(--sp-2) 0 0;
+}
+
+.rowFooter {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--sp-4), 2vw, var(--sp-6));
+  flex-wrap: wrap;
+  margin-top: var(--sp-7);
+}
+
+.rating {
+  display: flex;
+  gap: 3px;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--on-surface, var(--c-ink));
+}
+
+/* Sur surface colorée, le bouton se dessine dans l'encre de la surface et se
+   remplit de cette encre au survol : lisible sur clair comme sur cacao. */
+.add {
+  padding: var(--sp-3) var(--sp-5);
+  --btn-fg: var(--on-surface, var(--c-gold-a11y));
+  --btn-border: var(--on-surface, var(--c-gold));
+  --btn-fill: var(--on-surface, var(--c-gold));
+  --btn-fg-hover: var(--surface, var(--c-white));
+}
+
+.starOn {
+  color: var(--on-surface, var(--c-gold));
+}
+
+.starOff {
+  color: var(--on-surface, var(--c-gold));
+  opacity: 0.3;
+}
+
+@media (min-width: 900px) {
+  /* La galerie prend un peu plus que la moitié : c'est elle qu'on regarde. */
+  .rowInner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+
+  /* Le visuel change de côté à chaque produit. */
+  .row[data-flipped="true"] .rowMedia {
+    order: 2;
+  }
+}

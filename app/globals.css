@@ -1,0 +1,640 @@
+/* =========================================================================
+   L'Atelier du Chocolat — tokens issus de design/chocolat-dna.json
+   Toute valeur visuelle du projet passe par une variable définie ici.
+   ========================================================================= */
+
+:root {
+  /* ---- Couleurs : design_system.color ---- */
+  /* Réchauffé pour s'accorder aux fonds beige et terracotta des photos. */
+  --c-cream: #faf6ee;
+  --c-white: #ffffff;
+  --c-tile: #f5f0e8;
+  --c-milk: #87614a;
+  --c-milk-deep: #654836;
+  /* Encre du logo fourni. */
+  --c-dark-choc: #422519;
+  --c-ink: #1f1b18;
+  --c-body: #7b6f68;
+  --c-muted: #9a8b82;
+  --c-line: #dfd8ce;
+  --c-gold: #b99a56;
+  --c-gold-light: #c9a96a;
+  --c-gold-deep: #9a7e42;
+  --c-gold-a11y: #8a6e33;
+  --c-night: #1c1a19;
+  --c-night-deep: #141312;
+  --c-ghost: #f5ebdf;
+  /* ---- Accents produit : prélevés sur les emballages, pas inventés ----
+     Le doré reste l'accent du SYSTÈME (liens, filets, icônes). Ces couleurs
+     n'apparaissent que là où un produit les justifie : fiche, catégorie,
+     survol de sa carte — et en teinte très pâle comme fond de section. */
+  --c-pistache: #799f47;
+  --c-menthe: #3b9d73;
+  --c-ciel: #49b6e4;
+  --c-orange: #e37d37;
+  --c-rose: #ca396d;
+  --c-terracotta: #bc885d;
+
+  /* ---- Surfaces colorées : les FONDS des photos de marque, prélevés
+     directement (corail des dragées, terracotta des pâtes à tartiner,
+     pierre des tablettes…). Assez saturées pour se voir : c'est le
+     produit qui prolonge son décor dans la page. */
+  --s-corail: #ea927d;
+  --s-corail-light: #f3bfb0;
+  --s-terre: #d88e4c;
+  --s-terre-light: #e9b98a;
+  --s-ambre: #d9a662;
+  --s-ochre: #e3c99a;
+  --s-pierre: #fbedda;
+  --s-pistache: #cdd7a3;
+  --s-menthe: #bfe0cf;
+  --s-ciel: #c3e1f1;
+  --s-sauge: #c9cdb4;
+  --s-cacao: #422916;
+
+
+  --c-on-brand-strong: #ffffff;
+  --c-on-brand-body: #f2e7df;
+  --c-on-dark-strong: #ffffff;
+  --c-on-dark-body: #b9b2ac;
+
+  /* ---- Typographie : design_system.typography ---- */
+  --font-display: var(--font-cormorant), "Playfair Display", Didot, "Times New Roman", serif;
+  --font-body: var(--font-poppins), "Jost", "Century Gothic", "Helvetica Neue", sans-serif;
+  --font-script: var(--font-parisienne), "Great Vibes", cursive;
+
+  /* Borné aussi par la hauteur : le Hero doit tenir dans un écran, et la
+     ligne la plus longue doit tenir dans sa colonne (0,65 em/caractère
+     mesuré sur Cormorant en capitales). */
+  --fs-display: clamp(1.9rem, min(4.2vw, 8vh), 5rem);
+  --fs-ghost: clamp(3rem, 6.9vw, 8.5rem);
+  /* Pentes calées sur deux points : 1440 → maquette, 1920 → +28 %. */
+  --fs-h1: clamp(1.75rem, 0.375rem + 2.5vw, 3.375rem);
+  --fs-h2: clamp(1.5rem, 0.5rem + 1.667vw, 2.5rem);
+  --fs-h3: clamp(1.0625rem, 0.5rem + 0.833vw, 1.5rem);
+  --fs-body: clamp(0.9375rem, 0.625rem + 0.417vw, 1.125rem);
+  --fs-small: clamp(0.875rem, 0.5rem + 0.417vw, 1rem);
+  --fs-caption: clamp(0.8125rem, 0.5rem + 0.347vw, 0.9375rem);
+  --fs-overline: clamp(0.75rem, 0.5rem + 0.278vw, 0.8125rem);
+  --fs-micro: 0.6875rem;
+
+  --lh-display: 1.14;
+  --lh-h1: 1.2;
+  --lh-h2: 1.25;
+  --lh-h3: 1.4;
+  --lh-body: 1.62;
+  --lh-small: 1.7;
+
+  --fw-display: 300;
+  --fw-heading: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  --tracking-display: 0.01em;
+  --tracking-heading: 0.005em;
+  --tracking-overline: 0.22em;
+  --tracking-button: 0.14em;
+  --tracking-nav: 0.08em;
+
+  /* ---- Espacements : design_system.spacing ---- */
+  /* Unité fluide : 8 px jusqu'à 1440, 10 px à partir de 1800. Toute la
+     grille d'espacement en dérive, donc boutons, marges et rythme vertical
+     grandissent ensemble sur grand écran. */
+  --u: clamp(8px, 0.5px + 0.52vw, 10px);
+  --sp-1: calc(var(--u) * 0.5);
+  --sp-2: var(--u);
+  --sp-3: calc(var(--u) * 1.5);
+  --sp-4: calc(var(--u) * 2);
+  --sp-5: calc(var(--u) * 3);
+  --sp-6: calc(var(--u) * 4);
+  --sp-7: calc(var(--u) * 5);
+  --sp-8: calc(var(--u) * 7);
+  --sp-9: calc(var(--u) * 9);
+  --sp-10: calc(var(--u) * 12);
+  --sp-11: calc(var(--u) * 15);
+  --sp-12: calc(var(--u) * 20);
+  --section-pad: clamp(3.5rem, 7.5vw, 9rem);
+
+  /* ---- Layout : design_system.layout ---- */
+  /* 1235 px à 1440 (maquette), puis 82 % de la fenêtre jusqu'à 1760 px.
+     Au-delà, marges symétriques : à 2560 le contenu ne s'étire plus. */
+  --container: clamp(1235px, 82vw, 1760px);
+  --container-narrow: clamp(1028px, 68vw, 1460px);
+  --gutter: clamp(25px, 1.75vw, 34px);
+  --page-inline: clamp(1.25rem, 5vw, 11.4375rem);
+
+  /* ---- Formes : design_system.shape ---- */
+  --radius: 0px;
+  /* Coins doux, réservés à ce qui montre un produit ou une personne (cartes
+     sur fond coloré, galerie). La structure et la typographie restent vives. */
+  --radius-soft: 20px;
+  --radius-pill: 999px;
+  --radius-blob: 58% 42% 38% 62% / 45% 38% 62% 55%;
+  --hairline: 1px;
+  --rule-w: 40px;
+
+  /* ---- Élévation : design_system.elevation (système plat) ---- */
+  --shadow-none: none;
+  --shadow-bubble: 0 24px 60px -30px rgba(59, 36, 26, 0.35);
+  --shadow-card-hover: 0 26px 50px -34px rgba(59, 36, 26, 0.45);
+
+  /* ---- Icônes : design_system.iconography ---- */
+  --icon-stroke: 1.5;
+  --icon-stroke-ui: 1.75;
+  /* Flèches éditoriales : trait capillaire, hampe longue. */
+  --icon-stroke-hair: 0.9;
+  --icon-arrow: clamp(38px, 2.6vw, 48px);
+  --icon-xs: 14px;
+  --icon-sm: 18px;
+  --icon-md: 22px;
+  --icon-lg: 24px;
+  --icon-xl: 44px;
+
+  /* ---- Motion : design_system.motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-micro: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-micro: 250ms;
+  --dur-state: 400ms;
+  --dur-slide: 700ms;
+  --dur-card-in: 400ms;
+  --dur-card-out: 300ms;
+  --dur-enter: 900ms;
+  --dur-macro: 1100ms;
+
+  /* ---- Divers ---- */
+  --header-h: clamp(98px, 6.8vw, 124px);
+  --header-h-compact: 68px;
+  --topbar-h: 35px;
+  /* Hauteur occupée par le bandeau promo + l'en-tête, au-dessus du Hero. */
+  --chrome-h: calc(var(--topbar-h) + var(--header-h));
+  --z-header: 60;
+  --z-overlay: 80;
+  --z-preloader: 100;
+}
+
+/* =========================================================================
+   Reset
+   ========================================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-cream);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-gold-a11y);
+  outline-offset: 3px;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* =========================================================================
+   Accents produit : un attribut `data-accent` pose --accent / --tint sur
+   l'élément ; les composants n'utilisent que ces deux variables.
+   ========================================================================= */
+
+[data-accent="pistache"]   { --accent: var(--c-pistache); }
+[data-accent="menthe"]     { --accent: var(--c-menthe); }
+[data-accent="ciel"]       { --accent: var(--c-ciel); }
+[data-accent="orange"]     { --accent: var(--c-orange); }
+[data-accent="rose"]       { --accent: var(--c-rose); }
+[data-accent="terracotta"] { --accent: var(--c-terracotta); }
+
+/* Surface d'une fiche produit : le fond de sa propre photo. `--on-surface`
+   suit : encre sur les clairs, crème sur le cacao. */
+[data-surface="corail"]   { --surface: var(--s-corail-light); --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="ochre"]    { --surface: var(--s-ochre);        --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="ambre"]    { --surface: var(--s-ambre);        --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="terre"]    { --surface: var(--s-terre-light);  --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="pistache"] { --surface: var(--s-pistache);     --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="menthe"]   { --surface: var(--s-menthe);       --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="ciel"]     { --surface: var(--s-ciel);         --on-surface: var(--c-ink); --on-surface-muted: var(--c-dark-choc); }
+[data-surface="pierre"]   { --surface: var(--s-pierre);       --on-surface: var(--c-ink); --on-surface-muted: var(--c-body); }
+[data-surface="cacao"]    { --surface: var(--s-cacao);        --on-surface: var(--c-cream); --on-surface-muted: var(--c-on-dark-body); }
+
+/* =========================================================================
+   Primitives partagées
+   ========================================================================= */
+
+.container {
+  width: min(100% - 2 * var(--sp-5), var(--container));
+  margin-inline: auto;
+}
+
+.container-narrow {
+  width: min(100% - 2 * var(--sp-5), var(--container-narrow));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+}
+
+.section--cream {
+  background: var(--c-cream);
+}
+
+.section--white {
+  background: var(--c-white);
+}
+
+/* --- Suréclairage doré + filets (design_system.shape.divider_style) --- */
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--c-gold-a11y);
+}
+
+.eyebrow--on-dark {
+  color: var(--c-gold-light);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: "";
+  width: var(--rule-w);
+  height: var(--hairline);
+  background: currentColor;
+  flex: none;
+}
+
+.eyebrow--start::before {
+  display: none;
+}
+
+.eyebrow--center {
+  justify-content: center;
+}
+
+/* --- Titres serif --- */
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--tracking-heading);
+  text-transform: uppercase;
+  color: var(--c-ink);
+  text-wrap: balance;
+}
+
+.title--on-dark {
+  color: var(--c-on-dark-strong);
+}
+
+.title--display {
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+}
+
+/* Masque de révélation ligne par ligne */
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.line-mask > span {
+  display: block;
+  will-change: transform;
+}
+
+.lead {
+  color: var(--c-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: 52ch;
+}
+
+.lead--on-brand {
+  color: var(--c-on-brand-body);
+}
+
+.lead--on-dark {
+  color: var(--c-on-dark-body);
+}
+
+/* =========================================================================
+   Boutons (design_system.components.button_style)
+   ========================================================================= */
+
+.btn {
+  --btn-fg: var(--c-gold-a11y);
+  --btn-border: var(--c-gold);
+  --btn-fill: var(--c-gold);
+  --btn-fg-hover: var(--c-cream);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-6);
+  border: var(--hairline) solid var(--btn-border);
+  border-radius: var(--radius);
+  color: var(--btn-fg);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+  background: transparent;
+  isolation: isolate;
+  transition: color var(--dur-state) var(--ease-in-out);
+}
+
+/* Remplissage qui monte du bas */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-fill);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--dur-state) var(--ease-in-out);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: var(--btn-fg-hover);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: scaleY(1);
+}
+
+/* Cadre décalé ouvert — signature de la maquette */
+.btn::after {
+  content: "";
+  position: absolute;
+  left: var(--sp-2);
+  top: var(--sp-2);
+  right: calc(-1 * var(--sp-2));
+  bottom: calc(-1 * var(--sp-2));
+  border-right: var(--hairline) solid var(--btn-border);
+  border-bottom: var(--hairline) solid var(--btn-border);
+  pointer-events: none;
+  transition: transform var(--dur-state) var(--ease-in-out),
+    opacity var(--dur-state) var(--ease-in-out);
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  transform: translate(calc(-1 * var(--sp-2)), calc(-1 * var(--sp-2)));
+  opacity: 0;
+}
+
+.btn:active {
+  transform: scale(0.985);
+}
+
+/* Variante sur fond coloré / sombre */
+.btn--light {
+  --btn-fg: var(--c-on-brand-strong);
+  --btn-border: rgba(255, 255, 255, 0.6);
+  --btn-fill: var(--c-white);
+  --btn-fg-hover: var(--c-dark-choc);
+}
+
+/* Variante pleine — pilule primaire unique */
+.btn--solid {
+  border-radius: var(--radius-pill);
+  border-color: transparent;
+  background: var(--c-gold);
+  color: var(--c-white);
+  padding: var(--sp-3) var(--sp-6);
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  transition: transform var(--dur-micro) var(--ease-micro),
+    background-color var(--dur-micro) var(--ease-micro);
+}
+
+.btn--solid::before,
+.btn--solid::after {
+  display: none;
+}
+
+.btn--solid:hover,
+.btn--solid:focus-visible {
+  background: var(--c-gold-light);
+  color: var(--c-white);
+}
+
+.btn--solid:active {
+  transform: scale(0.97);
+}
+
+/* Lien « Read more » */
+.link-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-gold-a11y);
+  padding-bottom: 3px;
+  position: relative;
+}
+
+.link-more::after,
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--hairline);
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+/* L'underline se dessine depuis la gauche, et sort par la droite */
+.link-underline {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.link-underline::after {
+  transform: scaleX(0);
+}
+
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.link-underline:not(:hover)::after {
+  transform-origin: right;
+}
+
+/* =========================================================================
+   Révélations (état initial ; l'état final est posé par GSAP)
+   ========================================================================= */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  will-change: transform, opacity;
+}
+
+[data-reveal-image] {
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+}
+
+[data-reveal-image] > * {
+  transform: scale(1.2);
+  will-change: transform;
+}
+
+/* Conteneur d'image à ratio fixe (CLS nul) utilisé par <RevealImage>. */
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+/* État initial des lignes du titre Hero, posé en CSS pour éviter tout flash
+   avant l'exécution de GSAP. */
+[data-hero-line] {
+  transform: translateY(110%);
+}
+
+/* Filet de sécurité : sans JS, rien ne reste caché. */
+.no-js [data-reveal],
+.no-js [data-reveal-image],
+.no-js [data-reveal-image] > *,
+.no-js [data-hero-line] {
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+}
+
+/* =========================================================================
+   Utilitaires
+   ========================================================================= */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Cible du retrait de page quand l'overlay de recherche s'ouvre.
+   Pas de `will-change` permanent : GSAP le pose le temps de l'animation. */
+.page-shell {
+  transform-origin: 50% 30%;
+}
+
+/* =========================================================================
+   Reduced motion — visual_effects.overview.fallback_strategy
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 200ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal],
+  [data-reveal-image],
+  [data-reveal-image] > *,
+  [data-hero-line] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    will-change: auto;
+  }
+}

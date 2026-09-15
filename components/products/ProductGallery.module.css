@@ -1,0 +1,63 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* 5:4 mais jamais plus haut que ~55 % de la fenêtre : sur un portable,
+   l'image et le titre de la fiche doivent tenir ensemble à l'écran. */
+.stage {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  max-height: 55vh;
+  overflow: hidden;
+  border-radius: var(--radius-soft);
+  background: color-mix(in srgb, var(--surface, var(--c-cream)) 70%, var(--c-white));
+}
+
+/* Vues empilées : seule l'active est visible, le passage est un fondu. */
+.view {
+  opacity: 0;
+  transition: opacity var(--dur-slide) var(--ease-in-out);
+}
+
+.view[data-active="true"] {
+  opacity: 1;
+}
+
+/* Vignettes à largeur fixe, calées à gauche : elles ne s'étirent pas avec
+   la colonne, elles restent des vignettes. */
+.thumbs {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.thumb {
+  position: relative;
+  width: clamp(88px, 8vw, 120px);
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: calc(var(--radius-soft) / 2);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  opacity: 0.55;
+  transition: opacity var(--dur-micro) var(--ease-micro),
+    outline-color var(--dur-micro) var(--ease-micro);
+}
+
+.thumb:hover,
+.thumb:focus-visible {
+  opacity: 0.85;
+}
+
+/* La vignette active prend l'accent de l'emballage. */
+.thumb[aria-selected="true"] {
+  opacity: 1;
+  outline-color: var(--on-surface, var(--c-gold));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view {
+    transition: none;
+  }
+}

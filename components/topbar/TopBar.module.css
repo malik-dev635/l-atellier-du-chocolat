@@ -1,0 +1,20 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--topbar-h);
+  padding: var(--sp-2) var(--sp-5);
+  background: var(--c-milk);
+  color: var(--c-on-brand-strong);
+}
+
+.text {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.link {
+  color: var(--c-on-brand-strong);
+  font-weight: var(--fw-medium);
+}

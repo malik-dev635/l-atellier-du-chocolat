@@ -1,0 +1,34 @@
+.band {
+  position: relative;
+  padding-block: clamp(var(--sp-8), 5vw, var(--sp-10));
+  background: var(--c-night);
+  color: var(--c-on-dark-strong);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-7);
+}
+
+.title {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  color: var(--c-on-dark-strong);
+  max-width: 20ch;
+}
+
+.accent {
+  color: var(--c-gold);
+}
+
+.subtitle {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-body);
+  color: var(--c-on-dark-body);
+  max-width: 48ch;
+}

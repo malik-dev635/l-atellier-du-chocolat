@@ -1,0 +1,226 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--c-cream);
+  will-change: transform;
+  transition: background-color var(--dur-state) var(--ease-in-out),
+    backdrop-filter var(--dur-state) var(--ease-in-out),
+    box-shadow var(--dur-state) var(--ease-in-out);
+}
+
+.header[data-scrolled="true"] {
+  background: color-mix(in srgb, var(--c-cream) 82%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--c-line) 60%, transparent);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  min-height: var(--header-h);
+}
+
+.brand {
+  flex: none;
+}
+
+/* ---------------- Navigation ---------------- */
+
+.nav {
+  display: none;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+  color: var(--c-ink);
+  padding-block: var(--sp-4);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.navItem:hover .navLink,
+.navLink:focus-visible {
+  color: var(--c-gold-a11y);
+}
+
+.chevron {
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.navItem:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: calc(-1 * var(--sp-4));
+  min-width: 216px;
+  padding: var(--sp-4);
+  background: var(--c-white);
+  border: var(--hairline) solid var(--c-line);
+  border-radius: var(--radius);
+  display: grid;
+  gap: var(--sp-3);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity var(--dur-state) var(--ease-in-out),
+    transform var(--dur-state) var(--ease-in-out);
+}
+
+.navItem:hover .submenu,
+.navItem:focus-within .submenu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.submenuLink {
+  font-size: var(--fs-small);
+  color: var(--c-body);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.submenuLink:hover,
+.submenuLink:focus-visible {
+  color: var(--c-gold-a11y);
+}
+
+/* ---------------- Actions ---------------- */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex: none;
+}
+
+/* Sélecteur descendant obligatoire : le bouton porte aussi la classe globale
+   `.btn { display: inline-flex }`, de même spécificité, qui gagnait par ordre
+   de chargement et laissait le bouton visible sur mobile — il poussait alors
+   la loupe et le burger hors de l'écran. */
+.actions .contact {
+  display: none;
+  padding: var(--sp-3) var(--sp-5);
+}
+
+.iconButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--c-ink);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.iconButton:hover,
+.iconButton:focus-visible {
+  color: var(--c-gold-a11y);
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--c-gold);
+  color: var(--c-white);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  line-height: 18px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--dur-micro) var(--ease-micro);
+  will-change: transform;
+}
+
+.badge[data-visible="true"] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.burger {
+  display: inline-flex;
+}
+
+/* ---------------- Menu mobile ---------------- */
+
+/* Position absolue + transform : aucune propriété de layout n'est animée. */
+.mobileNav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--c-cream);
+  border-top: var(--hairline) solid var(--c-line);
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity var(--dur-state) var(--ease-in-out),
+    transform var(--dur-state) var(--ease-in-out);
+}
+
+.mobileNav[data-open="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobileNav ul {
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-6) var(--sp-5);
+}
+
+.mobileNav a {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-heading);
+  color: var(--c-ink);
+}
+
+/* ---------------- Points de rupture ---------------- */
+
+@media (min-width: 1024px) {
+  .nav {
+    display: block;
+  }
+
+  .actions .contact {
+    display: inline-flex;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .mobileNav {
+    display: none;
+  }
+}

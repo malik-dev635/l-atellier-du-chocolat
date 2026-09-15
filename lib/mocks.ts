@@ -1,0 +1,553 @@
+import { Cookie, LayoutGrid, Leaf, Mail, Phone } from "lucide-react";
+
+import aboutStack from "@/assets/images/about-stack.jpg";
+import avatar from "@/assets/images/avatar.jpg";
+import blog1 from "@/assets/images/blog-1.jpg";
+import blog2 from "@/assets/images/blog-2.jpg";
+import blog3 from "@/assets/images/blog-3.jpg";
+import product1 from "@/assets/images/product-1.jpg";
+import product2 from "@/assets/images/product-2.jpg";
+import product3 from "@/assets/images/product-3.jpg";
+import product4 from "@/assets/images/product-4.jpg";
+import product5 from "@/assets/images/product-5.jpg";
+import product6 from "@/assets/images/product-6.jpg";
+import product7 from "@/assets/images/product-7.jpg";
+import product8 from "@/assets/images/product-8.jpg";
+import product9 from "@/assets/images/product-9.jpg";
+import product10 from "@/assets/images/product-10.jpg";
+import product10a from "@/assets/images/product-10a.jpg";
+import product10b from "@/assets/images/product-10b.jpg";
+import product10c from "@/assets/images/product-10c.jpg";
+import product11 from "@/assets/images/product-11.jpg";
+import product11a from "@/assets/images/product-11a.jpg";
+import product11b from "@/assets/images/product-11b.jpg";
+import product11c from "@/assets/images/product-11c.jpg";
+import product12 from "@/assets/images/product-12.jpg";
+import product12a from "@/assets/images/product-12a.jpg";
+import product12b from "@/assets/images/product-12b.jpg";
+import product12c from "@/assets/images/product-12c.jpg";
+import product13 from "@/assets/images/product-13.jpg";
+import product13a from "@/assets/images/product-13a.jpg";
+import product13b from "@/assets/images/product-13b.jpg";
+import product13c from "@/assets/images/product-13c.jpg";
+import product1a from "@/assets/images/product-1a.jpg";
+import product1b from "@/assets/images/product-1b.jpg";
+import product1c from "@/assets/images/product-1c.jpg";
+import product2a from "@/assets/images/product-2a.jpg";
+import product2b from "@/assets/images/product-2b.jpg";
+import product2c from "@/assets/images/product-2c.jpg";
+import product3a from "@/assets/images/product-3a.jpg";
+import product3b from "@/assets/images/product-3b.jpg";
+import product3c from "@/assets/images/product-3c.jpg";
+import product4a from "@/assets/images/product-4a.jpg";
+import product4b from "@/assets/images/product-4b.jpg";
+import product4c from "@/assets/images/product-4c.jpg";
+import product5a from "@/assets/images/product-5a.jpg";
+import product5b from "@/assets/images/product-5b.jpg";
+import product5c from "@/assets/images/product-5c.jpg";
+import product6a from "@/assets/images/product-6a.jpg";
+import product6b from "@/assets/images/product-6b.jpg";
+import product6c from "@/assets/images/product-6c.jpg";
+import product7a from "@/assets/images/product-7a.jpg";
+import product7b from "@/assets/images/product-7b.jpg";
+import product7c from "@/assets/images/product-7c.jpg";
+import product8a from "@/assets/images/product-8a.jpg";
+import product8b from "@/assets/images/product-8b.jpg";
+import product8c from "@/assets/images/product-8c.jpg";
+import product9a from "@/assets/images/product-9a.jpg";
+import product9b from "@/assets/images/product-9b.jpg";
+import product9c from "@/assets/images/product-9c.jpg";
+
+import type {
+  Feature,
+  FooterColumn,
+  NavItem,
+  OfferPoint,
+  Post,
+  Product,
+  Testimonial,
+} from "@/lib/types";
+
+export const BRAND = {
+  /** Le logo porte déjà le nom : `full` sert aux alt, aria-label et métadonnées. */
+  full: "l'Atelier du Chocolat",
+  tagline: "Artisan · Chocolatier",
+  baseline:
+    "Le chocolat artisanal 100 % ivoirien : cacao récolté en Côte d'Ivoire, transformé sur place. Tablettes, pâtes à tartiner, dragées, miels et conserves sortent toutes du même atelier.",
+  addressLabel: "Atelier & boutique",
+  address: "Ouvert du mardi au samedi",
+  copyright: "© 2026 l'Atelier du Chocolat. Tous droits réservés.",
+  promo: "Le chocolat artisanal 100 % ivoirien, livré chez vous",
+  promoCta: "Découvrir",
+} as const;
+
+export const NAV_ITEMS: readonly NavItem[] = [
+  { id: "home", label: "Accueil", href: "/#hero" },
+  {
+    id: "maison",
+    label: "La maison",
+    href: "/#about",
+    children: [
+      { id: "maison-histoire", label: "Notre histoire", href: "/#about" },
+      { id: "maison-atelier", label: "L'atelier", href: "/#why" },
+      { id: "maison-savoir", label: "Savoir-faire", href: "/#offer" },
+    ],
+  },
+  {
+    id: "gamme",
+    label: "Nos chocolats",
+    href: "/#chocolats",
+    children: [
+      { id: "g-tablettes", label: "Tablettes", href: "/#chocolats" },
+      { id: "g-tartiner", label: "Pâtes à tartiner", href: "/#gourmandises" },
+      { id: "g-dragees", label: "Dragées", href: "/#gourmandises" },
+      { id: "g-epicerie", label: "Épicerie fine", href: "/#gourmandises" },
+    ],
+  },
+  {
+    id: "blog",
+    label: "Journal",
+    href: "/#blog",
+    children: [
+      { id: "blog-all", label: "Tous les articles", href: "/#blog" },
+      { id: "blog-recipes", label: "Recettes", href: "/#blog" },
+    ],
+  },
+  { id: "shop", label: "Boutique", href: "/boutique" },
+  {
+    id: "contact",
+    label: "Contact",
+    href: "/#footer",
+    children: [
+      { id: "contact-atelier", label: "Visiter l'atelier", href: "/#footer" },
+      { id: "contact-pro", label: "Commandes pro", href: "/#footer" },
+    ],
+  },
+];
+
+export const FEATURES: readonly Feature[] = [
+  {
+    id: "ingredients",
+    title: "Cacao 100 % ivoirien",
+    text: "Une seule origine, la nôtre. Les régions de récolte sont imprimées sur le coffret, pas cachées derrière une mention « origines multiples ».",
+    icon: Leaf,
+  },
+  {
+    id: "atelier",
+    title: "Transformé sur place",
+    text: "Torréfaction, conchage, tempérage, moulage, mise en pot et étiquetage : tout se fait à l'atelier, rien n'est sous-traité.",
+    icon: Cookie,
+  },
+  {
+    id: "gamme",
+    title: "Des fruits secs, pas des arômes",
+    text: "25 % de noisette dans la Choco-Noisette, 50 % de pistache dans la Pistaché. Les pourcentages sont sur les pots parce qu'ils sont tenus.",
+    icon: LayoutGrid,
+  },
+];
+
+export const OFFER_POINTS: readonly OfferPoint[] = [
+  { id: "op-1", text: "Coffrets composés à la main, à l'unité près" },
+  { id: "op-2", text: "Message personnalisé glissé dans la boîte" },
+  { id: "op-3", text: "Expédition sous 48 heures, emballage isotherme" },
+  { id: "op-4", text: "Tarifs dégressifs pour les comités d'entreprise" },
+];
+
+/** Marques portées par les étiquettes. L'épicerie n'est pas signée comme le
+ *  chocolat : deux labels, une seule maison. */
+export const RANGES = {
+  atelier: "l'Atelier du Chocolat",
+  fabrique: "La Fabrique Gourmande",
+} as const;
+
+/**
+ * Les `spec` ne contiennent que des mentions réellement lues sur les
+ * emballages (pourcentages, grammages). Aucun poids n'est inventé : quand il
+ * n'est pas imprimé, il n'apparaît pas.
+ */
+export const PRODUCTS: readonly Product[] = [
+  {
+    id: "p-lait-noisette",
+    family: "chocolat",
+    kind: "Tablette · lait 41 %",
+    name: "Chocolat au lait noisette",
+    range: "atelier",
+    spec: "41 % cacao",
+    description:
+      "Des éclats de noisette entiers pris dans la masse, pas une poudre mélangée au conchage. On les sent sous la dent, tablette après tablette.",
+    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, noisettes.",
+    accent: "menthe",
+    surface: "menthe",
+    price: 4.5,
+    rating: 5,
+    image: product6,
+    views: [product6a, product6b, product6c],
+  },
+  {
+    id: "p-lait-amande",
+    family: "chocolat",
+    kind: "Tablette · lait 41 %",
+    name: "Chocolat au lait amande",
+    range: "atelier",
+    spec: "41 % cacao",
+    description:
+      "La même base de lait à 41 %, avec des amandes concassées plus fines que la noisette. C'est la tablette que l'on conseille pour commencer, elle ne heurte personne.",
+    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, amandes.",
+    accent: "ciel",
+    surface: "ciel",
+    price: 4.5,
+    rating: 4,
+    image: product7,
+    views: [product7a, product7b, product7c],
+  },
+  {
+    id: "p-noir-pistache",
+    family: "chocolat",
+    kind: "Tablette · noir 70 %",
+    name: "Chocolat noir pistache",
+    range: "atelier",
+    spec: "70 % cacao",
+    description:
+      "Sept parts de cacao sur dix, et la pistache pour casser l'amertume sans la masquer. C'est la tablette de la maison : celle qui dit ce que donne le cacao ivoirien quand on ne le noie pas dans le sucre.",
+    composition: "Cacao de Côte d'Ivoire 70 %, sucre, pistaches, beurre de cacao.",
+    accent: "pistache",
+    surface: "pierre",
+    price: 5.2,
+    rating: 5,
+    image: product8,
+    views: [product8a, product8b, product8c],
+  },
+  {
+    id: "p-lait-pistache",
+    name: "Chocolat au lait pistache",
+    family: "chocolat",
+    kind: "Tablette · lait 41 %",
+    range: "atelier",
+    spec: "41 % cacao",
+    description:
+      "La pistache entière prise dans le lait à 41 %. C'est la tablette la plus demandée de la gamme lait, et la seule qu'on limite à deux par personne quand le stock baisse.",
+    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, pistaches.",
+    accent: "pistache",
+    surface: "pistache",
+    price: 4.9,
+    rating: 5,
+    image: product10,
+    views: [product10a, product10b, product10c],
+  },
+  {
+    id: "p-lait-nature",
+    name: "Chocolat au lait",
+    family: "chocolat",
+    kind: "Tablette · lait 41 %",
+    range: "atelier",
+    spec: "41 % cacao",
+    description:
+      "Rien d'ajouté : la tablette de lait telle qu'elle sort du conchage. C'est celle qui dit ce que vaut la fève avant tout ce qu'on peut mettre dedans.",
+    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, beurre de cacao.",
+    accent: "orange",
+    surface: "terre",
+    price: 3.9,
+    rating: 5,
+    image: product11,
+    views: [product11a, product11b, product11c],
+  },
+  {
+    id: "p-noir-amande",
+    name: "Chocolat noir amande",
+    family: "chocolat",
+    kind: "Tablette · noir 70 %",
+    range: "atelier",
+    spec: "70 % cacao",
+    description:
+      "Le noir à 70 % avec des amandes concassées. L'amande adoucit l'amertume sans sucre supplémentaire — c'est la porte d'entrée vers la gamme noire.",
+    composition: "Cacao de Côte d'Ivoire 70 %, sucre, amandes, beurre de cacao.",
+    accent: "ciel",
+    surface: "ciel",
+    price: 5.2,
+    rating: 5,
+    image: product12,
+    views: [product12a, product12b, product12c],
+  },
+  {
+    id: "p-noir-nature",
+    name: "Chocolat noir",
+    family: "chocolat",
+    kind: "Tablette · noir 70 %",
+    range: "atelier",
+    spec: "70 % cacao",
+    description:
+      "Sept parts de cacao sur dix et rien pour se cacher derrière. Si une seule tablette devait représenter l'atelier, ce serait celle-là.",
+    composition: "Cacao de Côte d'Ivoire 70 %, sucre, beurre de cacao.",
+    accent: "orange",
+    surface: "pierre",
+    price: 4.6,
+    rating: 5,
+    image: product13,
+    views: [product13a, product13b, product13c],
+  },
+  {
+    id: "p-poudre",
+    family: "chocolat",
+    kind: "Cacao · poudre",
+    name: "Poudre de cacao",
+    range: "atelier",
+    spec: "Cacao pur · étui carton",
+    description:
+      "La même fève que dans nos tablettes, torréfiée puis moulue sans sucre ni lait. Pour un chocolat chaud qui a le goût du cacao, une pâtisserie plus sombre, ou saupoudrée telle quelle.",
+    composition: "Cacao de Côte d'Ivoire 100 %.",
+    accent: "terracotta",
+    surface: "cacao",
+    price: 6.5,
+    rating: 5,
+    image: product9,
+    views: [product9a, product9b, product9c],
+  },
+  {
+    id: "p-dragees",
+    family: "gourmandise",
+    kind: "Dragées · chocolat au lait",
+    name: "Dragées amande",
+    range: "atelier",
+    spec: "42 % au lait · 200 g",
+    description:
+      "Des amandes entières enrobées de chocolat au lait, tournées jusqu'à ce que la coque soit lisse. On les vend en pot transparent parce qu'il n'y a rien à cacher : on voit la taille des amandes.",
+    composition: "Amandes, chocolat au lait 42 %, sucre, beurre de cacao.",
+    accent: "rose",
+    surface: "corail",
+    price: 8.5,
+    rating: 5,
+    image: product1,
+    views: [product1a, product1b, product1c],
+  },
+  {
+    id: "p-tomates",
+    family: "gourmandise",
+    kind: "Épicerie · conserve",
+    name: "Tomates séchées",
+    range: "fabrique",
+    spec: "Conserve · huile et herbes",
+    description:
+      "Des tomates séchées puis remises en pot dans l'huile, avec le thym et le romarin. C'est la seule référence salée de la maison, et celle que les restaurateurs commandent par six.",
+    composition: "Tomates séchées, huile végétale, thym, romarin, ail, sel.",
+    accent: "orange",
+    surface: "ochre",
+    price: 6.9,
+    rating: 4,
+    image: product2,
+    views: [product2a, product2b, product2c],
+  },
+  {
+    id: "p-miel",
+    family: "gourmandise",
+    kind: "Épicerie · miel",
+    name: "Miel de chêne",
+    range: "fabrique",
+    spec: "100 % miel · pot verre",
+    description:
+      "Un miel de miellat sombre, franc, beaucoup moins sucré en bouche qu'un miel de fleurs. La cuillère en bois est fournie avec le pot, parce qu'il est trop épais pour un couteau.",
+    composition: "Miel de chêne 100 %. Aucun ajout, aucune pasteurisation.",
+    accent: "terracotta",
+    surface: "ambre",
+    price: 9.5,
+    rating: 5,
+    image: product3,
+    views: [product3a, product3b, product3c],
+  },
+  {
+    id: "p-noisette",
+    family: "gourmandise",
+    kind: "Pâte à tartiner",
+    name: "Choco-Noisette crème",
+    range: "atelier",
+    spec: "25 % noisette",
+    description:
+      "Un quart du pot, c'est de la noisette. Le reste, c'est notre chocolat et rien d'autre : pas d'huile de palme, pas d'arôme ajouté. La pâte est volontairement épaisse, elle ne coule pas de la tartine.",
+    composition: "Noisettes 25 %, sucre, cacao, lait en poudre, beurre de cacao.",
+    accent: "terracotta",
+    surface: "terre",
+    price: 7.9,
+    rating: 5,
+    image: product4,
+    views: [product4a, product4b, product4c],
+  },
+  {
+    id: "p-pistache",
+    family: "gourmandise",
+    kind: "Pâte à tartiner",
+    name: "Pistaché crème",
+    range: "atelier",
+    spec: "50 % pistache",
+    description:
+      "La moitié du pot en pistache : c'est ce qui explique le prix et la couleur, qui est celle du fruit et non d'un colorant. La référence la plus difficile à produire, et celle qui part le plus vite.",
+    composition: "Pistaches 50 %, sucre, beurre de cacao, lait en poudre.",
+    accent: "pistache",
+    surface: "pistache",
+    price: 12.9,
+    rating: 5,
+    image: product5,
+    views: [product5a, product5b, product5c],
+  },
+];
+
+export const TESTIMONIALS: readonly Testimonial[] = [
+  {
+    id: "t-1",
+    quote:
+      "J'ai offert le coffret de tablettes pour l'anniversaire de ma mère. Elle a goûté la noisette en premier, s'est arrêtée net, et m'a demandé où j'avais trouvé ça.",
+    name: "Dana Eston",
+    location: "Pâtisserie Belleville — Paris",
+    product: "Coffret de tablettes",
+    rating: 5,
+    avatar,
+  },
+  {
+    id: "t-2",
+    quote:
+      "Nous servons leur Pistaché en dessert depuis deux ans. Pas une seule livraison en retard, pas un seul pot cassé. Et les clients redemandent la marque par son nom.",
+    name: "Marc Villeneuve",
+    location: "Table du Marché — Lyon",
+    product: "Pistaché crème",
+    rating: 5,
+    avatar,
+  },
+  {
+    id: "t-3",
+    quote:
+      "Le noir pistache 70 % est la seule chose que je rapporte à chaque passage. Ma valise sent le cacao pendant trois jours, et personne ne s'en plaint.",
+    name: "Inès Ferrand",
+    location: "Atelier Céramique — Bordeaux",
+    product: "Chocolat noir pistache 70 %",
+    rating: 5,
+    avatar,
+  },
+];
+
+export const POSTS: readonly Post[] = [
+  {
+    id: "post-1",
+    title: "Pourquoi nos pots sont si petits",
+    category: "L'atelier",
+    date: "12 février 2026",
+    author: "L'équipe",
+    href: "/#blog",
+    image: blog1,
+  },
+  {
+    id: "post-2",
+    title: "Composer un coffret qui tient la route",
+    category: "Conseils",
+    date: "18 février 2026",
+    author: "L'équipe",
+    href: "/#blog",
+    image: blog2,
+  },
+  {
+    id: "post-3",
+    title: "Lire une étiquette de chocolat",
+    category: "Dégustation",
+    date: "3 mars 2026",
+    author: "L'équipe",
+    href: "/#blog",
+    image: blog3,
+  },
+];
+
+export const FOOTER_COLUMNS: readonly FooterColumn[] = [
+  {
+    id: "support",
+    title: "Commander",
+    links: [
+      { id: "s-1", label: "Suivre ma commande", href: "/#footer" },
+      { id: "s-2", label: "Livraison & retours", href: "/#footer" },
+      { id: "s-3", label: "Coffrets d'entreprise", href: "/#footer" },
+      { id: "s-4", label: "Tarifs revendeurs", href: "/#footer" },
+    ],
+  },
+  {
+    id: "maison",
+    title: "La maison",
+    links: [
+      { id: "i-1", label: "Notre histoire", href: "/#about" },
+      { id: "i-2", label: "Visiter l'atelier", href: "/#why" },
+      { id: "i-3", label: "Mon compte", href: "/#footer" },
+      { id: "i-4", label: "Confidentialité", href: "/#footer" },
+    ],
+  },
+  {
+    id: "contact",
+    title: "Nous joindre",
+    links: [
+      { id: "c-1", label: "(+33) 1 78 78 53 70", href: "tel:+33178785370", icon: Phone },
+      {
+        id: "c-2",
+        label: "bonjour@atelierduchocolat.fr",
+        href: "mailto:bonjour@atelierduchocolat.fr",
+        icon: Mail,
+      },
+    ],
+  },
+];
+
+export const ABOUT = {
+  eyebrow: "La maison",
+  title: "Le cacao reste chez lui",
+  text: "La Côte d'Ivoire produit le premier cacao du monde et en transforme une fraction. Nous récoltons, torréfions, conchons et conditionnons sur place : la fève ne quitte pas le pays avant d'être devenue chocolat. C'est écrit sur nos coffrets parce que c'est le cœur du métier.",
+  signature: "l'Atelier du Chocolat",
+  role: "Fabriqué et conditionné par nos soins",
+  image: aboutStack,
+} as const;
+
+export const HERO = {
+  /** Trois lignes courtes : au-delà de ~13 signes, la ligne déborde de sa
+      colonne et passe sous le visuel de droite. */
+  title: ["Le chocolat", "artisanal", "100% ivoirien"],
+  curved: "Tablettes · pâtes à tartiner · dragées · miels · ",
+  cta: "Voir la gamme",
+} as const;
+
+export const WHY = {
+  eyebrow: "Pourquoi la maison",
+  title: "Ce qui change quand tout est fait sur place",
+  curved: "Tablettes · pâtes à tartiner · dragées · miels · ",
+} as const;
+
+export const OFFER = {
+  eyebrow: "Coffrets & cadeaux",
+  title: "Des coffrets composés pour l'occasion",
+  text: "Un mariage, un remerciement, un dimanche sans raison particulière. Vous choisissez les références, nous montons le coffret à la main.",
+  cta: "Composer un coffret",
+} as const;
+
+export const PRODUCTS_SECTION = {
+  eyebrow: "La boutique",
+  title: "Toute la gamme, en direct de l'atelier",
+} as const;
+
+export const CHOCOLATS_SECTION = {
+  eyebrow: "Nos chocolats",
+  title: "Le cacao ivoirien, tablette par tablette",
+  cta: "Voir toute la gamme",
+} as const;
+
+export const GOURMANDISES_SECTION = {
+  eyebrow: "Et pour la table du goûter",
+  title: "Pâtes à tartiner, dragées, épicerie",
+} as const;
+
+export const TESTIMONIALS_SECTION = {
+  eyebrow: "Ce que disent nos clients",
+  title: "Ils en reprennent",
+} as const;
+
+export const BLOG_SECTION = {
+  eyebrow: "Le journal",
+  title: "Nos dernières nouvelles",
+  cta: "Tous les articles",
+} as const;
+
+export const CTA_SECTION = {
+  titleBefore: "Le chocolat artisanal ivoirien, chez vous en",
+  titleAccent: "48 heures",
+  subtitle: "Commandez en ligne, nous expédions depuis l'atelier en emballage isotherme.",
+  cta: "Commander en ligne",
+} as const;

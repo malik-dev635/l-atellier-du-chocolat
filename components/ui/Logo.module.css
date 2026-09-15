@@ -1,0 +1,19 @@
+.logo {
+  display: block;
+  width: clamp(104px, 7.2vw, 138px);
+  line-height: 0;
+}
+
+.lg {
+  width: clamp(160px, 11vw, 210px);
+}
+
+@media (max-width: 640px) {
+  .logo {
+    width: 72px;
+  }
+
+  .lg {
+    width: 116px;
+  }
+}

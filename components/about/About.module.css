@@ -1,0 +1,56 @@
+.grid {
+  display: grid;
+  gap: clamp(var(--sp-7), 5vw, var(--sp-10));
+  align-items: center;
+}
+
+.visual {
+  width: 100%;
+}
+
+.image {
+  aspect-ratio: 900 / 713;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Pas de contrainte en `ch` : l'unité est calée sur le chiffre zéro, très
+   étroit dans le serif display, et sous-estimait la largeur d'un tiers.
+   C'est la colonne de la grille qui borne le titre. */
+.title {
+  margin-top: var(--sp-4);
+}
+
+.text {
+  margin-top: var(--sp-5);
+}
+
+.signature {
+  margin: var(--sp-7) 0 0;
+}
+
+.signatureName {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--c-ink);
+}
+
+.signatureRole {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--c-gold-a11y);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
