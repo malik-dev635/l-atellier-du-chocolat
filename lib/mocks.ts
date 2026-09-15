@@ -5,6 +5,11 @@ import avatar from "@/assets/images/avatar.jpg";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
+import catCakes from "@/assets/images/cat-cakes.jpg";
+import catCandies from "@/assets/images/cat-candies.jpg";
+import catCocoa from "@/assets/images/cat-cocoa.jpg";
+import catPralines from "@/assets/images/cat-pralines.jpg";
+import catTruffles from "@/assets/images/cat-truffles.jpg";
 import product1 from "@/assets/images/product-1.jpg";
 import product2 from "@/assets/images/product-2.jpg";
 import product3 from "@/assets/images/product-3.jpg";
@@ -59,6 +64,7 @@ import product9b from "@/assets/images/product-9b.jpg";
 import product9c from "@/assets/images/product-9c.jpg";
 
 import type {
+  Category,
   Feature,
   FooterColumn,
   NavItem,
@@ -123,6 +129,17 @@ export const NAV_ITEMS: readonly NavItem[] = [
       { id: "contact-pro", label: "Commandes pro", href: "/#footer" },
     ],
   },
+];
+
+/** Bande de texte fantôme défilant derrière le rail de catégories. */
+export const CATEGORIES_WATERMARK = "Artisan chocolatier ivoirien";
+
+export const CATEGORIES: readonly Category[] = [
+  { id: "tablettes", label: "Tablettes 41 % et 70 %", href: "/#chocolats", image: catTruffles, offset: "up", accent: "menthe" },
+  { id: "tartiner", label: "Pâtes à tartiner", href: "/boutique", image: catCandies, offset: "down", accent: "terracotta" },
+  { id: "dragees", label: "Dragées amande", href: "/boutique", image: catPralines, offset: "up", accent: "rose" },
+  { id: "miels", label: "Miel de chêne", href: "/boutique", image: catCakes, offset: "down", accent: "terracotta" },
+  { id: "epicerie", label: "Tomates séchées", href: "/boutique", image: catCocoa, offset: "up", accent: "orange" },
 ];
 
 export const FEATURES: readonly Feature[] = [

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { About } from "@/components/about/About";
 import { Blog } from "@/components/blog/Blog";
+import { Categories } from "@/components/categories/Categories";
 import { ChocolateSlider } from "@/components/chocolats/ChocolateSlider";
 import { CtaFooter } from "@/components/cta/CtaFooter";
 import { Gourmandises } from "@/components/gourmandises/Gourmandises";
@@ -16,8 +17,8 @@ import { PRODUCTS } from "@/lib/mocks";
  * Page d'accueil — Server Component.
  *
  * Ordre pensé autour du métier : le chocolat tout de suite après le hero
- * (slider), puis la maison et le savoir-faire, les coffrets, et seulement
- * ensuite les autres gourmandises. Bandeau, en-tête et pied vivent dans le
+ * (slider), puis la maison, la rangée de catégories, le savoir-faire, les
+ * coffrets, et seulement ensuite les autres gourmandises. Bandeau, en-tête et pied vivent dans le
  * layout, partagés avec la boutique.
  */
 export default function HomePage(): ReactNode {
@@ -28,6 +29,7 @@ export default function HomePage(): ReactNode {
       <Hero />
       <ChocolateSlider items={chocolats} />
       <About />
+      <Categories />
       <WhyUs />
       <OfferBand />
       <Gourmandises />
