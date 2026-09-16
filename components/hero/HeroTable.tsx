@@ -36,18 +36,20 @@ export function HeroTable(): ReactNode {
   return (
     <section id="hero" className={styles.hero} aria-labelledby="hero-title">
       <HeroMotion className={styles.stage}>
-        <figure className={styles.photo} data-hero-media data-parallax="5">
-          <Image
-            src={heroTable}
-            alt="Six pralinés de l'atelier posés sur deux plaques de pierre"
-            fill
-            sizes="(max-width: 900px) 100vw, 56vw"
-            quality={86}
-            priority
-            fetchPriority="high"
-            style={{ objectFit: "cover", objectPosition: "60% 50%" }}
-          />
-        </figure>
+        <div className={styles.frame}>
+          <figure className={styles.photo} data-hero-media data-parallax="5">
+            <Image
+              src={heroTable}
+              alt="Six pralinés de l'atelier posés sur deux plaques de pierre"
+              fill
+              sizes="(max-width: 900px) 100vw, 56vw"
+              quality={86}
+              priority
+              fetchPriority="high"
+              style={{ objectFit: "cover", objectPosition: "60% 50%" }}
+            />
+          </figure>
+        </div>
 
         <div className={`container ${styles.content}`}>
           <h1 id="hero-title" className={`title title--display ${styles.title}`}>
