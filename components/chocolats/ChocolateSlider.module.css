@@ -8,7 +8,16 @@
   overflow: clip;
 }
 
+/* En-tête : titre à gauche, flèches et compteur à droite, alignés sur la
+   ligne de base du titre. */
 .head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-6);
+}
+
+.headText {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -207,8 +216,6 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-6);
   margin-top: clamp(var(--sp-6), 3vw, var(--sp-8));
 }
 
@@ -239,6 +246,8 @@
   display: flex;
   align-items: center;
   gap: var(--sp-4);
+  flex: none;
+  padding-bottom: 0.35em;
 }
 
 .counter {
@@ -290,6 +299,17 @@
 @media (max-width: 899px) {
   .band {
     display: none;
+  }
+
+  /* Flèches sous le titre, alignées à gauche. */
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-5);
+  }
+
+  .arrows {
+    padding-bottom: 0;
   }
 }
 

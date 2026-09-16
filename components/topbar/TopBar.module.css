@@ -18,3 +18,10 @@
   color: var(--c-on-brand-strong);
   font-weight: var(--fw-medium);
 }
+
+/* Sur mobile, le bandeau disparaît : l'écran est pour le logo et le menu. */
+@media (max-width: 640px) {
+  .bar {
+    display: none;
+  }
+}

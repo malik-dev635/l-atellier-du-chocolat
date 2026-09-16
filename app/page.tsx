@@ -22,7 +22,11 @@ import { PRODUCTS } from "@/lib/mocks";
  * gourmandises. Bandeau, en-tête et pied vivent dans le layout.
  */
 export default function HomePage(): ReactNode {
-  const chocolats = PRODUCTS.filter((product) => product.family === "chocolat");
+  // Le slider ne montre que les tablettes : la poudre de cacao reste dans la
+  // gamme (page /gamme) mais pas dans ce défilé.
+  const chocolats = PRODUCTS.filter(
+    (product) => product.family === "chocolat" && product.kind.startsWith("Tablette"),
+  );
 
   return (
     <main>

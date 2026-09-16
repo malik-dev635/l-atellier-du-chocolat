@@ -74,12 +74,26 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
       aria-labelledby="chocolats-title"
     >
       <div className={`container ${styles.head}`}>
-        <Eyebrow align="start">
-          {CHOCOLATS_SECTION.eyebrow}
-        </Eyebrow>
-        <h2 id="chocolats-title" className={`title ${styles.title}`}>
-          {CHOCOLATS_SECTION.title}
-        </h2>
+        <div className={styles.headText}>
+          <Eyebrow align="start">
+            {CHOCOLATS_SECTION.eyebrow}
+          </Eyebrow>
+          <h2 id="chocolats-title" className={`title ${styles.title}`}>
+            {CHOCOLATS_SECTION.title}
+          </h2>
+        </div>
+
+        <div className={styles.arrows}>
+          <button type="button" className={styles.arrow} onClick={() => goTo(active - 1)} aria-label="Chocolat précédent">
+            <ChevronLeft size={22} strokeWidth={1.5} aria-hidden="true" />
+          </button>
+          <span className={styles.counter} aria-hidden="true">
+            {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+          </span>
+          <button type="button" className={styles.arrow} onClick={() => goTo(active + 1)} aria-label="Chocolat suivant">
+            <ChevronRight size={22} strokeWidth={1.5} aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
       <div className={styles.slider}>
@@ -160,18 +174,6 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
                 onClick={() => goTo(index)}
               />
             ))}
-          </div>
-
-          <div className={styles.arrows}>
-            <button type="button" className={styles.arrow} onClick={() => goTo(active - 1)} aria-label="Chocolat précédent">
-              <ChevronLeft size={22} strokeWidth={1.5} aria-hidden="true" />
-            </button>
-            <span className={styles.counter} aria-hidden="true">
-              {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
-            </span>
-            <button type="button" className={styles.arrow} onClick={() => goTo(active + 1)} aria-label="Chocolat suivant">
-              <ChevronRight size={22} strokeWidth={1.5} aria-hidden="true" />
-            </button>
           </div>
         </div>
       </div>
