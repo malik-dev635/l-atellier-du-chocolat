@@ -1,0 +1,142 @@
+/* Le fond de la photo, prélevé : #33 2A 26 → #44 33 2A. Le panneau de texte
+   est peint dans cette couleur pour que la photo continue sans couture. */
+.hero {
+  position: relative;
+  background: #3a2c24;
+  color: var(--c-cream);
+  overflow: clip;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  min-height: max(560px, calc(100svh - var(--chrome-h)));
+  display: grid;
+  align-items: center;
+}
+
+/* ---- Photo : moitié droite, plein cadre, révélée par rideau ---- */
+
+.photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 56%;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(100% 0% 0% 0%);
+  will-change: clip-path, transform;
+}
+
+.photo > :global(img) {
+  transform: scale(1.15);
+  will-change: transform;
+}
+
+/* Fond de la photo légèrement plus chaud que le panneau : un voile de la
+   couleur du panneau fond le bord gauche pour effacer la couture. */
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: clamp(48px, 6vw, 96px);
+  background: linear-gradient(to right, #3a2c24, rgb(58 44 36 / 0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Texte : colonne gauche ---- */
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(100% - 2 * var(--sp-5), var(--container));
+  padding-block: clamp(var(--sp-8), 6vw, var(--sp-11));
+}
+
+.content > * {
+  max-width: 40%;
+}
+
+.title {
+  color: var(--c-cream);
+  text-align: left;
+  max-width: 100%;
+}
+
+.amp {
+  font-style: italic;
+  font-weight: var(--fw-heading);
+  padding-inline: 0.04em;
+}
+
+.lead {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-on-dark-body);
+  max-width: min(40%, 44ch);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.cta {
+  margin-top: clamp(var(--sp-6), 3vw, var(--sp-8));
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ---- Sous 900px : photo au-dessus, texte dessous ---- */
+
+@media (max-width: 900px) {
+  .stage {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .photo {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    order: 0;
+  }
+
+  /* Photo au-dessus du texte : le voile passe en bas, vers le panneau. */
+  .photo::after {
+    inset: auto 0 0 0;
+    width: auto;
+    height: clamp(40px, 10vw, 72px);
+    background: linear-gradient(to bottom, rgb(58 44 36 / 0), #3a2c24);
+  }
+
+  .content {
+    order: 1;
+    padding-block: var(--sp-8) var(--sp-9);
+  }
+
+  .content > *,
+  .lead {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo,
+  .lead,
+  .cta {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  .photo > :global(img) {
+    transform: none;
+  }
+}

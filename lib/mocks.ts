@@ -494,6 +494,7 @@ export const HERO = {
   /** Trois lignes courtes : au-delà de ~13 signes, la ligne déborde de sa
       colonne et passe sous le visuel de droite. */
   title: ["Le chocolat", "artisanal", "100% ivoirien"],
+  lead: "Cacao récolté en Côte d'Ivoire, torréfié, conché et moulé dans notre atelier. Tablettes, pralinés, poudre de cacao.",
   curved: "Tablettes · pâtes à tartiner · dragées · miels · ",
   cta: "Découvrir nos chocolats",
 } as const;
