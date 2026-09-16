@@ -1,10 +1,10 @@
-/* Le fond de la section EST la couleur du chocolat affiché ; il glisse vers
-   la suivante à chaque changement de diapositive. */
+/* Le fond de la section EST la couleur de l'emballage affiché, en plein ;
+   il glisse vers la suivante à chaque changement de diapositive. */
 .section {
   position: relative;
   padding-block: var(--section-pad);
-  background: var(--surface, var(--c-cream));
-  color: var(--on-surface, var(--c-ink));
+  background: var(--accent, var(--c-cream));
+  color: var(--on-accent, var(--c-ink));
   transition: background-color var(--dur-slide) var(--ease-in-out),
     color var(--dur-slide) var(--ease-in-out);
   overflow: clip;
@@ -18,11 +18,11 @@
 }
 
 .eyebrow {
-  color: var(--on-surface-muted, var(--c-gold-a11y));
+  color: var(--on-accent-muted, var(--c-gold-a11y));
 }
 
 .title {
-  color: var(--on-surface, var(--c-ink));
+  color: var(--on-accent, var(--c-ink));
   max-width: 32ch;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .track:focus-visible {
-  outline: 2px solid var(--on-surface, var(--c-gold-a11y));
+  outline: 2px solid var(--on-accent, var(--c-gold-a11y));
   outline-offset: -2px;
 }
 
@@ -68,12 +68,31 @@
   max-height: 60vh;
   border-radius: var(--radius-soft);
   overflow: hidden;
+  box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.35);
 }
 
 .body {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+/* Le pourcentage de cacao en filigrane, comme le gros « 41 % » de
+   l'emballage : même encre que le texte, à peine posée. */
+.ghost {
+  position: absolute;
+  top: -0.35em;
+  right: -0.05em;
+  font-family: var(--font-display);
+  font-size: var(--fs-ghost);
+  font-weight: var(--fw-display);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--on-accent, var(--c-ink));
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .kind {
@@ -81,7 +100,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-overline);
   text-transform: uppercase;
-  color: var(--on-surface-muted, var(--c-gold-a11y));
+  color: var(--on-accent-muted, var(--c-gold-a11y));
 }
 
 .name {
@@ -92,24 +111,25 @@
   line-height: var(--lh-h1);
   letter-spacing: var(--tracking-heading);
   text-transform: uppercase;
-  color: var(--on-surface, var(--c-ink));
+  color: var(--on-accent, var(--c-ink));
 }
 
 .spec {
   margin-top: var(--sp-3);
   padding-bottom: var(--sp-4);
-  border-bottom: 2px solid var(--on-surface, var(--c-line));
+  border-bottom: 2px solid var(--on-accent-line, var(--c-line));
   font-size: var(--fs-caption);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--on-surface-muted, var(--c-body));
+  color: var(--on-accent-muted, var(--c-body));
 }
 
 .text {
   margin-top: var(--sp-5);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--on-surface, var(--c-body));
+  color: var(--on-accent, var(--c-body));
+  opacity: 0.88;
   max-width: 50ch;
 }
 
@@ -124,19 +144,19 @@
 .price {
   font-family: var(--font-display);
   font-size: 1.75rem;
-  color: var(--on-surface, var(--c-ink));
+  color: var(--on-accent, var(--c-ink));
 }
 
 .add {
   padding: var(--sp-3) var(--sp-5);
-  --btn-fg: var(--on-surface, var(--c-gold-a11y));
-  --btn-border: var(--on-surface, var(--c-gold));
-  --btn-fill: var(--on-surface, var(--c-gold));
-  --btn-fg-hover: var(--surface, var(--c-white));
+  --btn-fg: var(--on-accent, var(--c-gold-a11y));
+  --btn-border: var(--on-accent, var(--c-gold));
+  --btn-fill: var(--on-accent, var(--c-gold));
+  --btn-fg-hover: var(--accent, var(--c-white));
 }
 
 .more {
-  color: var(--on-surface-muted, var(--c-gold-a11y));
+  color: var(--on-accent-muted, var(--c-gold-a11y));
 }
 
 /* ---- Contrôles ---- */
@@ -159,7 +179,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--on-surface, var(--c-ink));
+  background: var(--on-accent, var(--c-ink));
   opacity: 0.3;
   transition: opacity var(--dur-micro) var(--ease-micro),
     transform var(--dur-state) var(--ease-out);
@@ -179,9 +199,10 @@
 .counter {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
-  color: var(--on-surface-muted, var(--c-body));
+  color: var(--on-accent-muted, var(--c-body));
   min-width: 5ch;
   text-align: center;
+  white-space: nowrap;
 }
 
 .arrow {
@@ -189,9 +210,9 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border: var(--hairline) solid var(--on-surface, var(--c-gold));
+  border: var(--hairline) solid var(--on-accent, var(--c-gold));
   border-radius: 50%;
-  color: var(--on-surface, var(--c-ink));
+  color: var(--on-accent, var(--c-ink));
   transition: background-color var(--dur-micro) var(--ease-micro),
     color var(--dur-micro) var(--ease-micro),
     transform var(--dur-micro) var(--ease-micro);
@@ -199,8 +220,8 @@
 
 .arrow:hover,
 .arrow:focus-visible {
-  background: var(--on-surface, var(--c-gold));
-  color: var(--surface, var(--c-white));
+  background: var(--on-accent, var(--c-gold));
+  color: var(--accent, var(--c-white));
 }
 
 .arrow:active {

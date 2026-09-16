@@ -1,8 +1,14 @@
-/* Le corail des dragées, en plein : l'unique bloc de couleur franche de
-   l'accueil. Le reste de la page reste crème et blanc pour qu'il compte. */
+/* Le brun du hero, en plein : la page revient au chocolat avant le journal.
+   Un léger halo au centre pour que la surface ne soit pas un aplat mort. */
 .section {
-  background: var(--s-corail);
-  color: var(--c-dark-choc);
+  background:
+    radial-gradient(
+      60% 80% at 50% 0%,
+      color-mix(in srgb, var(--c-milk-deep) 26%, transparent),
+      transparent 70%
+    ),
+    var(--c-table);
+  color: var(--c-cream);
 }
 
 .head {
@@ -13,79 +19,93 @@
   text-align: center;
 }
 
-.eyebrow {
-  color: var(--c-dark-choc);
-}
-
-.title {
-  color: var(--c-dark-choc);
-}
+/* ---- Trois citations, filets dorés entre elles ---- */
 
 .grid {
   display: grid;
-  gap: var(--gutter);
-  margin-top: clamp(var(--sp-8), 5vw, var(--sp-10));
+  margin-top: clamp(var(--sp-8), 5vw, var(--sp-11));
+  border-top: var(--hairline) solid color-mix(in srgb, var(--c-gold) 38%, transparent);
 }
 
-/* ---- Carte ----
- * Blanche, coins doux, texte en sans : un avis de boutique, lisible,
- * chaleureux. Pas d'ombre : le contraste avec le corail suffit.
- */
-.card {
+.entry {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: clamp(var(--sp-6), 3vw, var(--sp-8));
-  background: var(--c-white);
-  border-radius: var(--radius-soft);
+  padding: clamp(var(--sp-7), 3.5vw, var(--sp-9)) 0;
+  border-bottom: var(--hairline) solid color-mix(in srgb, var(--c-gold) 38%, transparent);
 }
 
 .mark {
-  color: var(--s-corail);
+  color: var(--c-gold);
   line-height: 0;
+}
+
+/* La citation en serif, plus grande que le corps : c'est elle qu'on lit. */
+.quote {
+  margin: var(--sp-5) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 0.9rem + 0.9vw, 1.6rem);
+  font-weight: var(--fw-heading);
+  line-height: 1.45;
+  color: var(--c-cream);
+  text-wrap: pretty;
+}
+
+.quote p {
+  margin: 0;
 }
 
 .rating {
   display: flex;
-  gap: 3px;
-  margin-top: var(--sp-4);
+  align-items: center;
+  gap: 2px;
+  margin-top: var(--sp-5);
   color: var(--c-gold);
 }
 
-.quote {
-  margin-top: var(--sp-4);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--c-ink);
+/* Référence achetée : capitales dorées, après un court filet. */
+.product {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-left: var(--sp-3);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-gold-light);
 }
 
-/* Étiquette du produit acheté. */
-.tag {
-  margin-top: var(--sp-5);
-  padding: var(--sp-1) var(--sp-3);
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--s-corail) 22%, var(--c-white));
-  color: var(--c-dark-choc);
-  font-size: var(--fs-caption);
-  font-weight: var(--fw-medium);
+.product::before {
+  content: "";
+  width: 20px;
+  height: var(--hairline);
+  background: currentColor;
+  opacity: 0.7;
 }
 
 .author {
   display: flex;
   align-items: center;
-  gap: var(--sp-3);
+  gap: var(--sp-4);
   margin-top: auto;
-  padding-top: var(--sp-6);
+  padding-top: var(--sp-7);
 }
 
-.avatar {
-  position: relative;
-  display: block;
-  width: 48px;
-  height: 48px;
+/* Monogramme : un disque cerclé d'or, initiales en serif. */
+.monogram {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: var(--hairline) solid var(--c-gold);
   border-radius: 50%;
-  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  color: var(--c-gold-light);
   flex: none;
 }
 
@@ -97,17 +117,33 @@
 
 .name {
   font-size: var(--fs-small);
-  font-weight: var(--fw-semibold);
-  color: var(--c-ink);
+  font-weight: var(--fw-medium);
+  color: var(--c-cream);
 }
 
 .location {
   font-size: var(--fs-caption);
-  color: var(--c-muted);
+  color: var(--c-on-dark-body);
 }
 
 @media (min-width: 840px) {
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 0;
+  }
+
+  .entry {
+    padding: clamp(var(--sp-4), 2vw, var(--sp-6)) clamp(var(--sp-6), 3vw, var(--sp-9));
+    border-bottom: 0;
+    border-left: var(--hairline) solid color-mix(in srgb, var(--c-gold) 38%, transparent);
+  }
+
+  .entry:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .entry:last-child {
+    padding-right: 0;
   }
 }

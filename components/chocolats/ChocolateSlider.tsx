@@ -17,8 +17,9 @@ interface ChocolateSliderProps {
 
 /**
  * Slider des chocolats : une diapositive par référence — grande photo, nom,
- * mentions, description. Le FOND DE TOUTE LA SECTION prend la couleur de la photo active et
- * glisse vers la suivante — la couleur suit le produit.
+ * mentions, description. Le FOND DE TOUTE LA SECTION prend la couleur de
+ * l'emballage actif, franche, et glisse vers la suivante — la couleur suit le
+ * produit, comme le splash sur la tablette.
  *
  * Mécanique volontairement simple : une piste en défilement natif avec
  * accroche (le doigt et la molette fonctionnent sans script), deux flèches et
@@ -69,7 +70,7 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
     <section
       id="chocolats"
       className={styles.section}
-      data-surface={current.surface}
+      data-accent={current.accent}
       aria-labelledby="chocolats-title"
     >
       <div className={`container ${styles.head}`}>
@@ -118,6 +119,9 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
                 </div>
 
                 <div className={styles.body}>
+                  <span className={styles.ghost} aria-hidden="true">
+                    {item.spec.replace(/\s*cacao$/i, "")}
+                  </span>
                   <p className={styles.kind}>{item.kind}</p>
                   <h3 className={styles.name}>{item.name}</h3>
                   <p className={styles.spec}>
