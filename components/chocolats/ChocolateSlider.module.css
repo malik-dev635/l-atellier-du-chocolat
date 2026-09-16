@@ -1,12 +1,10 @@
-/* Le fond de la section EST la couleur de l'emballage affiché, en plein ;
-   il glisse vers la suivante à chaque changement de diapositive. */
+/* Section crème ; la couleur de l'emballage vit dans une bande derrière la
+   photo (`.band`), qui glisse vers la suivante à chaque diapositive. */
 .section {
   position: relative;
   padding-block: var(--section-pad);
-  background: var(--accent, var(--c-cream));
-  color: var(--on-accent, var(--c-ink));
-  transition: background-color var(--dur-slide) var(--ease-in-out),
-    color var(--dur-slide) var(--ease-in-out);
+  background: var(--c-cream);
+  color: var(--c-ink);
   overflow: clip;
 }
 
@@ -17,22 +15,34 @@
   gap: var(--sp-4);
 }
 
-.eyebrow {
-  color: var(--on-accent-muted, var(--c-gold-a11y));
-}
-
 .title {
-  color: var(--on-accent, var(--c-ink));
+  color: var(--c-ink);
   max-width: 32ch;
 }
 
 /* ---- Piste ---- */
 
 .slider {
+  position: relative;
   margin-top: clamp(var(--sp-7), 4vw, var(--sp-9));
 }
 
+/* La bande latérale : du bord gauche jusque derrière la photo (jamais sous
+   le texte), moins haute qu'elle pour que la carte la chevauche. */
+.band {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  width: 36%;
+  height: 64%;
+  background: var(--accent, var(--c-gold));
+  transition: background-color var(--dur-slide) var(--ease-in-out);
+  pointer-events: none;
+}
+
 .track {
+  position: relative;
+  z-index: 1;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -46,7 +56,7 @@
 }
 
 .track:focus-visible {
-  outline: 2px solid var(--on-accent, var(--c-gold-a11y));
+  outline: 2px solid var(--c-gold-a11y);
   outline-offset: -2px;
 }
 
@@ -62,13 +72,45 @@
   align-items: center;
 }
 
+/* La carte : la photo, puis une bande de la couleur de l'emballage — le
+   splash au bas de la tablette — où s'impriment le cacao et la maison. */
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-soft);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -30px rgb(31 27 24 / 0.45);
+}
+
 .media {
   position: relative;
   aspect-ratio: 5 / 4;
-  max-height: 60vh;
-  border-radius: var(--radius-soft);
-  overflow: hidden;
-  box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.35);
+  max-height: 56vh;
+}
+
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-6);
+  background: var(--accent, var(--c-gold));
+  color: var(--c-cream);
+  transition: background-color var(--dur-slide) var(--ease-in-out);
+}
+
+.stripSpec {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.stripBrand {
+  font-family: var(--font-script);
+  font-size: 1.25rem;
+  opacity: 0.92;
 }
 
 .body {
@@ -78,29 +120,42 @@
   align-items: flex-start;
 }
 
-/* Le pourcentage de cacao en filigrane, comme le gros « 41 % » de
-   l'emballage : même encre que le texte, à peine posée. */
+/* Le pourcentage de cacao en filigrane, dans la couleur de l'emballage. */
 .ghost {
   position: absolute;
-  top: -0.35em;
+  top: -0.55em;
   right: -0.05em;
   font-family: var(--font-display);
   font-size: var(--fs-ghost);
   font-weight: var(--fw-display);
   line-height: 1;
   white-space: nowrap;
-  color: var(--on-accent, var(--c-ink));
-  opacity: 0.1;
+  color: var(--accent, var(--c-gold));
+  opacity: 0.22;
   pointer-events: none;
   user-select: none;
+  transition: color var(--dur-slide) var(--ease-in-out);
 }
 
 .kind {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
   font-size: var(--fs-overline);
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-overline);
   text-transform: uppercase;
-  color: var(--on-accent-muted, var(--c-gold-a11y));
+  color: var(--c-ink);
+}
+
+/* Pastille de la couleur de l'emballage devant l'accroche. */
+.kind::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent, var(--c-gold));
+  transition: background-color var(--dur-slide) var(--ease-in-out);
 }
 
 .name {
@@ -111,25 +166,25 @@
   line-height: var(--lh-h1);
   letter-spacing: var(--tracking-heading);
   text-transform: uppercase;
-  color: var(--on-accent, var(--c-ink));
+  color: var(--c-ink);
 }
 
 .spec {
   margin-top: var(--sp-3);
   padding-bottom: var(--sp-4);
-  border-bottom: 2px solid var(--on-accent-line, var(--c-line));
+  border-bottom: 2px solid var(--accent, var(--c-line));
   font-size: var(--fs-caption);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--on-accent-muted, var(--c-body));
+  color: var(--c-body);
+  transition: border-color var(--dur-slide) var(--ease-in-out);
 }
 
 .text {
   margin-top: var(--sp-5);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--on-accent, var(--c-body));
-  opacity: 0.88;
+  color: var(--c-body);
   max-width: 50ch;
 }
 
@@ -141,27 +196,15 @@
   margin-top: var(--sp-7);
 }
 
-.price {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  color: var(--on-accent, var(--c-ink));
-}
-
 .add {
   padding: var(--sp-3) var(--sp-5);
-  --btn-fg: var(--on-accent, var(--c-gold-a11y));
-  --btn-border: var(--on-accent, var(--c-gold));
-  --btn-fill: var(--on-accent, var(--c-gold));
-  --btn-fg-hover: var(--accent, var(--c-white));
-}
-
-.more {
-  color: var(--on-accent-muted, var(--c-gold-a11y));
 }
 
 /* ---- Contrôles ---- */
 
 .controls {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,13 +222,15 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--on-accent, var(--c-ink));
-  opacity: 0.3;
+  background: var(--c-ink);
+  opacity: 0.25;
   transition: opacity var(--dur-micro) var(--ease-micro),
-    transform var(--dur-state) var(--ease-out);
+    transform var(--dur-state) var(--ease-out),
+    background-color var(--dur-slide) var(--ease-in-out);
 }
 
 .dot[aria-selected="true"] {
+  background: var(--accent, var(--c-gold));
   opacity: 1;
   transform: scale(1.5);
 }
@@ -199,7 +244,7 @@
 .counter {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
-  color: var(--on-accent-muted, var(--c-body));
+  color: var(--c-body);
   min-width: 5ch;
   text-align: center;
   white-space: nowrap;
@@ -210,18 +255,20 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border: var(--hairline) solid var(--on-accent, var(--c-gold));
+  border: var(--hairline) solid var(--c-gold);
   border-radius: 50%;
-  color: var(--on-accent, var(--c-ink));
+  color: var(--c-ink);
   transition: background-color var(--dur-micro) var(--ease-micro),
+    border-color var(--dur-micro) var(--ease-micro),
     color var(--dur-micro) var(--ease-micro),
     transform var(--dur-micro) var(--ease-micro);
 }
 
 .arrow:hover,
 .arrow:focus-visible {
-  background: var(--on-accent, var(--c-gold));
-  color: var(--accent, var(--c-white));
+  background: var(--accent, var(--c-gold));
+  border-color: var(--accent, var(--c-gold));
+  color: var(--c-cream);
 }
 
 .arrow:active {
@@ -232,10 +279,26 @@
   .slideInner {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
+
+  /* La carte s'écarte du bord pour laisser respirer la bande latérale. */
+  .card {
+    margin-left: clamp(var(--sp-6), 5vw, 88px);
+  }
+}
+
+/* Sous 900px : la bande au pied de la carte porte seule la couleur. */
+@media (max-width: 899px) {
+  .band {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .section,
+  .band,
+  .strip,
+  .ghost,
+  .spec,
+  .kind::before,
   .dot {
     transition: none;
   }

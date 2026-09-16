@@ -268,19 +268,6 @@ html.lenis body {
 [data-accent="rose"]       { --accent: var(--c-rose); }
 [data-accent="terracotta"] { --accent: var(--c-terracotta); }
 
-/* Accent en plein (slider des tablettes) : le fond EST la couleur de
-   l'emballage, franche. Le texte passe en encre — comme le brun imprimé
-   sur les splashs des tablettes — sauf sur le rose, trop sombre : crème. */
-[data-accent] {
-  --on-accent: var(--c-ink);
-  --on-accent-muted: var(--c-dark-choc);
-  --on-accent-line: color-mix(in srgb, var(--c-ink) 28%, transparent);
-}
-[data-accent="rose"] {
-  --on-accent: var(--c-cream);
-  --on-accent-muted: var(--c-ghost);
-  --on-accent-line: color-mix(in srgb, var(--c-cream) 32%, transparent);
-}
 
 /* Surface d'une fiche produit : le fond de sa propre photo. `--on-surface`
    suit : encre sur les clairs, crème sur le cacao. */

@@ -17,9 +17,9 @@ interface ChocolateSliderProps {
 
 /**
  * Slider des chocolats : une diapositive par référence — grande photo, nom,
- * mentions, description. Le FOND DE TOUTE LA SECTION prend la couleur de
- * l'emballage actif, franche, et glisse vers la suivante — la couleur suit le
- * produit, comme le splash sur la tablette.
+ * mentions, description. Une BANDE de la couleur de l'emballage traverse la
+ * section derrière la photo et glisse vers la couleur suivante — comme le
+ * splash sur la tablette ; le texte, lui, reste sur crème.
  *
  * Mécanique volontairement simple : une piste en défilement natif avec
  * accroche (le doigt et la molette fonctionnent sans script), deux flèches et
@@ -74,7 +74,7 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
       aria-labelledby="chocolats-title"
     >
       <div className={`container ${styles.head}`}>
-        <Eyebrow align="start" className={styles.eyebrow}>
+        <Eyebrow align="start">
           {CHOCOLATS_SECTION.eyebrow}
         </Eyebrow>
         <h2 id="chocolats-title" className={`title ${styles.title}`}>
@@ -83,6 +83,7 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
       </div>
 
       <div className={styles.slider}>
+        <div className={styles.band} aria-hidden="true" />
         <ul
           ref={trackRef}
           className={styles.track}
@@ -104,8 +105,9 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
               aria-hidden={index !== active}
             >
               <div className={`container ${styles.slideInner}`}>
-                <div className={styles.media}>
-                  <Image
+                <div className={styles.card}>
+                  <div className={styles.media}>
+                    <Image
                     src={item.views[1] ?? item.image}
                     alt={item.name}
                     fill
@@ -116,6 +118,11 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
                     style={{ objectFit: "cover" }}
                     draggable={false}
                   />
+                  </div>
+                  <p className={styles.strip} aria-hidden="true">
+                    <span className={styles.stripSpec}>{item.spec}</span>
+                    <span className={styles.stripBrand}>L'Atelier du Chocolat</span>
+                  </p>
                 </div>
 
                 <div className={styles.body}>
