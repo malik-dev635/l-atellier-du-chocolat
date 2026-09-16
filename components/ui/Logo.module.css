@@ -1,11 +1,17 @@
+/* Vecteur : la largeur suffit, la hauteur suit le viewBox. */
 .logo {
   display: block;
   width: clamp(104px, 7.2vw, 138px);
-  line-height: 0;
+  height: auto;
+  color: var(--c-dark-choc);
 }
 
 .lg {
   width: clamp(160px, 11vw, 210px);
+}
+
+.onDark {
+  color: var(--c-cream);
 }
 
 @media (max-width: 640px) {

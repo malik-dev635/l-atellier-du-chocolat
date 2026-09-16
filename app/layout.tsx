@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
+import { LogoDefs } from "@/components/ui/LogoDefs";
 import { Preloader } from "@/components/preloader/Preloader";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { TopBar } from "@/components/topbar/TopBar";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode {
       className={`${cormorant.variable} ${poppins.variable} ${parisienne.variable} no-js`}
     >
       <body>
+        <LogoDefs />
         <SmoothScrollProvider>
           <Preloader />
           <div id="page-shell" className="page-shell">

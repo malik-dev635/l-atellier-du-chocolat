@@ -88,7 +88,7 @@ export function Preloader(): ReactNode {
       <span className="sr-only">Chargement de l'atelier</span>
       <div className={styles.center} aria-hidden="true">
         <span className={styles.mark}>
-          <Logo size="lg" priority />
+          <Logo size="lg" />
         </span>
         <span className={styles.word}>{BRAND.tagline}</span>
       </div>

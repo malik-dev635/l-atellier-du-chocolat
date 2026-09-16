@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { CurvedText } from "@/components/ui/CurvedText";
+import { LogoMark } from "@/components/ui/Logo";
 import { HERO } from "@/lib/mocks";
 import heroBars from "@/assets/images/hero-bars.jpg";
-import logoMark from "@/assets/images/logo-mark.png";
 import heroMug from "@/assets/images/hero-mug.jpg";
 import heroSphere from "@/assets/images/hero-sphere.jpg";
 import { HeroMotion } from "./HeroMotion";
@@ -61,7 +61,7 @@ export function Hero(): ReactNode {
         <div className={styles.center}>
           <div className={styles.badge} data-hero-late>
             <CurvedText className={styles.curved} text={HERO.curved} size={100} />
-            <Image className={styles.leaf} src={logoMark} alt="" width={72} height={50} aria-hidden="true" />
+            <LogoMark className={styles.leaf} />
           </div>
 
           <h1 id="hero-title" className={`title title--display ${styles.title}`}>

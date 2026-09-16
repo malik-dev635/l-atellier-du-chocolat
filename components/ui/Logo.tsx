@@ -1,9 +1,6 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
 
 import { BRAND } from "@/lib/mocks";
-import logoDark from "@/assets/images/logo.png";
-import logoLight from "@/assets/images/logo-light.png";
 import styles from "./Logo.module.css";
 
 interface LogoProps {
@@ -11,36 +8,39 @@ interface LogoProps {
   readonly onDark?: boolean;
   readonly size?: "sm" | "lg";
   readonly className?: string;
-  readonly priority?: boolean;
 }
 
 /**
- * Logo officiel de la maison : cabosse de cacao ouverte et signature
- * manuscrite, fourni dans `marque/logo.png`.
- *
- * Deux fichiers plutôt qu'un filtre CSS : le tracé est détouré en alpha, la
- * variante claire réutilise exactement le même masque avec une encre crème.
- * Un `filter: invert()` aurait vidé le brun de sa chaleur.
+ * Logo officiel — cabosse de cacao ouverte et signature manuscrite — en
+ * vecteur. Référence le symbole défini une fois par `<LogoDefs>` ; la couleur
+ * vient de la CSS via `currentColor`.
  */
-export function Logo({
-  onDark = false,
-  size = "sm",
-  className,
-  priority = false,
-}: LogoProps): ReactNode {
-  const classes = [styles.logo, size === "lg" ? styles.lg : "", className ?? ""]
+export function Logo({ onDark = false, size = "sm", className }: LogoProps): ReactNode {
+  const classes = [
+    styles.logo,
+    size === "lg" ? styles.lg : "",
+    onDark ? styles.onDark : "",
+    className ?? "",
+  ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <span className={classes}>
-      <Image
-        src={onDark ? logoLight : logoDark}
-        alt={BRAND.full}
-        sizes={size === "lg" ? "132px" : "84px"}
-        priority={priority}
-        style={{ width: "100%", height: "auto" }}
-      />
-    </span>
+    <svg className={classes} viewBox="106 106 846 726" role="img" aria-label={BRAND.full}>
+      <use href="#logo-full" />
+    </svg>
+  );
+}
+
+interface LogoMarkProps {
+  readonly className?: string;
+}
+
+/** La cabosse seule, décorative (badge du hero). */
+export function LogoMark({ className }: LogoMarkProps): ReactNode {
+  return (
+    <svg className={className} viewBox="148 106 768 538" aria-hidden="true" focusable="false">
+      <use href="#logo-mark" />
+    </svg>
   );
 }

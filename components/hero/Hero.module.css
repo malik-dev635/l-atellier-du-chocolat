@@ -111,6 +111,7 @@
   position: relative;
   width: 46%;
   height: auto;
+  color: var(--c-dark-choc);
 }
 
 /* Taille bornée à la fois par la largeur ET la hauteur disponibles. */
