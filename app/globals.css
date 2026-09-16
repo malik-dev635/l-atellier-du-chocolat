@@ -193,6 +193,9 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Sur mobile, un débordement horizontal élargit le viewport de mise en
+     page ; `clip` sur body ne suffit pas, il faut aussi la racine. */
+  overflow-x: clip;
 }
 
 body {

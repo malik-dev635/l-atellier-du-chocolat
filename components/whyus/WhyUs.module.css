@@ -61,6 +61,9 @@
   display: grid;
   place-items: center;
   aspect-ratio: 1;
+  /* L'anneau de texte tourne : son carré pivoté déborde du bloc et élargit
+     la page sur mobile. Le cercle reste inscrit dans le carré : on rogne. */
+  overflow: clip;
 }
 
 /* Le cercle blanc vient de l'image elle-même (cadrée sur le disque de la
