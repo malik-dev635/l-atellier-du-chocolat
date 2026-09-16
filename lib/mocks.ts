@@ -87,6 +87,16 @@ export const BRAND = {
   promoCta: "Notre histoire",
 } as const;
 
+/** Carte Google de l'atelier (Vallon, Abidjan) : embed + lien d'itinéraire. */
+export const MAP = {
+  label: "Nous trouver",
+  place: "L'Atelier du Chocolat — Vallon, Abidjan",
+  embed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.359117389472!2d-3.9897923000000004!3d5.3620613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eb2a540488f3%3A0x9a3d6aa2b2bbd053!2sL'Atelier%20du%20Chocolat%20Vallon!5e0!3m2!1sfr!2sci!4v1789576604008!5m2!1sfr!2sci",
+  directions: "https://www.google.com/maps/search/?api=1&query=L'Atelier%20du%20Chocolat%20Vallon",
+  cta: "Itinéraire",
+} as const;
+
 export const NAV_ITEMS: readonly NavItem[] = [
   { id: "home", label: "Accueil", href: "/#hero" },
   {
@@ -470,7 +480,7 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     id: "contact",
     title: "Nous joindre",
     links: [
-      { id: "c-1", label: "(+33) 1 78 78 53 70", href: "tel:+33178785370", icon: Phone },
+      { id: "c-1", label: "07 14 50 55 02", href: "tel:+2250714505502", icon: Phone },
       {
         id: "c-2",
         label: "bonjour@atelierduchocolat.fr",

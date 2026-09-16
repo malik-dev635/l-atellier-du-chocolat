@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
 
 import { Logo } from "@/components/ui/Logo";
-import { BRAND, FOOTER_COLUMNS } from "@/lib/mocks";
+import { BRAND, FOOTER_COLUMNS, MAP } from "@/lib/mocks";
 import styles from "./Footer.module.css";
 
 /**
  * Pied de page sombre : marque et baseline, trois colonnes de liens dont une
- * colonne de contact à icônes, barre de copyright séparée par un pointillé.
+ * colonne de contact à icônes, la carte de l'atelier sur toute la largeur,
+ * barre de copyright séparée par un pointillé.
  * Filigrane botanique en trait doré très faible, comme dans la maquette.
  */
 export function Footer(): ReactNode {
@@ -62,6 +63,29 @@ export function Footer(): ReactNode {
               </ul>
             </nav>
           ))}
+        </div>
+
+        <div className={styles.map}>
+          <div className={styles.mapHead}>
+            <p className={styles.mapLabel}>{MAP.label}</p>
+            <p className={styles.mapPlace}>{MAP.place}</p>
+            <a
+              className={`${styles.link} link-underline`}
+              href={MAP.directions}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {MAP.cta}
+            </a>
+          </div>
+          <iframe
+            className={styles.mapFrame}
+            src={MAP.embed}
+            title={`Carte : ${MAP.place}`}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </div>
       </div>
 

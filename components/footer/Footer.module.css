@@ -88,6 +88,52 @@
 }
 
 /* Séparateur pointillé — le seul divider du pied de page. */
+/* ---- Carte : toute la largeur, sous les colonnes ---- */
+
+.map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding-top: clamp(var(--sp-6), 4vw, var(--sp-8));
+  border-top: var(--hairline) solid rgba(255, 255, 255, 0.12);
+}
+
+.mapHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-3) var(--sp-5);
+}
+
+.mapLabel {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--c-gold-light);
+}
+
+.mapPlace {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--c-cream);
+}
+
+.mapHead .link {
+  margin-left: auto;
+}
+
+/* Pas de filtre CSS sur l'iframe : il force une composition qui rend la
+   carte noire sur certains rendus (headless, GPU désactivé). */
+.mapFrame {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 32vw, 380px);
+  border: 0;
+  border-radius: var(--radius-soft);
+  background: var(--c-night-deep);
+}
+
 .bottom {
   position: relative;
   z-index: 1;
@@ -102,5 +148,9 @@
   .inner {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
     align-items: start;
+  }
+
+  .map {
+    grid-column: 1 / -1;
   }
 }
