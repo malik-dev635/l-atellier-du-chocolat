@@ -1,4 +1,4 @@
-import { Download } from "lucide-react";
+import { Mail } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/Button";
@@ -25,7 +25,7 @@ export function CtaFooter(): ReactNode {
 
         <div data-reveal>
           <Button href="/#footer" variant="solid">
-            <Download size={18} strokeWidth={1.75} aria-hidden="true" />
+            <Mail size={18} strokeWidth={1.75} aria-hidden="true" />
             {CTA_SECTION.cta}
           </Button>
         </div>

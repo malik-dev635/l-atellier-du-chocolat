@@ -49,7 +49,7 @@ export interface OfferPoint {
   readonly text: string;
 }
 
-/** Produit présenté dans la boutique. */
+/** Produit présenté dans la gamme. */
 export interface Product {
   readonly id: string;
   readonly name: string;
@@ -65,8 +65,6 @@ export interface Product {
   readonly composition: string;
   readonly accent: Accent;
   readonly surface: Surface;
-  readonly price: number;
-  readonly rating: number;
   /** Vignette carrée de l'aperçu (accueil). */
   readonly image: StaticImageData;
   /** Vues 5:4 de la fiche : scène, produit, détail. */

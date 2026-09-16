@@ -2,10 +2,9 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
-import { AddToCart } from "@/components/products/AddToCart";
+import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { useReadReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { CHOCOLATS_SECTION, RANGES } from "@/lib/mocks";
@@ -16,17 +15,9 @@ interface ChocolateSliderProps {
   readonly items: readonly Product[];
 }
 
-const PRICE_FORMAT = new Intl.NumberFormat("fr-FR", {
-  style: "currency",
-  currency: "EUR",
-});
-
 /**
- * Slider des chocolats — la deuxième section de l'accueil, juste sous le
- * hero, parce que c'est le métier de la maison.
- *
- * Une diapositive par référence : grande photo, nom, mentions, description,
- * prix. Le FOND DE TOUTE LA SECTION prend la couleur de la photo active et
+ * Slider des chocolats : une diapositive par référence — grande photo, nom,
+ * mentions, description. Le FOND DE TOUTE LA SECTION prend la couleur de la photo active et
  * glisse vers la suivante — la couleur suit le produit.
  *
  * Mécanique volontairement simple : une piste en défilement natif avec
@@ -135,11 +126,9 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
                   <p className={styles.text}>{item.description}</p>
 
                   <div className={styles.actions}>
-                    <span className={styles.price}>{PRICE_FORMAT.format(item.price)}</span>
-                    <AddToCart productName={item.name} className={styles.add} />
-                    <Link className={`link-more ${styles.more}`} href="/boutique">
+                    <Button href="/gamme" className={styles.add}>
                       Voir la fiche
-                    </Link>
+                    </Button>
                   </div>
                 </div>
               </div>

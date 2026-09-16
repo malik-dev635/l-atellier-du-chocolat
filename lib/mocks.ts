@@ -5,11 +5,11 @@ import avatar from "@/assets/images/avatar.jpg";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
 import blog3 from "@/assets/images/blog-3.jpg";
-import catCakes from "@/assets/images/cat-cakes.jpg";
-import catCandies from "@/assets/images/cat-candies.jpg";
-import catCocoa from "@/assets/images/cat-cocoa.jpg";
+import catCoffrets from "@/assets/images/cat-coffrets.jpg";
+import catLait from "@/assets/images/cat-truffles.jpg";
+import catNoir from "@/assets/images/cat-noir.jpg";
+import catPoudre from "@/assets/images/cat-poudre.jpg";
 import catPralines from "@/assets/images/cat-pralines.jpg";
-import catTruffles from "@/assets/images/cat-truffles.jpg";
 import product1 from "@/assets/images/product-1.jpg";
 import product2 from "@/assets/images/product-2.jpg";
 import product3 from "@/assets/images/product-3.jpg";
@@ -83,8 +83,8 @@ export const BRAND = {
   addressLabel: "Atelier & boutique",
   address: "Ouvert du mardi au samedi",
   copyright: "© 2026 l'Atelier du Chocolat. Tous droits réservés.",
-  promo: "Le chocolat artisanal 100 % ivoirien, livré chez vous",
-  promoCta: "Découvrir",
+  promo: "Artisan chocolatier · cacao 100 % ivoirien, transformé sur place",
+  promoCta: "Notre histoire",
 } as const;
 
 export const NAV_ITEMS: readonly NavItem[] = [
@@ -100,9 +100,9 @@ export const NAV_ITEMS: readonly NavItem[] = [
     ],
   },
   {
-    id: "gamme",
+    id: "chocolats",
     label: "Nos chocolats",
-    href: "/#chocolats",
+    href: "/#categories",
     children: [
       { id: "g-tablettes", label: "Tablettes", href: "/#chocolats" },
       { id: "g-tartiner", label: "Pâtes à tartiner", href: "/#gourmandises" },
@@ -119,7 +119,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
       { id: "blog-recipes", label: "Recettes", href: "/#blog" },
     ],
   },
-  { id: "shop", label: "Boutique", href: "/boutique" },
+  { id: "gamme", label: "La gamme", href: "/gamme" },
   {
     id: "contact",
     label: "Contact",
@@ -134,12 +134,14 @@ export const NAV_ITEMS: readonly NavItem[] = [
 /** Bande de texte fantôme défilant derrière le rail de catégories. */
 export const CATEGORIES_WATERMARK = "Artisan chocolatier ivoirien";
 
+/** Les familles de CHOCOLAT uniquement : c'est le métier, il passe en premier.
+ *  Pâtes à tartiner, miel et conserves sont présentés plus bas. */
 export const CATEGORIES: readonly Category[] = [
-  { id: "tablettes", label: "Tablettes 41 % et 70 %", href: "/#chocolats", image: catTruffles, offset: "up", accent: "menthe" },
-  { id: "tartiner", label: "Pâtes à tartiner", href: "/boutique", image: catCandies, offset: "down", accent: "terracotta" },
-  { id: "dragees", label: "Dragées amande", href: "/boutique", image: catPralines, offset: "up", accent: "rose" },
-  { id: "miels", label: "Miel de chêne", href: "/boutique", image: catCakes, offset: "down", accent: "terracotta" },
-  { id: "epicerie", label: "Tomates séchées", href: "/boutique", image: catCocoa, offset: "up", accent: "orange" },
+  { id: "lait", label: "Tablettes au lait 41 %", href: "/#chocolats", image: catLait, offset: "up", accent: "menthe" },
+  { id: "noir", label: "Tablettes noires 70 %", href: "/#chocolats", image: catNoir, offset: "down", accent: "pistache" },
+  { id: "poudre", label: "Poudre de cacao", href: "/#chocolats", image: catPoudre, offset: "up", accent: "terracotta" },
+  { id: "dragees", label: "Dragées amande", href: "/#chocolats", image: catPralines, offset: "down", accent: "rose" },
+  { id: "coffrets", label: "Coffrets", href: "/#offer", image: catCoffrets, offset: "up", accent: "orange" },
 ];
 
 export const FEATURES: readonly Feature[] = [
@@ -166,8 +168,8 @@ export const FEATURES: readonly Feature[] = [
 export const OFFER_POINTS: readonly OfferPoint[] = [
   { id: "op-1", text: "Coffrets composés à la main, à l'unité près" },
   { id: "op-2", text: "Message personnalisé glissé dans la boîte" },
-  { id: "op-3", text: "Expédition sous 48 heures, emballage isotherme" },
-  { id: "op-4", text: "Tarifs dégressifs pour les comités d'entreprise" },
+  { id: "op-3", text: "Mariages, cérémonies, cadeaux d'entreprise" },
+  { id: "op-4", text: "Sur rendez-vous à l'atelier, ou par téléphone" },
 ];
 
 /** Marques portées par les étiquettes. L'épicerie n'est pas signée comme le
@@ -195,8 +197,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, noisettes.",
     accent: "menthe",
     surface: "menthe",
-    price: 4.5,
-    rating: 5,
     image: product6,
     views: [product6a, product6b, product6c],
   },
@@ -212,8 +212,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, amandes.",
     accent: "ciel",
     surface: "ciel",
-    price: 4.5,
-    rating: 4,
     image: product7,
     views: [product7a, product7b, product7c],
   },
@@ -229,8 +227,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 70 %, sucre, pistaches, beurre de cacao.",
     accent: "pistache",
     surface: "pierre",
-    price: 5.2,
-    rating: 5,
     image: product8,
     views: [product8a, product8b, product8c],
   },
@@ -246,8 +242,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, pistaches.",
     accent: "pistache",
     surface: "pistache",
-    price: 4.9,
-    rating: 5,
     image: product10,
     views: [product10a, product10b, product10c],
   },
@@ -263,8 +257,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, beurre de cacao.",
     accent: "orange",
     surface: "terre",
-    price: 3.9,
-    rating: 5,
     image: product11,
     views: [product11a, product11b, product11c],
   },
@@ -280,8 +272,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 70 %, sucre, amandes, beurre de cacao.",
     accent: "ciel",
     surface: "ciel",
-    price: 5.2,
-    rating: 5,
     image: product12,
     views: [product12a, product12b, product12c],
   },
@@ -297,8 +287,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 70 %, sucre, beurre de cacao.",
     accent: "orange",
     surface: "pierre",
-    price: 4.6,
-    rating: 5,
     image: product13,
     views: [product13a, product13b, product13c],
   },
@@ -314,8 +302,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Cacao de Côte d'Ivoire 100 %.",
     accent: "terracotta",
     surface: "cacao",
-    price: 6.5,
-    rating: 5,
     image: product9,
     views: [product9a, product9b, product9c],
   },
@@ -331,8 +317,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Amandes, chocolat au lait 42 %, sucre, beurre de cacao.",
     accent: "rose",
     surface: "corail",
-    price: 8.5,
-    rating: 5,
     image: product1,
     views: [product1a, product1b, product1c],
   },
@@ -348,8 +332,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Tomates séchées, huile végétale, thym, romarin, ail, sel.",
     accent: "orange",
     surface: "ochre",
-    price: 6.9,
-    rating: 4,
     image: product2,
     views: [product2a, product2b, product2c],
   },
@@ -365,8 +347,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Miel de chêne 100 %. Aucun ajout, aucune pasteurisation.",
     accent: "terracotta",
     surface: "ambre",
-    price: 9.5,
-    rating: 5,
     image: product3,
     views: [product3a, product3b, product3c],
   },
@@ -382,8 +362,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Noisettes 25 %, sucre, cacao, lait en poudre, beurre de cacao.",
     accent: "terracotta",
     surface: "terre",
-    price: 7.9,
-    rating: 5,
     image: product4,
     views: [product4a, product4b, product4c],
   },
@@ -399,8 +377,6 @@ export const PRODUCTS: readonly Product[] = [
     composition: "Pistaches 50 %, sucre, beurre de cacao, lait en poudre.",
     accent: "pistache",
     surface: "pistache",
-    price: 12.9,
-    rating: 5,
     image: product5,
     views: [product5a, product5b, product5c],
   },
@@ -471,13 +447,13 @@ export const POSTS: readonly Post[] = [
 
 export const FOOTER_COLUMNS: readonly FooterColumn[] = [
   {
-    id: "support",
-    title: "Commander",
+    id: "gamme",
+    title: "La gamme",
     links: [
-      { id: "s-1", label: "Suivre ma commande", href: "/#footer" },
-      { id: "s-2", label: "Livraison & retours", href: "/#footer" },
-      { id: "s-3", label: "Coffrets d'entreprise", href: "/#footer" },
-      { id: "s-4", label: "Tarifs revendeurs", href: "/#footer" },
+      { id: "s-1", label: "Nos chocolats", href: "/#categories" },
+      { id: "s-2", label: "Pâtes à tartiner & épicerie", href: "/#gourmandises" },
+      { id: "s-3", label: "Coffrets & cadeaux", href: "/#offer" },
+      { id: "s-4", label: "Toute la gamme", href: "/gamme" },
     ],
   },
   {
@@ -486,7 +462,7 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     links: [
       { id: "i-1", label: "Notre histoire", href: "/#about" },
       { id: "i-2", label: "Visiter l'atelier", href: "/#why" },
-      { id: "i-3", label: "Mon compte", href: "/#footer" },
+      { id: "i-3", label: "Revendeurs & restaurateurs", href: "/#footer" },
       { id: "i-4", label: "Confidentialité", href: "/#footer" },
     ],
   },
@@ -519,7 +495,7 @@ export const HERO = {
       colonne et passe sous le visuel de droite. */
   title: ["Le chocolat", "artisanal", "100% ivoirien"],
   curved: "Tablettes · pâtes à tartiner · dragées · miels · ",
-  cta: "Voir la gamme",
+  cta: "Découvrir nos chocolats",
 } as const;
 
 export const WHY = {
@@ -532,18 +508,18 @@ export const OFFER = {
   eyebrow: "Coffrets & cadeaux",
   title: "Des coffrets composés pour l'occasion",
   text: "Un mariage, un remerciement, un dimanche sans raison particulière. Vous choisissez les références, nous montons le coffret à la main.",
-  cta: "Composer un coffret",
+  cta: "Nous en parler",
 } as const;
 
 export const PRODUCTS_SECTION = {
-  eyebrow: "La boutique",
-  title: "Toute la gamme, en direct de l'atelier",
+  eyebrow: "La gamme",
+  title: "Chaque référence, en détail",
 } as const;
 
 export const CHOCOLATS_SECTION = {
   eyebrow: "Nos chocolats",
   title: "Le cacao ivoirien, tablette par tablette",
-  cta: "Voir toute la gamme",
+  cta: "Voir la gamme en détail",
 } as const;
 
 export const GOURMANDISES_SECTION = {
@@ -563,8 +539,8 @@ export const BLOG_SECTION = {
 } as const;
 
 export const CTA_SECTION = {
-  titleBefore: "Le chocolat artisanal ivoirien, chez vous en",
-  titleAccent: "48 heures",
-  subtitle: "Commandez en ligne, nous expédions depuis l'atelier en emballage isotherme.",
-  cta: "Commander en ligne",
+  titleBefore: "Venez goûter le chocolat",
+  titleAccent: "à l'atelier",
+  subtitle: "Visites, dégustations et coffrets sur rendez-vous. Écrivez-nous ou appelez-nous, on vous répond dans la journée.",
+  cta: "Nous contacter",
 } as const;

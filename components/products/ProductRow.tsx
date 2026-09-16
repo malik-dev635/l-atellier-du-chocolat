@@ -1,17 +1,10 @@
-import { Star } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
 import { RANGES } from "@/lib/mocks";
 import type { Product } from "@/lib/types";
-import { AddToCart } from "./AddToCart";
 import { ProductGallery } from "./ProductGallery";
 import styles from "./Products.module.css";
-
-const PRICE_FORMAT = new Intl.NumberFormat("fr-FR", {
-  style: "currency",
-  currency: "EUR",
-});
 
 interface ProductRowProps {
   readonly item: Product;
@@ -45,7 +38,7 @@ export function ProductRow({ item, index }: ProductRowProps): ReactNode {
 
         <div className={styles.rowBody}>
           <p className={styles.range} data-reveal>
-            {RANGES[item.range]}
+            {item.kind} · {RANGES[item.range]}
           </p>
 
           <h3 className={styles.rowTitle} data-reveal>
@@ -65,24 +58,6 @@ export function ProductRow({ item, index }: ProductRowProps): ReactNode {
             <dd>{item.composition}</dd>
           </dl>
 
-          <div className={styles.rowFooter} data-reveal>
-            <p className={styles.rating} aria-label={`Note : ${item.rating} sur 5`}>
-              {Array.from({ length: 5 }, (_, starIndex) => (
-                <Star
-                  key={starIndex}
-                  size={14}
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                  fill={starIndex < item.rating ? "currentColor" : "none"}
-                  className={starIndex < item.rating ? styles.starOn : styles.starOff}
-                />
-              ))}
-            </p>
-
-            <p className={styles.price}>{PRICE_FORMAT.format(item.price)}</p>
-
-            <AddToCart productName={item.name} className={styles.add} />
-          </div>
         </div>
       </Reveal>
     </article>

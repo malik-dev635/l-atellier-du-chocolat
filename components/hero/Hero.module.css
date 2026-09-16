@@ -106,11 +106,11 @@
   text-transform: uppercase;
 }
 
+/* La cabosse du logo officiel, au centre du texte curviligne. */
 .leaf {
   position: relative;
-  width: 42%;
+  width: 46%;
   height: auto;
-  color: var(--c-gold);
 }
 
 /* Taille bornée à la fois par la largeur ET la hauteur disponibles. */

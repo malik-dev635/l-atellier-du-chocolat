@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
 import { Preloader } from "@/components/preloader/Preloader";
-import { ShopProvider } from "@/components/providers/ShopProvider";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { TopBar } from "@/components/topbar/TopBar";
 import "./globals.css";
@@ -69,15 +68,13 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode {
     >
       <body>
         <SmoothScrollProvider>
-          <ShopProvider>
-            <Preloader />
-            <div id="page-shell" className="page-shell">
-              <TopBar />
-              <Header />
-              {children}
-              <Footer />
-            </div>
-          </ShopProvider>
+          <Preloader />
+          <div id="page-shell" className="page-shell">
+            <TopBar />
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </SmoothScrollProvider>
       </body>
     </html>

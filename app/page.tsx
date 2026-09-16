@@ -14,12 +14,12 @@ import { WhyUs } from "@/components/whyus/WhyUs";
 import { PRODUCTS } from "@/lib/mocks";
 
 /**
- * Page d'accueil — Server Component.
+ * Page d'accueil — Server Component. Site vitrine, pas e-commerce.
  *
- * Ordre pensé autour du métier : le chocolat tout de suite après le hero
- * (slider), puis la maison, la rangée de catégories, le savoir-faire, les
- * coffrets, et seulement ensuite les autres gourmandises. Bandeau, en-tête et pied vivent dans le
- * layout, partagés avec la boutique.
+ * Ordre : le hero, puis la maison (qui nous sommes), puis les familles de
+ * chocolat dans la rangée de catégories, le savoir-faire, le slider des
+ * tablettes en couleur, les coffrets, et seulement ensuite les autres
+ * gourmandises. Bandeau, en-tête et pied vivent dans le layout.
  */
 export default function HomePage(): ReactNode {
   const chocolats = PRODUCTS.filter((product) => product.family === "chocolat");
@@ -27,10 +27,10 @@ export default function HomePage(): ReactNode {
   return (
     <main>
       <Hero />
-      <ChocolateSlider items={chocolats} />
       <About />
       <Categories />
       <WhyUs />
+      <ChocolateSlider items={chocolats} />
       <OfferBand />
       <Gourmandises />
       <Testimonials />

@@ -74,7 +74,7 @@ export function OfferBand(): ReactNode {
           </ul>
 
           <div className={styles.cta} data-reveal>
-            <Button href="/boutique" variant="outlineLight">
+            <Button href="/#footer" variant="outlineLight">
               {OFFER.cta}
             </Button>
           </div>

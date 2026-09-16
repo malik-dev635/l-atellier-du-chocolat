@@ -85,7 +85,7 @@ export function Preloader(): ReactNode {
 
   return (
     <div ref={rootRef} className={styles.curtain} role="status" aria-live="polite">
-      <span className="sr-only">Chargement de la boutique</span>
+      <span className="sr-only">Chargement de l'atelier</span>
       <div className={styles.center} aria-hidden="true">
         <span className={styles.mark}>
           <Logo size="lg" priority />

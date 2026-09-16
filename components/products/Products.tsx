@@ -11,7 +11,7 @@ import { ProductRow } from "./ProductRow";
 import styles from "./Products.module.css";
 
 /**
- * Page boutique : en-tête centré puis une fiche éditoriale par référence.
+ * Page « la gamme » : en-tête centré puis une fiche éditoriale par référence.
  *
  * Ces huit blocs vivaient sur l'accueil et lui ajoutaient 5 000 px. Ils ont
  * leur propre route : l'accueil n'en montre plus qu'un aperçu de quatre

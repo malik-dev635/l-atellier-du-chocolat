@@ -1,9 +1,8 @@
 "use client";
 
-import { ChevronDown, Menu, Search, ShoppingBag, X } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { ChevronDown, Menu, Search, X } from "lucide-react";
+import { useCallback, useRef, useState, type ReactNode } from "react";
 
-import { useShop } from "@/components/providers/ShopProvider";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -21,19 +20,10 @@ const HIDE_AFTER = 160;
  */
 export function Header(): ReactNode {
   const headerRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLSpanElement>(null);
-  const cartRef = useRef<HTMLAnchorElement>(null);
   const searchButtonRef = useRef<HTMLButtonElement>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { count, setCartTarget } = useShop();
   const reduced = usePrefersReducedMotion();
-
-  // Cible du flare « ajout au panier ».
-  useEffect(() => {
-    setCartTarget(cartRef.current);
-    return () => setCartTarget(null);
-  }, [setCartTarget]);
 
   // Rétraction / réapparition + fond flouté.
   useGSAP(
@@ -69,22 +59,6 @@ export function Header(): ReactNode {
     },
     { dependencies: [reduced], revertOnUpdate: true },
   );
-
-  // Pop du badge à chaque ajout.
-  useEffect(() => {
-    const badge = badgeRef.current;
-    if (!badge || count === 0) return;
-    if (reduced) return;
-
-    const tl = gsap
-      .timeline()
-      .to(badge, { scale: 1.4, duration: 0.16, ease: EASE.micro })
-      .to(badge, { scale: 1, duration: 0.34, ease: EASE.pop });
-
-    return () => {
-      tl.kill();
-    };
-  }, [count, reduced]);
 
   const closeSearch = useCallback((): void => {
     setSearchOpen(false);
@@ -135,18 +109,6 @@ export function Header(): ReactNode {
             <Button href="/#footer" className={styles.contact}>
               Nous écrire
             </Button>
-
-            <a ref={cartRef} className={styles.iconButton} href="/boutique" aria-label={`Panier, ${count} article${count > 1 ? "s" : ""}`}>
-              <ShoppingBag size={22} strokeWidth={1.75} aria-hidden="true" />
-              <span
-                ref={badgeRef}
-                className={styles.badge}
-                data-visible={count > 0}
-                aria-hidden="true"
-              >
-                {count}
-              </span>
-            </a>
 
             <button
               ref={searchButtonRef}

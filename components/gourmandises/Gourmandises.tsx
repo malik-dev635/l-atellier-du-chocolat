@@ -9,14 +9,9 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { GOURMANDISES_SECTION, PRODUCTS } from "@/lib/mocks";
 import styles from "./Gourmandises.module.css";
 
-const PRICE_FORMAT = new Intl.NumberFormat("fr-FR", {
-  style: "currency",
-  currency: "EUR",
-});
-
 /**
  * Les autres produits — pâtes à tartiner, dragées, épicerie — en rangée
- * compacte, APRÈS le chocolat. Cinq vignettes, un lien vers la boutique.
+ * compacte, APRÈS le chocolat. Cinq vignettes, un lien vers la gamme détaillée.
  * Server Component.
  */
 export function Gourmandises(): ReactNode {
@@ -36,7 +31,7 @@ export function Gourmandises(): ReactNode {
           <ul className={styles.grid}>
             {items.map((product) => (
               <li key={product.id} className={styles.card} data-accent={product.accent} data-reveal>
-                <Link className={styles.link} href="/boutique">
+                <Link className={styles.link} href="/gamme">
                   <span className={styles.tile}>
                     <Image
                       src={product.image}
@@ -49,7 +44,6 @@ export function Gourmandises(): ReactNode {
                   </span>
                   <span className={styles.name}>{product.name}</span>
                   <span className={styles.kind}>{product.kind}</span>
-                  <span className={styles.price}>{PRICE_FORMAT.format(product.price)}</span>
                 </Link>
               </li>
             ))}
@@ -57,7 +51,7 @@ export function Gourmandises(): ReactNode {
         </Reveal>
 
         <div className={styles.cta}>
-          <Button href="/boutique">Voir toute la boutique</Button>
+          <Button href="/gamme">Voir la gamme en détail</Button>
         </div>
       </div>
     </section>
