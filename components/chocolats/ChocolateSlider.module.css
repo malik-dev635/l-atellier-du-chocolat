@@ -179,14 +179,36 @@
 }
 
 .spec {
+  position: relative;
   margin-top: var(--sp-3);
   padding-bottom: var(--sp-4);
-  border-bottom: 2px solid var(--accent, var(--c-line));
   font-size: var(--fs-caption);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--c-body);
-  transition: border-color var(--dur-slide) var(--ease-in-out);
+}
+
+/* Soulignement dans la couleur de l'emballage : il se trace de gauche à
+   droite quand la section arrive à l'écran, puis à chaque tablette. */
+.spec::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent, var(--c-line));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: background-color var(--dur-slide) var(--ease-in-out);
+}
+
+.section[data-inview="true"] .slide[aria-hidden="false"] .spec::after {
+  animation: underline var(--dur-enter) var(--ease-out) 320ms forwards;
+}
+
+@keyframes underline {
+  to { transform: scaleX(1); }
 }
 
 .text {
@@ -314,6 +336,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .spec::after,
+  .section[data-inview="true"] .slide[aria-hidden="false"] .spec::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+
   .band,
   .strip,
   .ghost,

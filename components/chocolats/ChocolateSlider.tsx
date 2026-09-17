@@ -27,8 +27,30 @@ interface ChocolateSliderProps {
  */
 export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
   const trackRef = useRef<HTMLUListElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
+  const [inView, setInView] = useState(false);
   const readReduced = useReadReducedMotion();
+
+  // Les soulignements ne se tracent qu'une fois la section à l'écran.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -25% 0px" },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   // L'index actif suit la position réelle de la piste (défilement natif inclus).
   useEffect(() => {
@@ -68,9 +90,11 @@ export function ChocolateSlider({ items }: ChocolateSliderProps): ReactNode {
 
   return (
     <section
+      ref={sectionRef}
       id="chocolats"
       className={styles.section}
       data-accent={current.accent}
+      data-inview={inView}
       aria-labelledby="chocolats-title"
     >
       <div className={`container ${styles.head}`}>
