@@ -4,14 +4,40 @@
   /* Brun du hero, pour se distinguer du pied de page nuit qui suit. */
   background: var(--c-table);
   color: var(--c-on-dark-strong);
+  overflow: clip;
+}
+
+/* Les pralinés : calés à droite, plus hauts que la bande, coupés par ses
+   bords haut et bas — le produit sort du cadre. */
+.praline {
+  --w: clamp(220px, 34vw, 520px);
+  position: absolute;
+  right: clamp(-40px, -3vw, -8px);
+  top: 50%;
+  width: var(--w);
+  /* Centrage vertical sans transform (GSAP pilote `transform` pour la
+     parallaxe) : l'image fait 1,25 × sa largeur. */
+  margin-top: calc(var(--w) * -0.625);
+  pointer-events: none;
+  filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.45));
+}
+
+.praline img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-7);
+  justify-content: flex-start;
+  gap: var(--sp-7) clamp(var(--sp-8), 6vw, var(--sp-12));
+  /* Réserve la place des pralinés à droite. */
+  padding-right: clamp(200px, 30vw, 460px);
 }
 
 .title {
@@ -32,4 +58,19 @@
   font-size: var(--fs-body);
   color: var(--c-on-dark-body);
   max-width: 48ch;
+}
+
+@media (max-width: 900px) {
+  .praline {
+    --w: 200px;
+    top: auto;
+    bottom: -60px;
+    right: -30px;
+    margin-top: 0;
+  }
+
+  .inner {
+    padding-right: 0;
+    padding-bottom: 120px;
+  }
 }
