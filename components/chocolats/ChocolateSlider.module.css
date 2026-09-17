@@ -3,7 +3,7 @@
 .section {
   position: relative;
   padding-block: var(--section-pad);
-  background: var(--c-cream);
+  background: var(--c-beige);
   color: var(--c-ink);
   overflow: clip;
 }

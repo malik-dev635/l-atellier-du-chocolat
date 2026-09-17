@@ -14,7 +14,10 @@
   /* Encre du logo fourni. */
   --c-dark-choc: #422519;
   --c-table: #3a2c24; /* fond de la photo du hero « la table » */
-  --c-nav: #dccdb7; /* fond de la barre de navigation et de son menu mobile */
+  /* Surface claire du site : fond de page, sections claires, navigation.
+     Le crème (#faf6ee) ne sert plus qu'au texte sur fond sombre. */
+  --c-beige: #dccdb7;
+  --c-nav: var(--c-beige);
   --c-ink: #1f1b18;
   --c-body: #7b6f68;
   --c-muted: #9a8b82;
@@ -201,7 +204,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--c-cream);
+  background: var(--c-beige);
   color: var(--c-ink);
   font-family: var(--font-body);
   font-size: var(--fs-body);
@@ -312,7 +315,7 @@ html.lenis body {
 }
 
 .section--cream {
-  background: var(--c-cream);
+  background: var(--c-beige);
 }
 
 .section--white {
