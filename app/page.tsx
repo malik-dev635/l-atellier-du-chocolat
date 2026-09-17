@@ -40,8 +40,8 @@ export default function HomePage(): ReactNode {
       <Gourmandises />
       <Testimonials />
       <Blog />
-      <PralineStrip />
       <FindUs />
+      <PralineStrip />
       <CtaFooter />
     </main>
   );

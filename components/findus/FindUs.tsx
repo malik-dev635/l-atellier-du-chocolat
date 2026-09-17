@@ -19,7 +19,7 @@ const EMAIL = CONTACT?.links.find((link) => link.href.startsWith("mailto:"));
  */
 export function FindUs(): ReactNode {
   return (
-    <section id="contact" className={`section section--cream ${styles.section}`} aria-labelledby="findus-title">
+    <section id="contact" className={`section section--white ${styles.section}`} aria-labelledby="findus-title">
       <Reveal className={`container ${styles.grid}`}>
         <div className={styles.info} data-reveal>
           <Eyebrow align="start">{FIND_US.eyebrow}</Eyebrow>

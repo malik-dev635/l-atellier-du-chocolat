@@ -2,6 +2,16 @@
   overflow: clip;
 }
 
+/* Le journal, au-dessus, est blanc lui aussi : un filet marque la coupure. */
+.section::before {
+  content: "";
+  display: block;
+  width: min(100% - 2 * var(--sp-5), var(--container));
+  height: var(--hairline);
+  margin: calc(-1 * var(--section-pad)) auto var(--section-pad);
+  background: var(--c-line);
+}
+
 .grid {
   display: grid;
   gap: clamp(var(--sp-7), 5vw, var(--sp-10));
@@ -88,8 +98,9 @@
   position: relative;
   border-radius: var(--radius-soft);
   overflow: hidden;
-  box-shadow: 0 30px 60px -36px rgb(31 27 24 / 0.5);
+  box-shadow: 0 30px 60px -36px rgb(31 27 24 / 0.35);
   background: var(--c-tile);
+  border: var(--hairline) solid var(--c-line);
 }
 
 /* Pas de filtre CSS sur l'iframe : il rend la carte noire sur certains
