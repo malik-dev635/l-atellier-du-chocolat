@@ -46,7 +46,7 @@ canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
 sw, sh = 1560, 975
 sx, sy = 120, 300
 bezel = 22
-shadow(canvas, (sx - bezel, sy - bezel, sx + sw + bezel, sy + sh + bezel + 40), 36, blur=60, alpha=140)
+shadow(canvas, (sx - bezel, sy - bezel + 30, sx + sw + bezel, sy + sh + bezel + 40), 36, blur=70, alpha=55)
 frame = Image.new("RGBA", (sw + 2 * bezel, sh + 2 * bezel), NIGHT + (255,))
 frame = rounded(frame, 30)
 canvas.alpha_composite(frame, (sx - bezel, sy - bezel))
@@ -61,7 +61,7 @@ canvas.alpha_composite(rounded(notch, 5), (sx + sw // 2 - 110, sy + sh + bezel +
 pw, ph = 470, 1020
 px, py = W - pw - 90, H - ph - 60
 pb = 16
-shadow(canvas, (px - pb, py - pb, px + pw + pb, py + ph + pb), 70, blur=50, alpha=150)
+shadow(canvas, (px - pb, py - pb + 24, px + pw + pb, py + ph + pb), 70, blur=60, alpha=60)
 pframe = rounded(Image.new("RGBA", (pw + 2 * pb, ph + 2 * pb), NIGHT + (255,)), 74)
 canvas.alpha_composite(pframe, (px - pb, py - pb))
 # écran mobile : recadré en haut (header + hero)
@@ -116,9 +116,9 @@ def card(im: Image.Image, width: int, angle: float = -12.0) -> Image.Image:
     # ombre
     pad = 60
     layer = Image.new("RGBA", (small.width + 2 * pad, small.height + 2 * pad), (0, 0, 0, 0))
-    sh_ = Image.new("RGBA", small.size, (0, 0, 0, 120))
-    layer.alpha_composite(rounded(sh_, 14), (pad + 10, pad + 24))
-    layer = layer.filter(ImageFilter.GaussianBlur(24))
+    sh_ = Image.new("RGBA", small.size, (0, 0, 0, 55))
+    layer.alpha_composite(rounded(sh_, 14), (pad + 6, pad + 20))
+    layer = layer.filter(ImageFilter.GaussianBlur(30))
     layer.alpha_composite(small, (pad, pad))
     return layer.rotate(angle, resample=Image.Resampling.BICUBIC, expand=True)
 
