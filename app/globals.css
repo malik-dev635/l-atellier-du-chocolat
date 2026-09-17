@@ -170,20 +170,14 @@
   /* ---- Divers ---- */
   --header-h: clamp(98px, 6.8vw, 124px);
   --header-h-compact: 68px;
-  --topbar-h: 35px;
-  /* Hauteur occupée par le bandeau promo + l'en-tête, au-dessus du Hero. */
+  /* Hauteur occupée par l'en-tête, au-dessus du Hero (plus de bandeau). */
+  --topbar-h: 0px;
   --chrome-h: calc(var(--topbar-h) + var(--header-h));
   --z-header: 60;
   --z-overlay: 80;
   --z-preloader: 100;
 }
 
-/* Bandeau masqué sur mobile (TopBar) : le chrome n'est plus que l'en-tête. */
-@media (max-width: 640px) {
-  :root {
-    --topbar-h: 0px;
-  }
-}
 
 /* =========================================================================
    Reset

@@ -8,7 +8,6 @@ import { Header } from "@/components/header/Header";
 import { LogoDefs } from "@/components/ui/LogoDefs";
 import { Preloader } from "@/components/preloader/Preloader";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { TopBar } from "@/components/topbar/TopBar";
 import "./globals.css";
 
 /* Serif display à fort contraste — titres, prix, libellés de catégorie. */
@@ -73,7 +72,6 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode {
         <SmoothScrollProvider>
           <Preloader />
           <div id="page-shell" className="page-shell">
-            <TopBar />
             <Header />
             {children}
             <Footer />
