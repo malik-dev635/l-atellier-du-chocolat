@@ -41,8 +41,10 @@ function Background({ slide, active, index }: { slide: Slide; active: boolean; i
 
 /**
  * Hero en slider : un visuel plein cadre par diapositive (sujet à droite,
- * texte à gauche), fondu enchaîné et léger travelling sur l'image, titre
- * ligne par ligne qui se rejoue à chaque changement. L'autoplay attend la
+ * texte à gauche), fondu enchaîné, titre ligne par ligne qui se rejoue à
+ * chaque changement. Les visuels sont composés pour le hero : jamais de
+ * zoom, et sur mobile l'image est affichée entière sur un fond de la couleur
+ * de son propre fond. L'autoplay attend la
  * fin du rideau, s'arrête au survol, au focus et quand l'onglet est caché.
  */
 export function HeroSlider(): ReactNode {
@@ -81,6 +83,7 @@ export function HeroSlider(): ReactNode {
     <section
       id="hero"
       className={styles.hero}
+      style={{ "--slide-bg": current.bgMobile } as React.CSSProperties}
       data-ready={ready}
       aria-labelledby="hero-title"
       aria-roledescription="carrousel"

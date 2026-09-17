@@ -8,10 +8,12 @@
   --autoplay: 6500ms;
 }
 
+/* Hauteur calée sur le ratio des visuels (1376 × 768) tant que l'écran le
+   permet : le rognage de `cover` reste de quelques pixels. */
 .stage {
   position: relative;
   width: 100%;
-  height: clamp(560px, calc(100svh - var(--chrome-h)), 900px);
+  height: clamp(520px, min(calc(100svh - var(--chrome-h)), calc(100vw / 1.79)), 900px);
   display: grid;
   align-items: center;
 }
@@ -37,17 +39,6 @@
   height: 100%;
   object-fit: cover;
   object-position: 68% 50%;
-  transform: scale(1.06);
-  will-change: transform;
-}
-
-.bg[data-active="true"] .img {
-  animation: kenBurns 9s var(--ease-out) forwards;
-}
-
-@keyframes kenBurns {
-  from { transform: scale(1.06); }
-  to { transform: scale(1); }
 }
 
 /* ---- Texte : colonne gauche ---- */
@@ -220,12 +211,19 @@
 /* ---- Sous 640px : visuel portrait, sujet en bas, texte en haut ---- */
 
 @media (max-width: 640px) {
+  .hero {
+    background: var(--slide-bg, var(--c-table));
+    transition: background-color var(--dur-slide) var(--ease-in-out);
+  }
+
   .stage {
     height: clamp(600px, calc(100svh - var(--chrome-h)), 820px);
     align-items: flex-start;
   }
 
+  /* Image entière, posée en bas ; le fond de la section prolonge le sien. */
   .img {
+    object-fit: contain;
     object-position: 50% 100%;
   }
 
@@ -257,12 +255,6 @@
 @media (prefers-reduced-motion: reduce) {
   .bg {
     transition: none;
-  }
-
-  .img,
-  .bg[data-active="true"] .img {
-    animation: none;
-    transform: none;
   }
 
   .line,

@@ -586,12 +586,14 @@ export const ABOUT = {
   image: aboutStack,
 } as const;
 
-/** Diapositives du hero : un visuel desktop, sa version mobile, un titre. */
+/** Diapositives du hero : un visuel desktop, sa version mobile (avec la
+    couleur de son fond, pour l'afficher entier sans couture), un titre. */
 export const HERO_SLIDES = [
   {
     id: "h-1",
     image: heroBg1,
     imageMobile: heroBg1Mobile,
+    bgMobile: "#38211c",
     alt: "Pralinés au chocolat noir et blanc, feuilles de menthe, sur fond chocolat",
     title: ["Le chocolat", "artisanal", "100% ivoirien"],
     lead: "Cacao récolté en Côte d'Ivoire, torréfié, conché et moulé dans notre atelier. Tablettes, pralinés, poudre de cacao.",
@@ -602,6 +604,7 @@ export const HERO_SLIDES = [
     id: "h-2",
     image: heroBg3,
     imageMobile: heroBg3Mobile,
+    bgMobile: "#3b2a20",
     alt: "Six pralinés de l'atelier posés sur deux plaques de pierre",
     title: ["Des pralinés", "faits main", "à l'atelier"],
     lead: "Coques fines, ganaches au cacao de Côte d'Ivoire. Assemblés à la main, quelques jours avant d'arriver chez vous.",
