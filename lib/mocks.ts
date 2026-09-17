@@ -102,7 +102,7 @@ export const BRAND = {
 /** Section « Nous trouver » : carte Google, itinéraire, Yango. */
 export const FIND_US = {
   eyebrow: "Nous trouver",
-  title: ["L'atelier,", "à Vallon"],
+  title: ["L'atelier,", "au Vallon"],
   text: "Cocody, 2 Plateaux Vallon — Abidjan. Boutique et atelier au même endroit : on vous montre où ça se fait.",
   place: "L'Atelier du Chocolat — Vallon",
   hoursLabel: "Horaires",
@@ -634,7 +634,7 @@ export const HERO_SLIDES = [
     mobilePosition: "100% 100%",
     alt: "Six pralinés de l'atelier posés sur deux plaques de pierre",
     title: ["Des pralinés", "faits main", "à l'atelier"],
-    lead: "Préparés chaque semaine, en petites quantités.",
+    lead: "Chocolat noir, au lait ou blanc, garnis à l'atelier.",
     cta: "Voir la gamme",
     href: "/gamme",
   },
@@ -710,5 +710,6 @@ export const CTA_SECTION = {
     "Visites, dégustations et coffrets sur rendez-vous. Écrivez-nous ou appelez-nous, on vous répond dans la journée.",
   cta: "Nous contacter",
   socialLabel: "Suivez l'atelier",
-  socialText: "Nouveautés, coulisses et coffrets du moment : d'abord sur Instagram et Facebook.",
+  socialText:
+    "Nouveautés, coulisses et coffrets du moment : d'abord sur Instagram et Facebook.",
 } as const;
