@@ -1,4 +1,11 @@
-import { Cookie, LayoutGrid, Leaf, Mail, Phone } from "lucide-react";
+import {
+  Cookie,
+  LayoutGrid,
+  Leaf,
+  Mail,
+  MessageCircle,
+  Phone,
+} from "lucide-react";
 
 import aboutStack from "@/assets/images/about-stack.jpg";
 import avatar from "@/assets/images/avatar.jpg";
@@ -10,8 +17,8 @@ import catLait from "@/assets/images/cat-truffles.jpg";
 import catNoir from "@/assets/images/cat-noir.jpg";
 import catPoudre from "@/assets/images/cat-poudre.jpg";
 import catPralines from "@/assets/images/cat-pralines.jpg";
-import heroBg1 from "@/assets/images/hero-bg-1.jpg";
-import heroBg1Mobile from "@/assets/images/hero-bg-1-mobile.jpg";
+import heroBg1 from "@/assets/images/hero-bg-1.png";
+import heroBg1Mobile from "@/assets/images/hero-bg-1-mobile.png";
 import heroBg3 from "@/assets/images/hero-bg-variate-3.jpg";
 import heroBg3Mobile from "@/assets/images/hero-bg-variante-3-mobile.jpg";
 import product1 from "@/assets/images/product-1.jpg";
@@ -91,30 +98,32 @@ export const BRAND = {
   promoCta: "Notre histoire",
 } as const;
 
-/** Carte Google de l'atelier (Vallon, Abidjan) : embed + lien d'itinéraire. */
-export const MAP = {
-  label: "Nous trouver",
-  place: "L'Atelier du Chocolat — Vallon, Abidjan",
+/** Section « Nous trouver » : carte Google, itinéraire, Yango. */
+export const FIND_US = {
+  eyebrow: "Nous trouver",
+  title: ["L'atelier,", "à Vallon"],
+  text: "Cocody, 2 Plateaux Vallon — Abidjan. Boutique et atelier au même endroit : on vous montre où ça se fait.",
+  place: "L'Atelier du Chocolat — Vallon",
+  hoursLabel: "Horaires",
+  hours: "Du mardi au samedi",
   embed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.359117389472!2d-3.9897923000000004!3d5.3620613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eb2a540488f3%3A0x9a3d6aa2b2bbd053!2sL'Atelier%20du%20Chocolat%20Vallon!5e0!3m2!1sfr!2sci!4v1789576604008!5m2!1sfr!2sci",
-  directions: "https://www.google.com/maps/search/?api=1&query=L'Atelier%20du%20Chocolat%20Vallon",
-  cta: "Itinéraire",
+  directions:
+    "https://www.google.com/maps/search/?api=1&query=L'Atelier%20du%20Chocolat%20Vallon",
+  directionsCta: "Itinéraire",
+  /* Lien profond Yango : ouvre l'app avec l'atelier en destination. */
+  yango: "https://yango.go.link/route?end-lat=5.3620613&end-lon=-3.9897923",
+  yangoCta: "Commander un Yango",
 } as const;
 
-/** Pied de page : accroche, contact direct, réseaux, mention. */
+/** Pied de page : réseaux, mention, nom géant. */
 export const FOOTER = {
-  hookLines: ["Une question,", "une commande ?"],
-  hookText: "On répond à l'atelier, du mardi au samedi.",
-  hookCta: "Nous écrire",
   whatsapp: "https://wa.me/2250714505502",
-  whatsappLabel: "WhatsApp",
-  contactTitle: "Nous joindre",
-  hours: "Du mardi au samedi",
   social: [
     { id: "so-1", label: "Instagram", href: "https://www.instagram.com/" },
     { id: "so-2", label: "WhatsApp", href: "https://wa.me/2250714505502" },
   ],
-  giant: "L'Atelier du Chocolat",
+  giant: ["L'Atelier", "du Chocolat"],
   top: "Haut de page",
 } as const;
 
@@ -154,10 +163,10 @@ export const NAV_ITEMS: readonly NavItem[] = [
   {
     id: "contact",
     label: "Contact",
-    href: "/#footer",
+    href: "/#contact",
     children: [
-      { id: "contact-atelier", label: "Visiter l'atelier", href: "/#footer" },
-      { id: "contact-pro", label: "Commandes pro", href: "/#footer" },
+      { id: "contact-atelier", label: "Visiter l'atelier", href: "/#contact" },
+      { id: "contact-pro", label: "Commandes pro", href: "/#contact" },
     ],
   },
 ];
@@ -168,11 +177,46 @@ export const CATEGORIES_WATERMARK = "Artisan chocolatier ivoirien";
 /** Les familles de CHOCOLAT uniquement : c'est le métier, il passe en premier.
  *  Pâtes à tartiner, miel et conserves sont présentés plus bas. */
 export const CATEGORIES: readonly Category[] = [
-  { id: "lait", label: "Tablettes au lait 41 %", href: "/#chocolats", image: catLait, offset: "up", accent: "menthe" },
-  { id: "noir", label: "Tablettes noires 70 %", href: "/#chocolats", image: catNoir, offset: "down", accent: "pistache" },
-  { id: "poudre", label: "Poudre de cacao", href: "/#chocolats", image: catPoudre, offset: "up", accent: "terracotta" },
-  { id: "dragees", label: "Dragées amande", href: "/#chocolats", image: catPralines, offset: "down", accent: "rose" },
-  { id: "coffrets", label: "Coffrets", href: "/#offer", image: catCoffrets, offset: "up", accent: "orange" },
+  {
+    id: "lait",
+    label: "Tablettes au lait 41 %",
+    href: "/#chocolats",
+    image: catLait,
+    offset: "up",
+    accent: "menthe",
+  },
+  {
+    id: "noir",
+    label: "Tablettes noires 70 %",
+    href: "/#chocolats",
+    image: catNoir,
+    offset: "down",
+    accent: "pistache",
+  },
+  {
+    id: "poudre",
+    label: "Poudre de cacao",
+    href: "/#chocolats",
+    image: catPoudre,
+    offset: "up",
+    accent: "terracotta",
+  },
+  {
+    id: "dragees",
+    label: "Dragées amande",
+    href: "/#chocolats",
+    image: catPralines,
+    offset: "down",
+    accent: "rose",
+  },
+  {
+    id: "coffrets",
+    label: "Coffrets",
+    href: "/#offer",
+    image: catCoffrets,
+    offset: "up",
+    accent: "orange",
+  },
 ];
 
 export const FEATURES: readonly Feature[] = [
@@ -225,7 +269,8 @@ export const PRODUCTS: readonly Product[] = [
     spec: "41 % cacao",
     description:
       "Des éclats de noisette entiers pris dans la masse, pas une poudre mélangée au conchage. On les sent sous la dent, tablette après tablette.",
-    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, noisettes.",
+    composition:
+      "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, noisettes.",
     accent: "menthe",
     surface: "menthe",
     image: product6,
@@ -255,7 +300,8 @@ export const PRODUCTS: readonly Product[] = [
     spec: "70 % cacao",
     description:
       "Sept parts de cacao sur dix, et la pistache pour casser l'amertume sans la masquer. C'est la tablette de la maison : celle qui dit ce que donne le cacao ivoirien quand on ne le noie pas dans le sucre.",
-    composition: "Cacao de Côte d'Ivoire 70 %, sucre, pistaches, beurre de cacao.",
+    composition:
+      "Cacao de Côte d'Ivoire 70 %, sucre, pistaches, beurre de cacao.",
     accent: "pistache",
     surface: "pierre",
     image: product8,
@@ -270,7 +316,8 @@ export const PRODUCTS: readonly Product[] = [
     spec: "41 % cacao",
     description:
       "La pistache entière prise dans le lait à 41 %. C'est la tablette la plus demandée de la gamme lait, et la seule qu'on limite à deux par personne quand le stock baisse.",
-    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, pistaches.",
+    composition:
+      "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, pistaches.",
     accent: "pistache",
     surface: "pistache",
     image: product10,
@@ -285,7 +332,8 @@ export const PRODUCTS: readonly Product[] = [
     spec: "41 % cacao",
     description:
       "Rien d'ajouté : la tablette de lait telle qu'elle sort du conchage. C'est celle qui dit ce que vaut la fève avant tout ce qu'on peut mettre dedans.",
-    composition: "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, beurre de cacao.",
+    composition:
+      "Cacao de Côte d'Ivoire 41 %, sucre, lait en poudre, beurre de cacao.",
     accent: "orange",
     surface: "terre",
     image: product11,
@@ -300,7 +348,8 @@ export const PRODUCTS: readonly Product[] = [
     spec: "70 % cacao",
     description:
       "Le noir à 70 % avec des amandes concassées. L'amande adoucit l'amertume sans sucre supplémentaire — c'est la porte d'entrée vers la gamme noire.",
-    composition: "Cacao de Côte d'Ivoire 70 %, sucre, amandes, beurre de cacao.",
+    composition:
+      "Cacao de Côte d'Ivoire 70 %, sucre, amandes, beurre de cacao.",
     accent: "ciel",
     surface: "ciel",
     image: product12,
@@ -390,7 +439,8 @@ export const PRODUCTS: readonly Product[] = [
     spec: "25 % noisette",
     description:
       "Un quart du pot, c'est de la noisette. Le reste, c'est notre chocolat et rien d'autre : pas d'huile de palme, pas d'arôme ajouté. La pâte est volontairement épaisse, elle ne coule pas de la tartine.",
-    composition: "Noisettes 25 %, sucre, cacao, lait en poudre, beurre de cacao.",
+    composition:
+      "Noisettes 25 %, sucre, cacao, lait en poudre, beurre de cacao.",
     accent: "terracotta",
     surface: "terre",
     image: product4,
@@ -482,7 +532,11 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     title: "La gamme",
     links: [
       { id: "s-1", label: "Nos chocolats", href: "/#categories" },
-      { id: "s-2", label: "Pâtes à tartiner & épicerie", href: "/#gourmandises" },
+      {
+        id: "s-2",
+        label: "Pâtes à tartiner & épicerie",
+        href: "/#gourmandises",
+      },
       { id: "s-3", label: "Coffrets & cadeaux", href: "/#offer" },
       { id: "s-4", label: "Toute la gamme", href: "/gamme" },
     ],
@@ -493,7 +547,7 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     links: [
       { id: "i-1", label: "Notre histoire", href: "/#about" },
       { id: "i-2", label: "Visiter l'atelier", href: "/#why" },
-      { id: "i-3", label: "Revendeurs & restaurateurs", href: "/#footer" },
+      { id: "i-3", label: "Revendeurs & restaurateurs", href: "/#contact" },
       { id: "i-4", label: "Confidentialité", href: "/#footer" },
     ],
   },
@@ -501,12 +555,23 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
     id: "contact",
     title: "Nous joindre",
     links: [
-      { id: "c-1", label: "07 14 50 55 02", href: "tel:+2250714505502", icon: Phone },
+      {
+        id: "c-1",
+        label: "07 14 50 55 02",
+        href: "tel:+2250714505502",
+        icon: Phone,
+      },
       {
         id: "c-2",
         label: "bonjour@atelierduchocolat.fr",
         href: "mailto:bonjour@atelierduchocolat.fr",
         icon: Mail,
+      },
+      {
+        id: "c-3",
+        label: "WhatsApp",
+        href: "https://wa.me/2250714505502",
+        icon: MessageCircle,
       },
     ],
   },
@@ -597,6 +662,7 @@ export const BLOG_SECTION = {
 export const CTA_SECTION = {
   titleBefore: "Venez goûter le chocolat",
   titleAccent: "à l'atelier",
-  subtitle: "Visites, dégustations et coffrets sur rendez-vous. Écrivez-nous ou appelez-nous, on vous répond dans la journée.",
+  subtitle:
+    "Visites, dégustations et coffrets sur rendez-vous. Écrivez-nous ou appelez-nous, on vous répond dans la journée.",
   cta: "Nous contacter",
 } as const;

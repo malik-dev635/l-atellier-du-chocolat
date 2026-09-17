@@ -1,7 +1,8 @@
 .band {
   position: relative;
   padding-block: clamp(var(--sp-8), 5vw, var(--sp-10));
-  background: var(--c-night);
+  /* Brun du hero, pour se distinguer du pied de page nuit qui suit. */
+  background: var(--c-table);
   color: var(--c-on-dark-strong);
 }
 

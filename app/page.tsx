@@ -5,6 +5,7 @@ import { Blog } from "@/components/blog/Blog";
 import { Categories } from "@/components/categories/Categories";
 import { ChocolateSlider } from "@/components/chocolats/ChocolateSlider";
 import { CtaFooter } from "@/components/cta/CtaFooter";
+import { FindUs } from "@/components/findus/FindUs";
 import { Gourmandises } from "@/components/gourmandises/Gourmandises";
 import { HeroSlider } from "@/components/hero/HeroSlider";
 import { OfferBand } from "@/components/offer/OfferBand";
@@ -40,6 +41,7 @@ export default function HomePage(): ReactNode {
       <Testimonials />
       <Blog />
       <PralineStrip />
+      <FindUs />
       <CtaFooter />
     </main>
   );

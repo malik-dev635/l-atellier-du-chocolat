@@ -24,7 +24,7 @@ export function CtaFooter(): ReactNode {
         </div>
 
         <div data-reveal>
-          <Button href="/#footer" variant="solid">
+          <Button href="/#contact" variant="solid">
             <Mail size={18} strokeWidth={1.75} aria-hidden="true" />
             {CTA_SECTION.cta}
           </Button>
