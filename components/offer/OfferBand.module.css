@@ -87,10 +87,16 @@
     padding-top: 0;
   }
 
+  /* Cadré sur la boîte (les 70 % de gauche de la photo). */
   .visual {
     position: relative;
     width: 100%;
-    aspect-ratio: 1376 / 768;
+    aspect-ratio: 5 / 4;
     margin-bottom: var(--sp-7);
+  }
+
+  .visual img {
+    object-fit: cover !important;
+    object-position: 28% 50% !important;
   }
 }

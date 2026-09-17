@@ -629,6 +629,9 @@ export const HERO_SLIDES = [
     image: heroBg3,
     imageMobile: heroBg3Mobile,
     bgMobile: "#3b2a20",
+    /* La plaque de pierre touche le bord droit du visuel : on le colle à
+       droite pour que ce bord coïncide avec celui de l'écran. */
+    mobilePosition: "100% 100%",
     alt: "Six pralinés de l'atelier posés sur deux plaques de pierre",
     title: ["Des pralinés", "faits main", "à l'atelier"],
     lead: "Coques fines, ganaches au cacao de Côte d'Ivoire. Assemblés à la main, quelques jours avant d'arriver chez vous.",

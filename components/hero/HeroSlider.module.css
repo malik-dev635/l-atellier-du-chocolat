@@ -229,10 +229,11 @@
     align-items: flex-start;
   }
 
-  /* Image entière, posée en bas ; le fond de la section prolonge le sien. */
+  /* Image entière, posée en bas ; le fond de la section prolonge le sien.
+     Une diapositive peut imposer son calage (bord droit, etc.). */
   .img {
     object-fit: contain;
-    object-position: 50% 100%;
+    object-position: var(--mobile-position, 50% 100%);
   }
 
   /* Diapositive sans version portrait : on cadre le paysage au centre. */

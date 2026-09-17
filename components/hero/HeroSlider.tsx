@@ -32,6 +32,11 @@ function Background({ slide, active, index }: { slide: Slide; active: boolean; i
       data-cover={mobile === null}
       data-scrim={"scrim" in slide && slide.scrim === true}
       aria-hidden={!active}
+      style={
+        "mobilePosition" in slide
+          ? ({ "--mobile-position": slide.mobilePosition } as React.CSSProperties)
+          : undefined
+      }
     >
       {mobile ? <source media="(max-width: 640px)" srcSet={mobile.srcSet} sizes="100vw" /> : null}
       <img
