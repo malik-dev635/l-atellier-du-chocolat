@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Parisienne, Poppins } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/footer/Footer";
+import { WhatsAppFab } from "@/components/whatsapp/WhatsAppFab";
 import { Header } from "@/components/header/Header";
 import { LogoDefs } from "@/components/ui/LogoDefs";
 import { Preloader } from "@/components/preloader/Preloader";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode {
             {children}
             <Footer />
           </div>
+          <WhatsAppFab />
         </SmoothScrollProvider>
       </body>
     </html>

@@ -31,13 +31,85 @@
 .inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   align-items: center;
-  justify-content: flex-start;
-  gap: var(--sp-7) clamp(var(--sp-8), 6vw, var(--sp-12));
+  gap: var(--sp-8) clamp(var(--sp-8), 6vw, var(--sp-12));
   /* Réserve la place des pralinés à droite. */
   padding-right: clamp(200px, 30vw, 460px);
+}
+
+.action {
+  margin-top: var(--sp-6);
+}
+
+/* ---- Suivre l'atelier : deux grandes pastilles dorées ---- */
+
+.social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding-left: clamp(var(--sp-6), 4vw, var(--sp-9));
+  border-left: var(--hairline) solid rgb(250 246 238 / 0.18);
+}
+
+.socialLabel {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--c-gold-light);
+}
+
+.socialText {
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  color: var(--c-on-dark-body);
+  max-width: 34ch;
+}
+
+.socialList {
+  display: flex;
+  gap: var(--sp-5);
+  margin-top: var(--sp-4);
+}
+
+.socialLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--c-cream);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+/* La pastille : 72 px, cerclée d'or, l'icône crème ; au survol elle se
+   remplit d'or et l'icône passe en brun. */
+.socialLink svg {
+  display: grid;
+  box-sizing: content-box;
+  padding: 20px;
+  border: var(--hairline) solid var(--c-gold);
+  border-radius: 50%;
+  background: rgb(250 246 238 / 0.04);
+  transition: background-color var(--dur-state) var(--ease-out),
+    color var(--dur-state) var(--ease-out),
+    transform var(--dur-state) var(--ease-out),
+    box-shadow var(--dur-state) var(--ease-out);
+}
+
+.socialLink:hover svg,
+.socialLink:focus-visible svg {
+  background: var(--c-gold);
+  color: var(--c-table);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -16px rgb(185 154 86 / 0.6);
+}
+
+.socialName {
+  font-size: var(--fs-caption);
+  letter-spacing: 0.04em;
+  color: var(--c-on-dark-body);
 }
 
 .title {
@@ -72,5 +144,18 @@
   .inner {
     padding-right: 0;
     padding-bottom: 120px;
+  }
+
+  .social {
+    padding-left: 0;
+    padding-top: var(--sp-6);
+    border-left: 0;
+    border-top: var(--hairline) solid rgb(250 246 238 / 0.18);
+  }
+}
+
+@media (min-width: 901px) {
+  .inner {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   }
 }

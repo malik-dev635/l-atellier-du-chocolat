@@ -41,6 +41,14 @@
   object-position: 68% 50%;
 }
 
+/* Voile pour les scènes claires : du brun du hero à gauche vers rien. */
+.bg[data-scrim="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(58 44 36 / 0.82) 0%, rgb(58 44 36 / 0.55) 32%, rgb(58 44 36 / 0) 62%);
+}
+
 /* ---- Texte : colonne gauche ---- */
 
 .content {
@@ -225,6 +233,17 @@
   .img {
     object-fit: contain;
     object-position: 50% 100%;
+  }
+
+  /* Diapositive sans version portrait : on cadre le paysage au centre. */
+  .bg[data-cover="true"] .img {
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  /* Sur mobile le texte est en haut : le voile vient du haut. */
+  .bg[data-scrim="true"]::after {
+    background: linear-gradient(180deg, rgb(58 44 36 / 0.85) 0%, rgb(58 44 36 / 0.6) 45%, rgb(58 44 36 / 0) 75%);
   }
 
   .content {

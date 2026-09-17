@@ -7,7 +7,7 @@ import {
   Phone,
 } from "lucide-react";
 
-import aboutStack from "@/assets/images/boite-de-chocolat.jpg";
+import aboutStack from "@/assets/images/about-stack.jpg";
 import avatar from "@/assets/images/avatar.jpg";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";
@@ -21,6 +21,7 @@ import heroBg1 from "@/assets/images/hero-bg-1.png";
 import heroBg1Mobile from "@/assets/images/hero-bg-1-mobile.png";
 import heroBg3 from "@/assets/images/hero-bg-variate-3.jpg";
 import heroBg3Mobile from "@/assets/images/hero-bg-variante-3-mobile.jpg";
+import heroBoite from "@/assets/images/boite-de-chocolat.jpg";
 import product1 from "@/assets/images/product-1.jpg";
 import product2 from "@/assets/images/product-2.jpg";
 import product3 from "@/assets/images/product-3.jpg";
@@ -116,12 +117,25 @@ export const FIND_US = {
   yangoCta: "Commander un Yango",
 } as const;
 
+/** Réseaux et messagerie : une seule source pour tout le site. */
+export const SOCIAL = {
+  instagram: "https://www.instagram.com/",
+  facebook: "https://www.facebook.com/",
+  whatsapp: "https://wa.me/2250714505502",
+} as const;
+
+/** Bouton WhatsApp flottant (coin bas droit). */
+export const WHATSAPP_FAB = {
+  label: "Écrivez-nous sur WhatsApp",
+} as const;
+
 /** Pied de page : réseaux, mention, nom géant. */
 export const FOOTER = {
-  whatsapp: "https://wa.me/2250714505502",
+  whatsapp: SOCIAL.whatsapp,
   social: [
-    { id: "so-1", label: "Instagram", href: "https://www.instagram.com/" },
-    { id: "so-2", label: "WhatsApp", href: "https://wa.me/2250714505502" },
+    { id: "so-1", label: "Instagram", href: SOCIAL.instagram },
+    { id: "so-2", label: "Facebook", href: SOCIAL.facebook },
+    { id: "so-3", label: "WhatsApp", href: SOCIAL.whatsapp },
   ],
   giant: ["L'Atelier", "du Chocolat"],
   top: "Haut de page",
@@ -611,6 +625,20 @@ export const HERO_SLIDES = [
     cta: "Voir la gamme",
     href: "/gamme",
   },
+  {
+    id: "h-3",
+    image: heroBoite,
+    /* Pas de version portrait : cadrage `cover` centré sur mobile. */
+    imageMobile: null,
+    bgMobile: "#705a43",
+    /* Scène claire (bois, tissu) : un voile sombre à gauche porte le texte. */
+    scrim: true,
+    alt: "Coffrets de l'Atelier du Chocolat empilés, fèves de cacao et cabosses sur une table en bois",
+    title: ["Le coffret", "qui raconte", "la Côte d'Ivoire"],
+    lead: "La carte du pays sur le couvercle, les régions de récolte imprimées dedans. Neuf tablettes, un seul cacao.",
+    cta: "Voir les coffrets",
+    href: "/#offer",
+  },
 ] as const;
 
 export const HERO = {
@@ -668,4 +696,6 @@ export const CTA_SECTION = {
   subtitle:
     "Visites, dégustations et coffrets sur rendez-vous. Écrivez-nous ou appelez-nous, on vous répond dans la journée.",
   cta: "Nous contacter",
+  socialLabel: "Suivez l'atelier",
+  socialText: "Nouveautés, coulisses et coffrets du moment : d'abord sur Instagram et Facebook.",
 } as const;

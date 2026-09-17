@@ -23,11 +23,17 @@ type Slide = (typeof HERO_SLIDES)[number];
 function Background({ slide, active, index }: { slide: Slide; active: boolean; index: number }): ReactNode {
   const common = { alt: slide.alt, sizes: "100vw", quality: 82, priority: index === 0 } as const;
   const { props: desktop } = getImageProps({ ...common, src: slide.image });
-  const { props: mobile } = getImageProps({ ...common, src: slide.imageMobile });
+  const mobile = slide.imageMobile ? getImageProps({ ...common, src: slide.imageMobile }).props : null;
 
   return (
-    <picture className={styles.bg} data-active={active} aria-hidden={!active}>
-      <source media="(max-width: 640px)" srcSet={mobile.srcSet} sizes="100vw" />
+    <picture
+      className={styles.bg}
+      data-active={active}
+      data-cover={mobile === null}
+      data-scrim={"scrim" in slide && slide.scrim === true}
+      aria-hidden={!active}
+    >
+      {mobile ? <source media="(max-width: 640px)" srcSet={mobile.srcSet} sizes="100vw" /> : null}
       <img
         {...desktop}
         alt={slide.alt}
