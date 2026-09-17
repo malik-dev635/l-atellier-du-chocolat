@@ -88,7 +88,6 @@
   flex-direction: column;
   border-radius: var(--radius-soft);
   overflow: hidden;
-  box-shadow: 0 30px 60px -30px rgb(31 27 24 / 0.45);
 }
 
 .media {
@@ -100,7 +99,7 @@
 .strip {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--sp-4);
   padding: var(--sp-4) var(--sp-6);
   background: var(--accent, var(--c-gold));
@@ -108,13 +107,6 @@
   transition: background-color var(--dur-slide) var(--ease-in-out);
 }
 
-.stripSpec {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
 
 .stripBrand {
   font-family: var(--font-script);
@@ -129,22 +121,6 @@
   align-items: flex-start;
 }
 
-/* Le pourcentage de cacao en filigrane, dans la couleur de l'emballage. */
-.ghost {
-  position: absolute;
-  top: -0.55em;
-  right: -0.05em;
-  font-family: var(--font-display);
-  font-size: var(--fs-ghost);
-  font-weight: var(--fw-display);
-  line-height: 1;
-  white-space: nowrap;
-  color: var(--accent, var(--c-gold));
-  opacity: 0.22;
-  pointer-events: none;
-  user-select: none;
-  transition: color var(--dur-slide) var(--ease-in-out);
-}
 
 .kind {
   display: inline-flex;
@@ -344,7 +320,6 @@
 
   .band,
   .strip,
-  .ghost,
   .spec,
   .kind::before,
   .dot {
