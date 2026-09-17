@@ -119,7 +119,7 @@ export const FIND_US = {
 
 /** Réseaux et messagerie : une seule source pour tout le site. */
 export const SOCIAL = {
-  instagram: "https://www.instagram.com/",
+  instagram: "https://www.instagram.com/latelierduchocolatci/",
   facebook: "https://www.facebook.com/",
   whatsapp: "https://wa.me/2250714505502",
 } as const;
@@ -598,6 +598,14 @@ export const ABOUT = {
   signature: "l'Atelier du Chocolat",
   role: "Fabriqué et conditionné par nos soins",
   image: aboutStack,
+  /** Le reel Instagram : vignette carrée, lecture en lightbox aux vraies dimensions. */
+  reel: {
+    permalink: "https://www.instagram.com/reel/DZFSVV9oua4/",
+    handle: "@latelierduchocolatci",
+    label: "Voir la vidéo",
+    title: "L'atelier en vidéo",
+    poster: aboutStack,
+  },
 } as const;
 
 /** Diapositives du hero : un visuel desktop, sa version mobile (avec la

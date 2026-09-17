@@ -6,10 +6,7 @@
 
 .visual {
   width: 100%;
-}
-
-.image {
-  aspect-ratio: 900 / 713;
+  max-width: 560px;
 }
 
 .content {

@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: var(--c-cream);
+  background: var(--c-nav);
   will-change: transform;
   transition: background-color var(--dur-state) var(--ease-in-out),
     backdrop-filter var(--dur-state) var(--ease-in-out),
@@ -10,7 +10,7 @@
 }
 
 .header[data-scrolled="true"] {
-  background: color-mix(in srgb, var(--c-cream) 82%, transparent);
+  background: color-mix(in srgb, var(--c-nav) 86%, transparent);
   backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 0 color-mix(in srgb, var(--c-line) 60%, transparent);
 }
@@ -176,8 +176,8 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--c-cream);
-  border-top: var(--hairline) solid var(--c-line);
+  background: var(--c-nav);
+  border-top: var(--hairline) solid color-mix(in srgb, var(--c-ink) 12%, transparent);
   opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
