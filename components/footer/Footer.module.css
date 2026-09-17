@@ -1,27 +1,84 @@
+/* Pied de page nuit. Quatre temps séparés par des filets crème très faibles,
+   et le nom de la maison en géant qui ferme la page. */
 .footer {
   position: relative;
   background: var(--c-night);
   color: var(--c-on-dark-body);
   overflow: clip;
+  --line: rgba(250, 246, 238, 0.12);
 }
 
-.watermark {
-  position: absolute;
-  left: -3%;
-  top: 4%;
-  width: clamp(180px, 20vw, 300px);
-  height: auto;
-  color: var(--c-gold);
-  opacity: 0.1;
-  pointer-events: none;
+/* ---- 1. Accroche ---- */
+
+.hook {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-6) var(--sp-8);
+  padding-block: clamp(var(--sp-9), 7vw, var(--sp-12));
+  border-bottom: var(--hairline) solid var(--line);
 }
 
-.inner {
-  position: relative;
-  z-index: 1;
+.hookText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.hookTitle {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--c-cream);
+}
+
+.hookLine:nth-child(2) {
+  color: var(--c-gold-light);
+}
+
+.hookSub {
+  font-size: var(--fs-body);
+  color: var(--c-on-dark-body);
+  max-width: 40ch;
+}
+
+.hookActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-5) var(--sp-6);
+  padding-bottom: 0.3em;
+}
+
+.whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+  color: var(--c-cream);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.whatsapp:hover,
+.whatsapp:focus-visible {
+  color: var(--c-gold-light);
+}
+
+/* ---- 2. Marque + colonnes ---- */
+
+.grid {
   display: grid;
-  gap: clamp(var(--sp-8), 5vw, var(--sp-10));
-  padding-block: clamp(var(--sp-9), 6vw, var(--sp-11));
+  gap: clamp(var(--sp-7), 4vw, var(--sp-9)) clamp(var(--sp-6), 4vw, var(--sp-8));
+  padding-block: clamp(var(--sp-8), 5vw, var(--sp-10));
+  border-bottom: var(--hairline) solid var(--line);
 }
 
 .brand {
@@ -35,77 +92,16 @@
   font-size: var(--fs-small);
   line-height: var(--lh-small);
   color: var(--c-on-dark-body);
-  max-width: 44ch;
+  max-width: 40ch;
 }
 
-.credit {
-  font-size: var(--fs-small);
-  color: var(--c-gold);
-}
-
-.creditName {
-  font-weight: var(--fw-semibold);
-}
-
-.columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: clamp(var(--sp-6), 4vw, var(--sp-8));
-}
-
-.columnTitle {
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-medium);
-  color: var(--c-on-dark-strong);
-}
-
-.list {
-  display: grid;
-  gap: var(--sp-4);
-  margin-top: var(--sp-6);
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-}
-
-.icon {
-  color: var(--c-gold);
-  flex: none;
-}
-
-.link {
-  font-size: var(--fs-body);
-  color: var(--c-on-dark-body);
-  transition: color var(--dur-micro) var(--ease-micro);
-}
-
-.link:hover,
-.link:focus-visible {
-  color: var(--c-on-dark-strong);
-}
-
-/* Séparateur pointillé — le seul divider du pied de page. */
-/* ---- Carte : toute la largeur, sous les colonnes ---- */
-
-.map {
+.column {
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
-  padding-top: clamp(var(--sp-6), 4vw, var(--sp-8));
-  border-top: var(--hairline) solid rgba(255, 255, 255, 0.12);
 }
 
-.mapHead {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--sp-3) var(--sp-5);
-}
-
-.mapLabel {
+.columnTitle {
   font-size: var(--fs-overline);
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-overline);
@@ -113,44 +109,212 @@
   color: var(--c-gold-light);
 }
 
-.mapPlace {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  color: var(--c-cream);
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
 }
 
-.mapHead .link {
-  margin-left: auto;
+.link {
+  font-size: var(--fs-small);
+  color: var(--c-cream);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--c-gold-light);
+}
+
+/* ---- 3. Nous trouver ---- */
+
+.find {
+  display: grid;
+  gap: clamp(var(--sp-6), 3vw, var(--sp-8));
+  padding-block: clamp(var(--sp-8), 5vw, var(--sp-10));
+  border-bottom: var(--hairline) solid var(--line);
 }
 
 /* Pas de filtre CSS sur l'iframe : il force une composition qui rend la
    carte noire sur certains rendus (headless, GPU désactivé). */
-.mapFrame {
+.map {
   display: block;
   width: 100%;
-  height: clamp(240px, 32vw, 380px);
+  height: clamp(240px, 30vw, 360px);
   border: 0;
   border-radius: var(--radius-soft);
   background: var(--c-night-deep);
 }
 
-.bottom {
-  position: relative;
-  z-index: 1;
-  padding-block: var(--sp-6);
-  border-top: var(--hairline) dashed rgba(255, 255, 255, 0.18);
-  text-align: center;
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+}
+
+.contactLabel {
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--c-gold-light);
+}
+
+.contactPlace {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  color: var(--c-cream);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
   font-size: var(--fs-small);
+  color: var(--c-cream);
+}
+
+.contactIcon {
+  flex: none;
+  margin-top: 0.15em;
+  color: var(--c-gold);
+}
+
+.contactMuted {
+  display: block;
   color: var(--c-on-dark-body);
 }
 
-@media (min-width: 900px) {
-  .inner {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
-    align-items: start;
+.contactLink {
+  color: var(--c-cream);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.contactLink:hover,
+.contactLink:focus-visible {
+  color: var(--c-gold-light);
+}
+
+.directions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding: var(--sp-3) var(--sp-5);
+  border: var(--hairline) solid var(--c-gold);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+  color: var(--c-gold-light);
+  transition: background-color var(--dur-micro) var(--ease-micro),
+    color var(--dur-micro) var(--ease-micro);
+}
+
+.directions:hover,
+.directions:focus-visible {
+  background: var(--c-gold);
+  color: var(--c-night);
+}
+
+/* ---- 4. Mention + nom géant ---- */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4) var(--sp-6);
+  padding-block: var(--sp-6);
+  font-size: var(--fs-caption);
+  color: var(--c-on-dark-body);
+}
+
+.social {
+  display: flex;
+  gap: var(--sp-5);
+}
+
+.socialLink,
+.top {
+  color: var(--c-cream);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.socialLink:hover,
+.socialLink:focus-visible,
+.top:hover,
+.top:focus-visible {
+  color: var(--c-gold-light);
+}
+
+/* Le nom de la maison sur toute la largeur, rogné par le bas de la page :
+   la ligne de base passe sous le bord, on ne voit que les deux tiers
+   supérieurs des lettres. */
+.giant {
+  display: block;
+  width: 100%;
+  margin-top: var(--sp-4);
+  padding-inline: var(--sp-5);
+  font-family: var(--font-display);
+  /* 21 signes en Cormorant capitales ≈ 12,6 em : 7,4 vw remplit la largeur. */
+  font-size: clamp(2.2rem, 7.4vw, 8.6rem);
+  font-weight: var(--fw-display);
+  line-height: 0.78;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--c-cream);
+  opacity: 0.92;
+  transform: translateY(0.18em);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .map {
+  .brand {
     grid-column: 1 / -1;
+  }
+
+  .find {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: auto;
+    padding-right: clamp(var(--sp-6), 4vw, var(--sp-10));
+  }
+}
+
+/* Mobile : deux lignes (L'ATELIER / DU CHOCOLAT) pour rester géant. */
+@media (max-width: 699px) {
+  .giant {
+    font-size: 14vw;
+    line-height: 0.86;
+    white-space: normal;
+    padding-inline: var(--sp-3);
+    transform: translateY(0.2em);
   }
 }

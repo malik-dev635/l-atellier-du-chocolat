@@ -97,6 +97,23 @@ export const MAP = {
   cta: "Itinéraire",
 } as const;
 
+/** Pied de page : accroche, contact direct, réseaux, mention. */
+export const FOOTER = {
+  hookLines: ["Une question,", "une commande ?"],
+  hookText: "On répond à l'atelier, du mardi au samedi.",
+  hookCta: "Nous écrire",
+  whatsapp: "https://wa.me/2250714505502",
+  whatsappLabel: "WhatsApp",
+  contactTitle: "Nous joindre",
+  hours: "Du mardi au samedi",
+  social: [
+    { id: "so-1", label: "Instagram", href: "https://www.instagram.com/" },
+    { id: "so-2", label: "WhatsApp", href: "https://wa.me/2250714505502" },
+  ],
+  giant: "L'Atelier du Chocolat",
+  top: "Haut de page",
+} as const;
+
 export const NAV_ITEMS: readonly NavItem[] = [
   { id: "home", label: "Accueil", href: "/#hero" },
   {

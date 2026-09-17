@@ -1,97 +1,140 @@
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
-import { BRAND, FOOTER_COLUMNS, MAP } from "@/lib/mocks";
+import { Reveal } from "@/components/ui/Reveal";
+import { BRAND, FOOTER, FOOTER_COLUMNS, MAP } from "@/lib/mocks";
 import styles from "./Footer.module.css";
 
+const NAV_COLUMNS = FOOTER_COLUMNS.filter((column) => column.id !== "contact");
+const CONTACT = FOOTER_COLUMNS.find((column) => column.id === "contact");
+
 /**
- * Pied de page sombre : marque et baseline, trois colonnes de liens dont une
- * colonne de contact à icônes, la carte de l'atelier sur toute la largeur,
- * barre de copyright séparée par un pointillé.
- * Filigrane botanique en trait doré très faible, comme dans la maquette.
+ * Pied de page nuit, en quatre temps séparés par des filets :
+ *
+ * 1. l'accroche — une question, une commande — avec le bouton d'écriture ;
+ * 2. la grille : marque et baseline, puis les colonnes de liens ;
+ * 3. nous trouver : carte de l'atelier et bloc contact côte à côte ;
+ * 4. le nom de la maison en géant, rogné par le bas de la page, sous la
+ *    barre de mention.
+ *
+ * Server Component ; seule la révélation au scroll est client.
  */
 export function Footer(): ReactNode {
   return (
     <footer id="footer" className={styles.footer}>
-      <svg className={styles.watermark} viewBox="0 0 260 420" aria-hidden="true" focusable="false">
-        <g
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
-        >
-          <path d="M20 6c0 0 18 130 44 216s52 150 52 190" />
-          <path d="M34 88c34-30 84-38 128-20-24 40-72 58-120 44" />
-          <path d="M58 178c36-28 86-34 130-14-26 40-74 56-122 40" />
-          <path d="M84 268c36-28 86-34 130-14-26 40-74 56-122 40" />
-        </g>
-      </svg>
+      {/* 1. Accroche */}
+      <div className={`container ${styles.hook}`}>
+        <div className={styles.hookText}>
+          <p className={styles.hookTitle}>
+            {FOOTER.hookLines.map((line) => (
+              <span key={line} className={styles.hookLine}>
+                {line}
+              </span>
+            ))}
+          </p>
+          <p className={styles.hookSub}>{FOOTER.hookText}</p>
+        </div>
+        <div className={styles.hookActions}>
+          <Button href={CONTACT?.links[1]?.href ?? "#"} variant="outlineLight">
+            {FOOTER.hookCta}
+          </Button>
+          <a className={styles.whatsapp} href={FOOTER.whatsapp} target="_blank" rel="noopener noreferrer">
+            {FOOTER.whatsappLabel}
+            <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
 
-      <div className={`container ${styles.inner}`}>
+      {/* 2. Marque + colonnes */}
+      <div className={`container ${styles.grid}`}>
         <div className={styles.brand}>
           <Logo size="lg" onDark />
           <p className={styles.baseline}>{BRAND.baseline}</p>
-          <p className={styles.credit}>
-            {BRAND.addressLabel} <span className={styles.creditName}>{BRAND.address}</span>
-          </p>
         </div>
 
-        <div className={styles.columns}>
-          {FOOTER_COLUMNS.map((column) => (
-            <nav key={column.id} className={styles.column} aria-label={column.title}>
-              <h2 className={styles.columnTitle}>{column.title}</h2>
-              <ul className={styles.list}>
-                {column.links.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <li key={link.id} className={styles.item}>
-                      {Icon ? (
-                        <Icon
-                          className={styles.icon}
-                          size={18}
-                          strokeWidth={1.75}
-                          aria-hidden="true"
-                        />
-                      ) : null}
-                      <a className={`${styles.link} link-underline`} href={link.href}>
-                        {link.label}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
+        {NAV_COLUMNS.map((column) => (
+          <nav key={column.id} className={styles.column} aria-label={column.title}>
+            <h2 className={styles.columnTitle}>{column.title}</h2>
+            <ul className={styles.list}>
+              {column.links.map((link) => (
+                <li key={link.id}>
+                  <a className={`${styles.link} link-underline`} href={link.href}>
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+      </div>
+
+      {/* 3. Nous trouver */}
+      <div className={`container ${styles.find}`}>
+        <iframe
+          className={styles.map}
+          src={MAP.embed}
+          title={`Carte : ${MAP.place}`}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+
+        <div className={styles.contact}>
+          <p className={styles.contactLabel}>{MAP.label}</p>
+          <p className={styles.contactPlace}>{MAP.place}</p>
+
+          <ul className={styles.contactList}>
+            <li className={styles.contactItem}>
+              <MapPin className={styles.contactIcon} size={18} strokeWidth={1.5} aria-hidden="true" />
+              <span>
+                {BRAND.addressLabel}
+                <span className={styles.contactMuted}>{FOOTER.hours}</span>
+              </span>
+            </li>
+            {CONTACT?.links.map((link) => {
+              const Icon = link.icon ?? (link.href.startsWith("mailto:") ? Mail : Phone);
+              return (
+                <li key={link.id} className={styles.contactItem}>
+                  <Icon className={styles.contactIcon} size={18} strokeWidth={1.5} aria-hidden="true" />
+                  <a className={`${styles.contactLink} link-underline`} href={link.href}>
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <a className={styles.directions} href={MAP.directions} target="_blank" rel="noopener noreferrer">
+            {MAP.cta}
+            <ArrowUpRight size={18} strokeWidth={1.5} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+
+      {/* 4. Mention + nom géant */}
+      <div className={`container ${styles.bar}`}>
+        <p className={styles.copyright}>{BRAND.copyright}</p>
+        <ul className={styles.social}>
+          {FOOTER.social.map((item) => (
+            <li key={item.id}>
+              <a className={`${styles.socialLink} link-underline`} href={item.href} target="_blank" rel="noopener noreferrer">
+                {item.label}
+              </a>
+            </li>
           ))}
-        </div>
-
-        <div className={styles.map}>
-          <div className={styles.mapHead}>
-            <p className={styles.mapLabel}>{MAP.label}</p>
-            <p className={styles.mapPlace}>{MAP.place}</p>
-            <a
-              className={`${styles.link} link-underline`}
-              href={MAP.directions}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {MAP.cta}
-            </a>
-          </div>
-          <iframe
-            className={styles.mapFrame}
-            src={MAP.embed}
-            title={`Carte : ${MAP.place}`}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
-        </div>
+        </ul>
+        <a className={`${styles.top} link-underline`} href="/#hero">
+          {FOOTER.top}
+        </a>
       </div>
 
-      <div className={`container ${styles.bottom}`}>
-        <p>{BRAND.copyright}</p>
-      </div>
+      <Reveal>
+        <p className={styles.giant} aria-hidden="true" data-reveal>
+          {FOOTER.giant}
+        </p>
+      </Reveal>
     </footer>
   );
 }
