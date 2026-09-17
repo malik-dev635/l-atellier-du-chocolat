@@ -50,6 +50,16 @@ await page.evaluate(async () => {
   await new Promise((r) => setTimeout(r, 800));
 });
 
+// Le hero défile tout seul : on le fige sur la première diapositive (le
+// survol met l'autoplay en pause) pour que les captures restent cohérentes.
+await page.evaluate(() => {
+  // Le focus dans le hero met l'autoplay en pause (onFocusCapture côté React).
+  const tab = document.querySelector('#hero [role="tab"][aria-label^="Diapositive 1"]');
+  tab?.focus();
+  tab?.click();
+});
+await new Promise((r) => setTimeout(r, 2500));
+
 const height = await page.evaluate(() => document.documentElement.scrollHeight);
 await page.screenshot({ path: `${OUT}/full-${TAG}.png`, fullPage: true });
 
