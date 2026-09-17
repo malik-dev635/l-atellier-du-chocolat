@@ -598,13 +598,15 @@ export const ABOUT = {
   signature: "l'Atelier du Chocolat",
   role: "Fabriqué et conditionné par nos soins",
   image: aboutStack,
-  /** Le reel Instagram : vignette carrée, lecture en lightbox aux vraies dimensions. */
-  reel: {
-    permalink: "https://www.instagram.com/reel/DZFSVV9oua4/",
+  /** La vidéo de présentation : aperçu carré muet, lecture entière en lightbox. */
+  video: {
+    src: "/video-presentation.mp4",
+    poster: "/video-poster.jpg",
+    width: 720,
+    height: 1280,
     handle: "@latelierduchocolatci",
     label: "Voir la vidéo",
     title: "L'atelier en vidéo",
-    poster: aboutStack,
   },
 } as const;
 
