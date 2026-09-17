@@ -1,8 +1,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-import logoCream from "@/assets/images/logo-cream.png";
-import logoPng from "@/assets/images/logo.png";
+import logoCream from "@/assets/images/logo-cream.svg";
+import logoSvg from "@/assets/images/logo.svg";
 
 import { BRAND } from "@/lib/mocks";
 import styles from "./Logo.module.css";
@@ -15,9 +15,8 @@ interface LogoProps {
 }
 
 /**
- * Logo officiel — cabosse de cacao ouverte et signature manuscrite — l'image
- * de la marque telle quelle (PNG transparent), en brun sur fond clair et en
- * crème sur fond sombre.
+ * Logo officiel — cabosse de cacao ouverte et signature manuscrite — le SVG
+ * de la marque tel quel, en brun sur fond clair et en crème sur fond sombre.
  */
 export function Logo({ onDark = false, size = "sm", className }: LogoProps): ReactNode {
   const classes = [
@@ -30,7 +29,7 @@ export function Logo({ onDark = false, size = "sm", className }: LogoProps): Rea
 
   return (
     <Image
-      src={onDark ? logoCream : logoPng}
+      src={onDark ? logoCream : logoSvg}
       alt={BRAND.full}
       className={classes}
       priority={size === "sm"}

@@ -1,4 +1,4 @@
-/* Image de marque rognée à son dessin (PNG transparent). */
+/* SVG de marque, cadré sur son dessin. */
 .logo {
   display: block;
   width: clamp(104px, 7.2vw, 138px);
