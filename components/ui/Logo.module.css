@@ -1,17 +1,12 @@
-/* Vecteur : la largeur suffit, la hauteur suit le viewBox. */
+/* Image de marque rognée à son dessin (PNG transparent). */
 .logo {
   display: block;
   width: clamp(104px, 7.2vw, 138px);
   height: auto;
-  color: var(--c-dark-choc);
 }
 
 .lg {
   width: clamp(160px, 11vw, 210px);
-}
-
-.onDark {
-  color: var(--c-cream);
 }
 
 @media (max-width: 640px) {

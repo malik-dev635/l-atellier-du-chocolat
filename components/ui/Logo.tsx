@@ -1,4 +1,8 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
+
+import logoCream from "@/assets/images/logo-cream.png";
+import logoPng from "@/assets/images/logo.png";
 
 import { BRAND } from "@/lib/mocks";
 import styles from "./Logo.module.css";
@@ -11,24 +15,27 @@ interface LogoProps {
 }
 
 /**
- * Logo officiel — cabosse de cacao ouverte et signature manuscrite — en
- * vecteur. Référence le symbole défini une fois par `<LogoDefs>` ; la couleur
- * vient de la CSS via `currentColor`.
+ * Logo officiel — cabosse de cacao ouverte et signature manuscrite — l'image
+ * de la marque telle quelle (PNG transparent), en brun sur fond clair et en
+ * crème sur fond sombre.
  */
 export function Logo({ onDark = false, size = "sm", className }: LogoProps): ReactNode {
   const classes = [
     styles.logo,
     size === "lg" ? styles.lg : "",
-    onDark ? styles.onDark : "",
     className ?? "",
   ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <svg className={classes} viewBox="106 106 846 726" role="img" aria-label={BRAND.full}>
-      <use href="#logo-full" />
-    </svg>
+    <Image
+      src={onDark ? logoCream : logoPng}
+      alt={BRAND.full}
+      className={classes}
+      priority={size === "sm"}
+      sizes="(max-width: 640px) 96px, 210px"
+    />
   );
 }
 
