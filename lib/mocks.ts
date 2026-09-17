@@ -10,6 +10,10 @@ import catLait from "@/assets/images/cat-truffles.jpg";
 import catNoir from "@/assets/images/cat-noir.jpg";
 import catPoudre from "@/assets/images/cat-poudre.jpg";
 import catPralines from "@/assets/images/cat-pralines.jpg";
+import heroBg1 from "@/assets/images/hero-bg-1.jpg";
+import heroBg1Mobile from "@/assets/images/hero-bg-1-mobile.jpg";
+import heroBg3 from "@/assets/images/hero-bg-variate-3.jpg";
+import heroBg3Mobile from "@/assets/images/hero-bg-variante-3-mobile.jpg";
 import product1 from "@/assets/images/product-1.jpg";
 import product2 from "@/assets/images/product-2.jpg";
 import product3 from "@/assets/images/product-3.jpg";
@@ -516,6 +520,30 @@ export const ABOUT = {
   role: "Fabriqué et conditionné par nos soins",
   image: aboutStack,
 } as const;
+
+/** Diapositives du hero : un visuel desktop, sa version mobile, un titre. */
+export const HERO_SLIDES = [
+  {
+    id: "h-1",
+    image: heroBg1,
+    imageMobile: heroBg1Mobile,
+    alt: "Pralinés au chocolat noir et blanc, feuilles de menthe, sur fond chocolat",
+    title: ["Le chocolat", "artisanal", "100% ivoirien"],
+    lead: "Cacao récolté en Côte d'Ivoire, torréfié, conché et moulé dans notre atelier. Tablettes, pralinés, poudre de cacao.",
+    cta: "Découvrir nos chocolats",
+    href: "/#categories",
+  },
+  {
+    id: "h-2",
+    image: heroBg3,
+    imageMobile: heroBg3Mobile,
+    alt: "Six pralinés de l'atelier posés sur deux plaques de pierre",
+    title: ["Des pralinés", "faits main", "à l'atelier"],
+    lead: "Coques fines, ganaches au cacao de Côte d'Ivoire. Assemblés à la main, quelques jours avant d'arriver chez vous.",
+    cta: "Voir la gamme",
+    href: "/gamme",
+  },
+] as const;
 
 export const HERO = {
   /** Trois lignes courtes : au-delà de ~13 signes, la ligne déborde de sa

@@ -1,0 +1,283 @@
+/* Hero en slider : fond plein cadre, texte crème à gauche. Le brun du fond
+   des photos (--c-table) sert de couleur d'attente avant que l'image arrive. */
+.hero {
+  position: relative;
+  background: var(--c-table);
+  color: var(--c-cream);
+  overflow: clip;
+  --autoplay: 6500ms;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: clamp(560px, calc(100svh - var(--chrome-h)), 900px);
+  display: grid;
+  align-items: center;
+}
+
+/* ---- Fonds : empilés, fondu enchaîné, léger travelling sur l'actif ---- */
+
+.bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--dur-slide) var(--ease-in-out);
+  pointer-events: none;
+}
+
+.bg[data-active="true"] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% 50%;
+  transform: scale(1.06);
+  will-change: transform;
+}
+
+.bg[data-active="true"] .img {
+  animation: kenBurns 9s var(--ease-out) forwards;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+
+/* ---- Texte : colonne gauche ---- */
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(100% - 2 * var(--sp-5), var(--container));
+  padding-block: clamp(var(--sp-8), 6vw, var(--sp-11));
+}
+
+.title {
+  color: var(--c-cream);
+  text-align: left;
+  max-width: 100%;
+}
+
+/* Lignes du titre : masquées puis montées une à une, en cascade. Avant la
+   fin du rideau (`data-ready`), tout reste en attente. */
+.line {
+  display: block;
+  transform: translateY(110%);
+}
+
+.hero[data-ready="true"] .line {
+  animation: lineUp var(--dur-macro) var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+@keyframes lineUp {
+  to { transform: translateY(0); }
+}
+
+.lead {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-on-dark-body);
+  max-width: min(46%, 44ch);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.cta {
+  margin-top: clamp(var(--sp-6), 3vw, var(--sp-8));
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero[data-ready="true"] .lead,
+.hero[data-ready="true"] .cta {
+  animation: fadeUp var(--dur-enter) var(--ease-out) forwards;
+  animation-delay: 420ms;
+}
+
+.hero[data-ready="true"] .cta {
+  animation-delay: 520ms;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Contrôles : points + compteur à gauche, flèches à droite ---- */
+
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(var(--sp-6), 4vw, var(--sp-8));
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  margin-inline: auto;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+/* Point : un tiret ; l'actif s'allonge et se remplit au rythme de
+   l'autoplay (barre de progression discrète). */
+.dot {
+  position: relative;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: rgb(250 246 238 / 0.35);
+  overflow: hidden;
+  transition: width var(--dur-state) var(--ease-out),
+    background-color var(--dur-micro) var(--ease-micro);
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--c-cream);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.dot[aria-selected="true"] {
+  width: 44px;
+}
+
+.dot[aria-selected="true"]::after {
+  animation: fill var(--autoplay) linear forwards;
+}
+
+.dot[aria-selected="true"][data-paused="true"]::after {
+  animation-play-state: paused;
+}
+
+.dot:hover,
+.dot:focus-visible {
+  background: rgb(250 246 238 / 0.6);
+}
+
+@keyframes fill {
+  to { transform: scaleX(1); }
+}
+
+.counter {
+  margin-left: var(--sp-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--c-on-dark-body);
+  white-space: nowrap;
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: var(--hairline) solid rgb(250 246 238 / 0.45);
+  border-radius: 50%;
+  color: var(--c-cream);
+  transition: background-color var(--dur-micro) var(--ease-micro),
+    border-color var(--dur-micro) var(--ease-micro),
+    color var(--dur-micro) var(--ease-micro),
+    transform var(--dur-micro) var(--ease-micro);
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  background: var(--c-cream);
+  border-color: var(--c-cream);
+  color: var(--c-table);
+}
+
+.arrow:active {
+  transform: scale(0.94);
+}
+
+/* ---- Sous 640px : visuel portrait, sujet en bas, texte en haut ---- */
+
+@media (max-width: 640px) {
+  .stage {
+    height: clamp(600px, calc(100svh - var(--chrome-h)), 820px);
+    align-items: flex-start;
+  }
+
+  .img {
+    object-position: 50% 100%;
+  }
+
+  .content {
+    padding-block: clamp(var(--sp-7), 8vw, var(--sp-9)) 0;
+  }
+
+  .lead {
+    max-width: 100%;
+  }
+
+  .controls {
+    bottom: var(--sp-5);
+  }
+
+  .arrows {
+    display: none;
+  }
+}
+
+/* Sans JavaScript : rien ne reste caché. */
+:global(.no-js) .line,
+:global(.no-js) .lead,
+:global(.no-js) .cta {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg {
+    transition: none;
+  }
+
+  .img,
+  .bg[data-active="true"] .img {
+    animation: none;
+    transform: none;
+  }
+
+  .line,
+  .lead,
+  .cta,
+  .hero[data-ready="true"] .line,
+  .hero[data-ready="true"] .lead,
+  .hero[data-ready="true"] .cta {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .dot[aria-selected="true"]::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+}

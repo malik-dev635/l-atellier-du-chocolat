@@ -6,7 +6,7 @@ import { Categories } from "@/components/categories/Categories";
 import { ChocolateSlider } from "@/components/chocolats/ChocolateSlider";
 import { CtaFooter } from "@/components/cta/CtaFooter";
 import { Gourmandises } from "@/components/gourmandises/Gourmandises";
-import { HeroTable } from "@/components/hero/HeroTable";
+import { HeroSlider } from "@/components/hero/HeroSlider";
 import { OfferBand } from "@/components/offer/OfferBand";
 import { PralineStrip } from "@/components/praline/PralineStrip";
 import { Testimonials } from "@/components/testimonials/Testimonials";
@@ -30,7 +30,7 @@ export default function HomePage(): ReactNode {
 
   return (
     <main>
-      <HeroTable />
+      <HeroSlider />
       <About />
       <Categories />
       <WhyUs />
