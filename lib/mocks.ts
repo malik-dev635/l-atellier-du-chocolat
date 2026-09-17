@@ -7,7 +7,7 @@ import {
   Phone,
 } from "lucide-react";
 
-import aboutStack from "@/assets/images/about-stack.jpg";
+import aboutStack from "@/assets/images/boite-de-chocolat.jpg";
 import avatar from "@/assets/images/avatar.jpg";
 import blog1 from "@/assets/images/blog-1.jpg";
 import blog2 from "@/assets/images/blog-2.jpg";

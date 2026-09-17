@@ -19,7 +19,7 @@ export function About(): ReactNode {
         <Parallax className={styles.visual} from={-6} to={6}>
           <RevealImage
             src={ABOUT.image}
-            alt="Empilement de tablettes de chocolat noir brisées"
+            alt="Coffrets de l'Atelier du Chocolat empilés, fèves de cacao et cabosses sur une table en bois"
             sizes="(max-width: 900px) 90vw, 44vw"
             className={styles.image}
           />

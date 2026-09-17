@@ -1,35 +1,25 @@
 .band {
   position: relative;
   padding-block: clamp(var(--sp-9), 8vw, var(--sp-12));
-  background: var(--c-milk);
+  /* Fond de la photo de la boîte cadeau, prélevé : la bande la prolonge. */
+  background: #38271d;
   color: var(--c-on-brand-strong);
   overflow: clip;
   isolation: isolate;
 }
 
-/* Filigrane botanique — opacité 0.10, débordant du cadre. */
-.watermark {
-  position: absolute;
-  top: -6%;
-  right: -4%;
-  width: clamp(220px, 26vw, 420px);
-  height: auto;
-  color: var(--c-gold-light);
-  opacity: 0.1;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Visuel fondu dans le brun par masque en dégradé : aucun bord dur. */
-/* Débordement vertical volontaire : sans le masque en dégradé, la parallaxe
-   découvrait le brun sous la photo à chaque extrémité de course.
-   Largeur réduite à 46 % pour laisser respirer la colonne de texte. */
+/* La photo dans la colonne de gauche, entière (`contain`) : la bande étant
+   peinte de la couleur de son fond, elle se prolonge sans couture et ne
+   passe jamais sous le texte. */
 .visual {
   position: absolute;
   left: 0;
-  top: -8%;
-  bottom: -8%;
-  width: min(46%, 720px);
+  top: 0;
+  bottom: 0;
+  /* `contain` cale la photo sur la hauteur de la bande ; la largeur est
+     plafonnée à 92 % pour que le sujet (61 % de gauche de la photo) reste
+     avant la colonne de texte à toute largeur d'écran. */
+  right: 8%;
   z-index: 0;
 }
 
@@ -83,7 +73,7 @@
 
 @media (min-width: 900px) {
   .grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   }
 
   .spacer {
@@ -91,13 +81,16 @@
   }
 }
 
+/* Sous 900px : la photo entière au-dessus du texte, à son ratio. */
 @media (max-width: 899px) {
+  .band {
+    padding-top: 0;
+  }
+
   .visual {
     position: relative;
-    top: 0;
-    bottom: 0;
     width: 100%;
-    height: 320px;
+    aspect-ratio: 1376 / 768;
     margin-bottom: var(--sp-7);
   }
 }
